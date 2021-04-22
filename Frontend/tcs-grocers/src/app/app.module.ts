@@ -10,6 +10,7 @@ import { AdminMenuComponent } from './admin-menu/admin-menu.component';
 import { AdminAddProductComponent } from './admin-add-product/admin-add-product.component';
 import { AdminDeleteProductComponent } from './admin-delete-product/admin-delete-product.component';
 import { AdminUpdateProductComponent } from './admin-update-product/admin-update-product.component';
+import { AdminViewRequestsComponent } from './admin-view-requests/admin-view-requests.component';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,8 @@ import { AdminUpdateProductComponent } from './admin-update-product/admin-update
     AdminMenuComponent,
     AdminAddProductComponent,
     AdminDeleteProductComponent,
-    AdminUpdateProductComponent
+    AdminUpdateProductComponent,
+    AdminViewRequestsComponent
   ],
   imports: [
     BrowserModule,
