@@ -5,6 +5,7 @@ import { AdminDeleteProductComponent } from './admin-delete-product/admin-delete
 import { AdminHomeComponent } from './admin-home/admin-home.component';
 import { AdminLoginComponent } from './admin-login/admin-login.component';
 import { AdminMenuComponent } from './admin-menu/admin-menu.component';
+import { AdminUpdateProductComponent } from './admin-update-product/admin-update-product.component';
 
 const routes: Routes = [
   {path:'\admin',component:AdminHomeComponent},
@@ -12,7 +13,7 @@ const routes: Routes = [
   {path:`\adminmenu`,component:AdminMenuComponent},
   {path:`\adminaddproduct`,component:AdminAddProductComponent},
   {path:`\admindeleteproduct`,component:AdminDeleteProductComponent},
-  
+  {path:`\adminupdateproduct`,component:AdminUpdateProductComponent},
 ];
 
 @NgModule({

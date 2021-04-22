@@ -9,6 +9,7 @@ import { FormsModule } from '@angular/forms';
 import { AdminMenuComponent } from './admin-menu/admin-menu.component';
 import { AdminAddProductComponent } from './admin-add-product/admin-add-product.component';
 import { AdminDeleteProductComponent } from './admin-delete-product/admin-delete-product.component';
+import { AdminUpdateProductComponent } from './admin-update-product/admin-update-product.component';
 
 @NgModule({
   declarations: [
@@ -17,7 +18,8 @@ import { AdminDeleteProductComponent } from './admin-delete-product/admin-delete
     AdminLoginComponent,
     AdminMenuComponent,
     AdminAddProductComponent,
-    AdminDeleteProductComponent
+    AdminDeleteProductComponent,
+    AdminUpdateProductComponent
   ],
   imports: [
     BrowserModule,
