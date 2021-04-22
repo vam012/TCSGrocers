@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-admin-delete-product',
@@ -7,9 +8,18 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AdminDeleteProductComponent implements OnInit {
 
-  constructor() { }
+  msg?:string;
+  constructor(public router:Router) { }
 
   ngOnInit(): void {
+  }
+
+  goToAdminMenu():void{
+    this.msg = "go back to admin menu"
+  }
+
+  deleteProduct(productRef:any):void{
+    this.msg = `productID: ${productRef.productID}`
   }
 
 }
