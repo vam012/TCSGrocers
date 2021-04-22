@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-admin-login',
@@ -7,9 +8,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AdminLoginComponent implements OnInit {
 
-  constructor() { }
+  msg?:String
+  constructor(public router:Router) { }
 
   ngOnInit(): void {
+  }
+
+  loginAttempt(loginRef:any):void{
+    this.msg = `username ${loginRef.username}, pwd ${loginRef.password}`;
+
   }
 
 }
