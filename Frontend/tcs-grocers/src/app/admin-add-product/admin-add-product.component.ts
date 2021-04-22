@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-admin-add-product',
@@ -7,9 +8,18 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AdminAddProductComponent implements OnInit {
 
-  constructor() { }
+  msg?:string;
+  constructor(public router:Router) { }
 
   ngOnInit(): void {
+  }
+
+  goToAdminMenu():void{
+    this.msg = "go back to admin menu"
+  }
+
+  addNewProduct(productRef:any):void{
+    this.msg = `productname: ${productRef.productName}, price: ${productRef.price}, quantity: ${productRef.quantity}`
   }
 
 }

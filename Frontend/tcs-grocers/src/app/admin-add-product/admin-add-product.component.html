@@ -1,1 +1,9 @@
-<p>admin-add-product works!</p>
+<input type="button" value="Go Back To Admin Menu" (click)=goToAdminMenu()>
+<form #productRef="ngForm" (submit)="addNewProduct(productRef.value)">
+    Product Name: <input type="text" name="productName" id="productName" ngModel/><br/>
+    Product Price: <input type="text" name="price" id="price" ngModel/><br/>
+    Product Quantity: <input type="text" name="quantity" id="quantity" ngModel/><br/>
+    <input type="submit" value="Add New Product"><br/>
+    <input type="reset" value="Reset Fields"><br/>
+    {{msg}}
+</form>
