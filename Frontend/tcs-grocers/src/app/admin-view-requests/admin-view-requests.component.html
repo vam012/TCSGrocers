@@ -1,1 +1,23 @@
-<p>admin-view-requests works!</p>
+<div>
+    <input type="button" value="Go Back To Admin Menu" (click)=goToAdminMenu()><br/>
+    {{msg}}<br/>
+    <input *ngIf="!openOnly" type="button" value="View Only Open Requests" (click)="openOnly=!openOnly">
+    <input *ngIf="openOnly" type="button" value="View All Requests" (click)="openOnly=!openOnly">
+    <table *ngIf="!openOnly">
+        <thead>
+            <th>Request ID</th>
+            <th>Employee ID</th>
+            <th>Product ID</th>
+            <th>Request Type</th>
+            <th>Open/Closed</th>
+        </thead>
+    </table>
+    <table *ngIf="openOnly">
+        <thead>
+            <th>Request ID</th>
+            <th>Employee ID</th>
+            <th>Product ID</th>
+            <th>Request Type</th>
+        </thead>
+    </table>
+</div>

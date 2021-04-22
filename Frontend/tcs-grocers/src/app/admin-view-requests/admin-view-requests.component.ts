@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-admin-view-requests',
@@ -7,9 +8,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AdminViewRequestsComponent implements OnInit {
 
-  constructor() { }
+  msg?:string;
+  openOnly:boolean=false;
+  constructor(public router:Router) { }
 
   ngOnInit(): void {
   }
+
+  goToAdminMenu():void{
+    this.msg = "go back to admin menu"
+  }
+
 
 }
