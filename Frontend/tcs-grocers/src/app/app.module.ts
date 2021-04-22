@@ -8,6 +8,7 @@ import { AdminLoginComponent } from './admin-login/admin-login.component';
 import { FormsModule } from '@angular/forms';
 import { AdminMenuComponent } from './admin-menu/admin-menu.component';
 import { AdminAddProductComponent } from './admin-add-product/admin-add-product.component';
+import { AdminDeleteProductComponent } from './admin-delete-product/admin-delete-product.component';
 
 @NgModule({
   declarations: [
@@ -15,7 +16,8 @@ import { AdminAddProductComponent } from './admin-add-product/admin-add-product.
     AdminHomeComponent,
     AdminLoginComponent,
     AdminMenuComponent,
-    AdminAddProductComponent
+    AdminAddProductComponent,
+    AdminDeleteProductComponent
   ],
   imports: [
     BrowserModule,
