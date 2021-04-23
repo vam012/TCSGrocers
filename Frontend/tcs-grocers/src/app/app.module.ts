@@ -8,7 +8,6 @@ import { AdminAddEmployeeComponent } from './admin-add-employee/admin-add-employ
 import { AdminDeleteEmployeeComponent } from './admin-delete-employee/admin-delete-employee.component';
 import { AdminHomeComponent } from './admin-home/admin-home.component';
 import { AdminLoginComponent } from './admin-login/admin-login.component';
-import { FormsModule } from '@angular/forms';
 import { AdminMenuComponent } from './admin-menu/admin-menu.component';
 import { AdminAddProductComponent } from './admin-add-product/admin-add-product.component';
 import { AdminDeleteProductComponent } from './admin-delete-product/admin-delete-product.component';
