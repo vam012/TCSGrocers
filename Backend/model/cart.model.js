@@ -1,4 +1,5 @@
-let mongoose = require("mongoose");
+let mong = require("mongoose");
+let mongoose = new mong.Mongoose();
 mongoose.Promise = global.Promise;      // creating reference. 
 
 let CartSchema = mongoose.Schema({

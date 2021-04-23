@@ -5,12 +5,14 @@
     <input type="button" value="View product requests" (click)=goToProductRequestPage()><br/>
     <input type="button" value="Add a new Employee" (click)=goToAddNewEmployee()><br/>
     <input type="button" value="Delete an Employee" (click)=goToDeleteEmployee()><br/>
-    <input type="button" value="Delete a product" (click)=goToDeleteProduct()><br/>
+    <input type="button" value="Generate Reports" (click)=goToGenerateReports()><br/>
     <input type="button" value="Logout" (click)=logoutAdmin()><br/>
-    <input type="button" value="Back to admin home" (click)=goBackToHomePage() routerLink="/admin"><br/>
-    {{msg}}<br/>
+    <input type="button" value="Back to admin home" routerLink="/admin"><br/>
     <app-admin-add-product *ngIf="displayBlock==1"></app-admin-add-product>
     <app-admin-delete-product *ngIf="displayBlock==2"></app-admin-delete-product>
     <app-admin-update-product *ngIf="displayBlock==3"></app-admin-update-product>
     <app-admin-view-requests *ngIf="displayBlock==4"></app-admin-view-requests>
+    <app-admin-add-employee *ngIf="displayBlock==5"></app-admin-add-employee>
+    <app-admin-delete-employee *ngIf="displayBlock==6"></app-admin-delete-employee>
+    <div  *ngIf="displayBlock==7"></div>
 </div>

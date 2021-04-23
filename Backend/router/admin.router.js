@@ -1,8 +1,8 @@
 let express = require("express");
 let router = express.Router();  //router reference. 
-let AdminController = require("../controller/product.controller.js");
+let AdminController = require("../controller/admin.controller.js");
 
-router.get("/login",AdminController.login);
+router.post("/login",AdminController.login);
 
 
 module.exports=router;
