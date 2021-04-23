@@ -22,7 +22,7 @@ export class AdminViewRequestsComponent implements OnInit {
 
   openCloseSwitch():void{
     this.openOnly=!this.openOnly;
-    this.buttonMsg = (this.openOnly)? "View all tickets":"View only open tickets";
+    this.buttonMsg = (this.openOnly)? "View All Tickets":"View Only Open Tickets";
   }
 
 
