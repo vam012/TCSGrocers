@@ -10,13 +10,13 @@ import { AdminService } from '../admin.service';
 export class AdminLoginComponent implements OnInit {
 
   msg?:String
-  constructor(public router:Router, /*public adminServ:AdminService*/) { }
+  constructor(public router:Router, public adminServ:AdminService) { }
 
   ngOnInit(): void {
   }
 
   loginAttempt(loginRef:any):void{
-    //this.adminServ.login(loginRef).subscribe((res:string)=>this.msg=res,(err:string)=>console.log(err));
+    this.adminServ.login(loginRef).subscribe((res:string)=>this.msg=res,(err:string)=>console.log(err));
   }
 
 }

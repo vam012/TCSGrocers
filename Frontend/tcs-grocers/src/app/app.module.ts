@@ -13,6 +13,7 @@ import { AdminAddProductComponent } from './admin-add-product/admin-add-product.
 import { AdminDeleteProductComponent } from './admin-delete-product/admin-delete-product.component';
 import { AdminUpdateProductComponent } from './admin-update-product/admin-update-product.component';
 import { AdminViewRequestsComponent } from './admin-view-requests/admin-view-requests.component';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -30,7 +31,8 @@ import { AdminViewRequestsComponent } from './admin-view-requests/admin-view-req
   imports: [
     BrowserModule,
     AppRoutingModule,
-    FormsModule
+    FormsModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]
