@@ -9,7 +9,7 @@ import { Router } from '@angular/router';
 export class AdminViewRequestsComponent implements OnInit {
 
   msg?:string;
-  buttonMsg:string = "Show open tickets only"
+  buttonMsg:string = "View Only Open Tickets"
   openOnly:boolean=false;
   constructor(public router:Router) { }
 
