@@ -1,0 +1,9 @@
+<input type="button" value="Go Back To Admin Menu" (click)=goToAdminMenu()>
+<form #employeeRef="ngForm" (submit)="addNewEmployee(employeeRef.value)">
+    Employee FirstName: <input type="text" name="employeeFirstName" id="employeeFirstName" ngModel/><br/>
+    Employee LastName: <input type="text" name="employeeLastName" id="employeeLastName" ngModel/><br/>
+    Employee EmailId: <input type="text" name="employeeEmailId" id="employeeEmailId" ngModel/><br/>
+    <input type="submit" value="Add New Employee"><br/>
+    <input type="reset" value="Reset"><br/>
+    {{msg}}
+</form>
