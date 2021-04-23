@@ -9,9 +9,7 @@ import { AdminMenuComponent } from './admin-menu/admin-menu.component';
 const routes: Routes = [
   {path:'\admin',component:AdminHomeComponent},
   {path:`\adminlogin`,component:AdminLoginComponent},
-  {path:`\adminmenu`,component:AdminMenuComponent},
-  {path:'\adminaddemployee', component:AdminAddEmployeeComponent},
-  {path:'\admindeleteemployee', component:AdminDeleteEmployeeComponent}
+  {path:`\adminmenu`,component:AdminMenuComponent}
 ];
 
 @NgModule({
