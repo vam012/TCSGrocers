@@ -1,9 +1,14 @@
 import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http'
 
 @Injectable({
   providedIn: 'root'
 })
 export class AdminService {
 
-  constructor() { }
+  constructor(public http:HttpClient) { }
+
+  login(loginRef:any):any{
+    return this.http.post("http://localhost:7777/admin/login",loginRef,{responseType: 'text'})
+  }
 }
