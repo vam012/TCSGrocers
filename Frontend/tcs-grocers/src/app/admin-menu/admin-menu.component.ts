@@ -8,6 +8,7 @@ import { Router } from '@angular/router';
 })
 export class AdminMenuComponent implements OnInit {
 
+  displayBlock:number=0;
   msg?:string
 
   constructor(public router:Router) { }
@@ -16,15 +17,19 @@ export class AdminMenuComponent implements OnInit {
   }
   goToAddNewProduct():void{
     this.msg="go to add new product"
-  }
-  goToUpdateProductInfo():void{
-    this.msg="go to update product info"
+    this.displayBlock = 1;
   }
   goToDeleteProduct():void{
     this.msg="go to delete product"
+    this.displayBlock = 2;
+  }
+  goToUpdateProductInfo():void{
+    this.msg="go to update product info"
+    this.displayBlock = 3;
   }
   goToProductRequestPage():void{
     this.msg="go to product request page"
+    this.displayBlock = 4;
   }
   goToAddNewEmployee():void{
     this.msg="go to add new product"
