@@ -13,11 +13,6 @@ export class AdminDeleteProductComponent implements OnInit {
 
   ngOnInit(): void {
   }
-
-  goToAdminMenu():void{
-    this.msg = "go back to admin menu"
-  }
-
   deleteProduct(productRef:any):void{
     this.msg = `productID: ${productRef.productID}`
   }

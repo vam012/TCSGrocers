@@ -14,10 +14,6 @@ export class AdminAddProductComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  goToAdminMenu():void{
-    this.msg = "go back to admin menu"
-  }
-
   addNewProduct(productRef:any):void{
     this.msg = `productname: ${productRef.productName}, price: ${productRef.price}, quantity: ${productRef.quantity}`
   }

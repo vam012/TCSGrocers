@@ -7,17 +7,11 @@ import { Router } from '@angular/router';
   styleUrls: ['./admin-view-requests.component.css']
 })
 export class AdminViewRequestsComponent implements OnInit {
-
-  msg?:string;
   buttonMsg:string = "View Only Open Tickets"
   openOnly:boolean=false;
   constructor(public router:Router) { }
 
   ngOnInit(): void {
-  }
-
-  goToAdminMenu():void{
-    this.msg = "go back to admin menu"
   }
 
   openCloseSwitch():void{

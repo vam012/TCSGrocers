@@ -14,17 +14,11 @@ export class AdminUpdateProductComponent implements OnInit {
     quantity:100,
     discount:0
   }
-  msg?:string
   selectedProductID?:any
   constructor(public router:Router) { }
 
   ngOnInit(): void {
   }
-
-  goToAdminMenu():void{
-    this.msg = "go back to admin menu"
-  }
-
   updateProductID(formRef:any):void{
     this.selectedProductID = formRef.productID;
   }
