@@ -1,0 +1,7 @@
+<input type="button" value="Go Back To Admin Menu" (click)=goToAdminMenu()>
+<form #employeeRef="ngForm" (submit)="deleteEmployee(employeeRef.value)">
+    Employee Id: <input type="text" name="employeeId" id="employeeId" ngModel/><br/>
+    <input type="submit" value="Delete New Employee"><br/>
+    <input type="reset" value="Reset"><br/>
+    {{msg}}
+</form>
