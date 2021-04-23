@@ -1,0 +1,5 @@
+<form #productRef="ngForm" (submit)="deleteProduct(productRef.value)">
+    Product ID: <input type="text" name="productID" id="productID" ngModel/><br/>
+    <input type="submit" value="Delete Product"><br/>
+    <input type="reset" value="Reset Field"><br/>
+</form>

@@ -1,0 +1,8 @@
+<input type="button" value="Go Back To Admin Home" routerLink="/admin"><br/>
+<form #loginRef="ngForm" (submit)="loginAttempt(loginRef.value)">
+    Username: <input type="text" name="username" id="username" ngModel/><br/>
+    Psssword: <input type="password" name="password" id="password" ngModel/><br/>
+    <input type="submit" value="Login"><br/>
+    <input type="reset" value="Reset Fields"><br/>
+    {{msg}}
+</form>
