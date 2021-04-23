@@ -9,6 +9,7 @@ import { Router } from '@angular/router';
 export class AdminViewRequestsComponent implements OnInit {
 
   msg?:string;
+  buttonMsg:string = "Show open tickets only"
   openOnly:boolean=false;
   constructor(public router:Router) { }
 
@@ -17,6 +18,11 @@ export class AdminViewRequestsComponent implements OnInit {
 
   goToAdminMenu():void{
     this.msg = "go back to admin menu"
+  }
+
+  openCloseSwitch():void{
+    this.openOnly=!this.openOnly;
+    this.buttonMsg = (this.openOnly)? "View all tickets":"View only open tickets";
   }
 
 
