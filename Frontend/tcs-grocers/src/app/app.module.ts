@@ -14,6 +14,8 @@ import { AdminDeleteProductComponent } from './admin-delete-product/admin-delete
 import { AdminUpdateProductComponent } from './admin-update-product/admin-update-product.component';
 import { AdminViewRequestsComponent } from './admin-view-requests/admin-view-requests.component';
 import { HttpClientModule } from '@angular/common/http';
+import { UserHomeComponent } from './user-home/user-home.component';
+import { CartComponent } from './cart/cart.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +28,9 @@ import { HttpClientModule } from '@angular/common/http';
     AdminAddProductComponent,
     AdminDeleteProductComponent,
     AdminUpdateProductComponent,
-    AdminViewRequestsComponent
+    AdminViewRequestsComponent,
+    UserHomeComponent,
+    CartComponent
   ],
   imports: [
     BrowserModule,

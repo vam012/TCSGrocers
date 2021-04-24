@@ -3,12 +3,16 @@ import { RouterModule, Routes } from '@angular/router';
 import { AdminHomeComponent } from './admin-home/admin-home.component';
 import { AdminLoginComponent } from './admin-login/admin-login.component';
 import { AdminMenuComponent } from './admin-menu/admin-menu.component';
+import { CartComponent } from './cart/cart.component';
+import { UserHomeComponent } from './user-home/user-home.component';
 
 const routes: Routes = [
   {path:'\admin',component:AdminHomeComponent},
   {path:`\adminlogin`,component:AdminLoginComponent},
-  {path:`\adminmenu`,component:AdminMenuComponent}
-];
+  {path:`\adminmenu`,component:AdminMenuComponent},
+  {path:`user`,component:UserHomeComponent},
+  {path:`cart`,component:CartComponent}
+]
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
