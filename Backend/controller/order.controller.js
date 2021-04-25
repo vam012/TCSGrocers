@@ -29,6 +29,15 @@ let getOrderByCustomerId = (req,res)=>{
     })
 }
 
+let getOrderByProductId = (req,res)=>{
+    let pid = req.params.pid;
+    OrderModel.find({productId:pid},(err,data)=>{
+        if(!err){
+            res.json(data)
+        }
+    })
+}
+
 let storeNewOrder = (req,res)=>{
     let holdArr = [];
     OrderModel.find({},(err,data)=>{
@@ -55,9 +64,20 @@ let storeNewOrder = (req,res)=>{
     })
 }
 
+let getDailydata = (req,res)=>{
+
+}
+
+let getWeeklydata = (req,res)=>{
+
+}
+
+let getMonthlydata = (req,res)=>{
+
+}
 
 
 
 
 
-module.exports={getAllOrderDetails,getOrderById,storeNewOrder,getOrderByCustomerId}
+module.exports={getAllOrderDetails,getOrderById,storeNewOrder,getOrderByCustomerId,getDailydata,getWeeklydata,getMonthlydata,getOrderByProductId}
