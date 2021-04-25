@@ -8,7 +8,7 @@ let OrderSchema = mongoose.Schema({
         _id:Number,
         quantity:Number
     }],
-    orderDate:String,
+    orderDate:Date,
     orderAmount:Number,
     orderStatus:Number,
     cancelReason:String

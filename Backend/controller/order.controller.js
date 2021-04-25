@@ -41,7 +41,7 @@ let storeNewOrder = (req,res)=>{
         _id:nextID,
         customerId:req.body.customerId,
         orderAmount:req.body.orderAmount,
-        orderDate:req.body.orderDate,
+        orderDate:Date.now(),
         ProductList:[{_id:req.body.productId, quantity:req.body.quantity}],
         orderStatus:"Order Placed",
         cancelReason:""
@@ -54,6 +54,8 @@ let storeNewOrder = (req,res)=>{
         }
     })
 }
+
+
 
 
 
