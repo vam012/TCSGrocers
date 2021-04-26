@@ -1,5 +1,5 @@
-let mong = require("mongoose");
-let mongoose = new mong.Mongoose();
+let mongoose = require("mongoose");
+//let mongoose = new mong.Mongoose();
 mongoose.Promise = global.Promise;      // creating reference. 
 
 let ProductSchema = mongoose.Schema({
@@ -10,6 +10,6 @@ let ProductSchema = mongoose.Schema({
     discount:Number
 })
 
-let ProductModel = mongoose.model("",ProductSchema,"products");
+let ProductModel = mongoose.model("Product",ProductSchema,"products");
 
 module.exports = ProductModel;
