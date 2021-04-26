@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { FormsModule } from '@angular/forms';
@@ -14,6 +13,8 @@ import { AdminDeleteProductComponent } from './admin-delete-product/admin-delete
 import { AdminUpdateProductComponent } from './admin-update-product/admin-update-product.component';
 import { AdminViewRequestsComponent } from './admin-view-requests/admin-view-requests.component';
 import { HttpClientModule } from '@angular/common/http';
+import { UserHomeComponent } from './user-home/user-home.component';
+import { CartComponent } from './cart/cart.component';
 import { AdminGenerateReportsComponent } from './admin-generate-reports/admin-generate-reports.component';
 import { AdminDailyReportComponent } from './admin-daily-report/admin-daily-report.component';
 import { AdminWeeklyReportComponent } from './admin-weekly-report/admin-weekly-report.component';
@@ -34,6 +35,8 @@ import { MainMenuComponent } from './main-menu/main-menu.component';
     AdminDeleteProductComponent,
     AdminUpdateProductComponent,
     AdminViewRequestsComponent,
+    UserHomeComponent,
+    CartComponent
     AdminGenerateReportsComponent,
     AdminDailyReportComponent,
     AdminWeeklyReportComponent,
