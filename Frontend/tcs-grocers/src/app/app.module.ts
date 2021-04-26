@@ -36,7 +36,7 @@ import { MainMenuComponent } from './main-menu/main-menu.component';
     AdminUpdateProductComponent,
     AdminViewRequestsComponent,
     UserHomeComponent,
-    CartComponent
+    CartComponent,
     AdminGenerateReportsComponent,
     AdminDailyReportComponent,
     AdminWeeklyReportComponent,
