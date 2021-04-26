@@ -1,0 +1,12 @@
+<div>
+    <input type="button" value="Daily Reports" (click)= "goToDailyReports()"><br/>
+    <input type="button" value="Weekly Reports" (click)= "goToWeeklyReports()"><br/>
+    <input type="button" value="Monthly Reports" (click)= "goToMonthlyReports()"><br/>
+    <input type="button" value="Product Reports" (click)= "goToProductReports()"><br/>
+    <input type="button" value="Customer Reports" (click)= "goToCustomerReports()"><br/>
+    <app-admin-daily-report *ngIf="displayBlock==1"></app-admin-daily-report>
+    <app-admin-weekly-report *ngIf="displayBlock==2"></app-admin-weekly-report>
+    <app-admin-monthly-report *ngIf="displayBlock==3"></app-admin-monthly-report>
+    <app-admin-customer-report *ngIf="displayBlock==4"></app-admin-customer-report>
+    <app-admin-product-report *ngIf="displayBlock==5"></app-admin-product-report>
+</div>
