@@ -18,7 +18,27 @@ export class ProductService {
     return this.http.get<Product[]>("http://localhost:7777/products/allProductDetails/");
   }
 
+  getProductByID(productID:any):Observable<Product[]>{
+    return this.http.get<Product[]>(`http://localhost:7777/products/getProductById/${productID}`);
+  }
+
   deleteProductByID(productID:any):any{
     return this.http.delete(`http://localhost:7777/products/deleteProductById/${productID}`,{responseType:'text'})
+  }
+
+  updateProductName(productRef:any):any{
+    return this.http.put("http://localhost:7777/products/updateProductName/",productRef,{responseType:'text'})
+  }
+
+  updateProductPrice(productRef:any):any{
+    return this.http.put("http://localhost:7777/products/updateProductPrice/",productRef,{responseType:'text'})
+  }
+
+  updateProductQuantity(productRef:any):any{
+    return this.http.put("http://localhost:7777/products/updateProductQuantity/",productRef,{responseType:'text'})
+  }
+
+  updateProductDiscount(productRef:any):any{
+    return this.http.put("http://localhost:7777/products/updateProductDiscount/",productRef,{responseType:'text'})
   }
 }

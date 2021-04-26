@@ -1,33 +1,36 @@
-<form #productIDRef="ngForm" (submit)="updateProductID(productIDRef.value)">
-    Product ID: <input type="text" name="productID" id="productID" ngModel/><br/>
+<form #productIDRef="ngForm" (submit)="updateProductID(productIDRef)">
+    Product ID: 
+    <select name=productID ngModel>
+        <option  *ngFor = 'let product of allProducts' [value] = "product._id">{{product._id}} - {{product.name}}</option>
+    </select><br/>
     <input type="submit" value="Update product ID"><br/>
     <input type="reset" value="Reset Field"><br/>
 </form>
 Product ID To be updated is {{selectedProductID}}
 <div *ngIf="selectedProductID != undefined && selectedProductID !=''">
     <hr/>
-    <form #productNameRef="ngForm" (submit)="updateProductName(productNameRef.value)">
+    <form #productNameRef="ngForm" (submit)="updateProductName(productNameRef)">
         Old Product Name is: "{{product.name}}"<br/>
         New Product Name: <input type="text" name="productName" id="productName" ngModel/><br/>
         <input type="submit" value="Update Product Name"><br/>
         <input type="reset" value="Reset Field"><br/>
     </form>
     <hr/>
-    <form #productPriceRef="ngForm" (submit)="updateProductPrice(productPriceRef.value)">
+    <form #productPriceRef="ngForm" (submit)="updateProductPrice(productPriceRef)">
         Old Product Price is: ${{product.price}}<br/>
         New Product Price: <input type="text" name="productPrice" id="productPrice" ngModel/><br/>
         <input type="submit" value="Update Product Price"><br/>
         <input type="reset" value="Reset Field"><br/>
     </form>
     <hr/>
-    <form #productQuantityRef="ngForm" (submit)="updateProductQuantity(productQuantityRef.value)">
+    <form #productQuantityRef="ngForm" (submit)="updateProductQuantity(productQuantityRef)">
         Old Product Quantity is: {{product.quantity}} pieces<br/>
         New Product Quantity: <input type="text" name="productQuantity" id="productQuantity" ngModel/><br/>
         <input type="submit" value="Update Product Quantity"><br/>
         <input type="reset" value="Reset Field"><br/>
     </form>
     <hr/>
-    <form #productDiscountyRef="ngForm" (submit)="updateProductDiscount(productDiscountyRef.value)">
+    <form #productDiscountyRef="ngForm" (submit)="updateProductDiscount(productDiscountyRef)">
         Old Product Discount is: {{product.discount}}%<br/>
         New Product Discount: <input type="text" name="productDiscount" id="productDiscount" ngModel/><br/>
         <input type="submit" value="Update Product Discount%"><br/>

@@ -59,8 +59,30 @@ let deleteProductById = (req,res)=>{
     })
 }
 
+let updateProductPrice= (req,res)=>{
+    ProductModel.updateOne({_id:req.body.productID},{$set:{price:req.body.newPrice}},(err,data)=>{
+        if(!err ){
+            if( data.nModified == 1){res.send("Product updated successfully ");}
+            else{res.send("Product not found")}
+        }else{
+            res.send("Something went wrong...");
+        }
+    })
+}
+
+let updateProductName= (req,res)=>{
+    ProductModel.updateOne({_id:req.body.productID},{$set:{name:req.body.newName}},(err,data)=>{
+        if(!err ){
+            if( data.nModified == 1){res.send("Product updated successfully ");}
+            else{res.send("Product not found")}
+        }else{
+            res.send("Something went wrong...");
+        }
+    })
+}
+
 let updateProductQuantity= (req,res)=>{
-    ProductModel.updateOne({_id:req.body._id},{$set:{price:req.body.newQuantity}},(err,data)=>{
+    ProductModel.updateOne({_id:req.body.productID},{$set:{price:req.body.newQuantity}},(err,data)=>{
         if(!err ){
             if( data.nModified == 1){res.send("Product updated successfully ");}
             else{res.send("Product not found")}
@@ -71,7 +93,7 @@ let updateProductQuantity= (req,res)=>{
 }
 
 let updateProductDiscount= (req,res)=>{
-    ProductModel.updateOne({_id:req.body._id},{$set:{discount:req.body.newDiscount}},(err,data)=>{
+    ProductModel.updateOne({_id:req.body.productID},{$set:{discount:req.body.newDiscount}},(err,data)=>{
         if(!err ){
             if( data.nModified == 1){res.send("Product updated successfully ");}
             else{res.send("Product not found")}
@@ -81,4 +103,4 @@ let updateProductDiscount= (req,res)=>{
     })
 }
 
-module.exports={getAllProductDetails,getProductById,storeNewProduct,deleteProductById,updateProductQuantity,updateProductDiscount}
+module.exports={getAllProductDetails,getProductById,storeNewProduct,deleteProductById,updateProductQuantity,updateProductDiscount,updateProductName,updateProductPrice}
