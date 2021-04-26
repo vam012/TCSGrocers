@@ -1,5 +1,4 @@
-let mong = require("mongoose");
-let mongoose = new mong.Mongoose();
+let mongoose = require("mongoose");
 mongoose.Promise = global.Promise;      // creating reference. 
 
 let EmployeeSchema = mongoose.Schema({
@@ -11,6 +10,6 @@ let EmployeeSchema = mongoose.Schema({
     password:String
 })
 
-let EmployeeModel = mongoose.model("",EmployeeSchema,"employees");
+let EmployeeModel = mongoose.model("Employee",EmployeeSchema,"employees");
 
 module.exports = EmployeeModel;

@@ -1,5 +1,4 @@
-let mong = require("mongoose");
-let mongoose = new mong.Mongoose();
+let mongoose = require("mongoose");
 mongoose.Promise = global.Promise;      // creating reference. 
 
 let CartSchema = mongoose.Schema({
@@ -10,6 +9,6 @@ let CartSchema = mongoose.Schema({
     cancelReason:String
 })
 
-let CartModel = mongoose.model("",CartSchema,"carts");
+let CartModel = mongoose.model("Cart",CartSchema,"carts");
 
 module.exports = CartModel;
