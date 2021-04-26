@@ -21,6 +21,7 @@ import { AdminWeeklyReportComponent } from './admin-weekly-report/admin-weekly-r
 import { AdminMonthlyReportComponent } from './admin-monthly-report/admin-monthly-report.component';
 import { AdminProductReportComponent } from './admin-product-report/admin-product-report.component';
 import { AdminCustomerReportComponent } from './admin-customer-report/admin-customer-report.component';
+import { MainMenuComponent } from './main-menu/main-menu.component';
 
 @NgModule({
   declarations: [
@@ -41,7 +42,8 @@ import { AdminCustomerReportComponent } from './admin-customer-report/admin-cust
     AdminWeeklyReportComponent,
     AdminMonthlyReportComponent,
     AdminProductReportComponent,
-    AdminCustomerReportComponent
+    AdminCustomerReportComponent,
+    MainMenuComponent
   ],
   imports: [
     BrowserModule,
