@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { Product } from '../product.model';
+import { ProductService } from '../product.service';
 
 @Component({
   selector: 'app-admin-delete-product',
@@ -8,13 +10,23 @@ import { Router } from '@angular/router';
 })
 export class AdminDeleteProductComponent implements OnInit {
 
+  allProducts?:Array<Product>
   msg?:string;
-  constructor(public router:Router) { }
+
+  constructor(public router:Router, public prodServ:ProductService) { }
 
   ngOnInit(): void {
+    this.getProducts();
   }
   deleteProduct(productRef:any):void{
-    this.msg = `productID: ${productRef.productID}`
+    this.prodServ.deleteProductByID(productRef.value.productID).subscribe((res:string)=>{this.msg=res;
+    productRef.reset()},(err:string)=>console.log(err));
+    this.getProducts();
   }
+
+  getProducts():void{
+    this.prodServ.getAllProducts().subscribe(res=>this.allProducts=res,err=>console.log(err))
+  }
+
 
 }
