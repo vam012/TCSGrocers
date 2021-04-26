@@ -2,11 +2,11 @@ let mongoose = require("mongoose");
 mongoose.Promise = global.Promise;      // creating reference. 
 
 let CartSchema = mongoose.Schema({
-    customerID:Number,
-    orderNumber:String,
-    productList:Array,
-    orderStatus:Number,
-    cancelReason:String
+    _id:Number,
+    productList:[{
+        _id:Number,
+        quantity:Number
+    }],
 })
 
 let CartModel = mongoose.model("Cart",CartSchema,"carts");
