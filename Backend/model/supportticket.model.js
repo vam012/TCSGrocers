@@ -1,5 +1,4 @@
-let mong = require("mongoose");
-let mongoose = new mong.Mongoose();
+let mongoose = require("mongoose");
 mongoose.Promise = global.Promise;      // creating reference. 
 
 let SupportTicketSchema = mongoose.Schema({
@@ -9,6 +8,6 @@ let SupportTicketSchema = mongoose.Schema({
     openclosed:Number
 })
 
-let SupportTicketModel = mongoose.model("",SupportTicketSchema,"supporttickets");
+let SupportTicketModel = mongoose.model("SupportTicket",SupportTicketSchema,"supporttickets");
 
 module.exports = SupportTicketModel;

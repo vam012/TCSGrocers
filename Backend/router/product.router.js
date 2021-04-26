@@ -10,6 +10,11 @@ router.post("/storeProductDetails",ProductController.storeNewProduct)
 
 router.delete("/deleteProductById/:pid",ProductController.deleteProductById)
 
+router.put('/updateProductName',ProductController.updateProductName)
+router.put('/updateProductPrice',ProductController.updateProductPrice)
+router.put('/updateProductQuantity',ProductController.updateProductQuantity)
+router.put('/updateProductDiscount',ProductController.updateProductDiscount)
+
 
 
 

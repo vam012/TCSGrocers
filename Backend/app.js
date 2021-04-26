@@ -28,15 +28,18 @@ var Admin = require("./router/admin.router.js");
 var Cart = require("./router/cart.router.js");
 var Customer = require("./router/customer.router.js");
 var Employee = require("./router/employee.router.js");
+var Order = require("./router/order.router.js")
 var Product = require("./router/product.router.js");
 var ProductRequest = require("./router/productrequest.router.js");
 var SupportTicket = require("./router/supportticket.router.js");
+
 
 //Middleware 
 app.use("/admin",Admin)
 app.use("/carts",Cart)
 app.use("/customers",Customer)
 app.use("/employees",Employee)
+app.use("/orders",Order)
 app.use("/products",Product)
 app.use("/productrequests",ProductRequest)
 app.use("/supporttickets",SupportTicket)

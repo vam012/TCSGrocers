@@ -12,16 +12,10 @@ export class AdminHomeComponent implements OnInit {
 
   ngOnInit(): void {
   }
-  toLogin():void{
-    console.log("toLogin");
-
-  }
   logout():void{
-    console.log("logout");
+    sessionStorage.removeItem("adminToken");
+    this.router.navigate(["admin"])
 
-  }
-  toHome():void{
-    console.log("toHome")
   }
 
 }

@@ -10,8 +10,8 @@ let getAllCarts = (req,res)=>{
 }
 
 let getAllCartsByCustomerId = (req,res)=>{
-    let custID = req.params.customerID
-    CartModel.find({customerID:custID},(err,data)=>{
+    let customerID = req.params.customerID
+    CartModel.find({_id:customerID},(err,data)=>{
         if(!err){
             res.json(data)
         }
@@ -19,10 +19,10 @@ let getAllCartsByCustomerId = (req,res)=>{
 }
 
 let addNewProductToCart = (req,res)=>{
-    let orderToChange = req.params.orderNumber;
+    let customerID = req.params.customerID;
     let productID = req.params.productID;
     let quantity = req.params.quantity;
-    CartModel.updateOne({orderNumber:orderToChange},{$push:{productID:productID,quantity:quantity}},(err,data)=>{
+    CartModel.updateOne({_id:customerID},{$push:{productList:{_id:productID,quantity:quantity}}},(err,data)=>{
         if(!err){
             if(data.nModified == 1){
                 res.send("Successfully updated quantity")
@@ -36,12 +36,10 @@ let addNewProductToCart = (req,res)=>{
 }
 
 let removeProductFromCart = (req,res)=>{
-    let orderToChange = req.body.ordernumber;
+    let customerID = req.body.customerID;
     let productID = req.body.productid;
-    CartModel.updateOne({orderNumber:orderToChange},
-        { $pull: "productList.$[elem]"},
-        {   multi: false,
-            arrayFilters: [ { "elem.productID":productID } ]},
+    CartModel.updateOne({_id:customerID},
+        { $pull: {productList:{_id:productID}}},
         (err,data)=>{
         if(!err){
             if(data.nModified == 1){
@@ -56,13 +54,11 @@ let removeProductFromCart = (req,res)=>{
 }
 
 let updateProductQuantity = (req,res)=>{
-    let orderToChange = req.body.orderNumber;
+    let customerID = req.body.customerID;
     let productID = req.body.productid;
     let quantity = req.body.quantity;
-    CartModel.updateOne({orderNumber:orderToChange},
-        { $push: { "productList.$[elem].quantity" : quantity } },
-        {   multi: false,
-            arrayFilters: [ { "elem.productID":productID } ]},
+    CartModel.updateOne({_id:customerID, "productList._id":productID},
+        { $set: { "productList.$.quantity" : quantity } },
         (err,data)=>{
         if(!err){
             if(data.nModified == 1){
@@ -78,11 +74,8 @@ let updateProductQuantity = (req,res)=>{
 
 let createNewCart = (req,res)=>{
     let newCart = new CartModel({
-        customerID:req.body.customerID,
-        orderNumber:1,
-        productList:[],
-        orderStatus:0,
-        cancelReason:""
+        _id:req.body.customerID,
+        productList:[{_id:req.body.productId, quantity:req.body.quantity}],
     });
     newCart.save((err,data)=>{
         if(!err){
@@ -93,30 +86,5 @@ let createNewCart = (req,res)=>{
     })
 }
 
-let getAllSoldCarts = (req,res)=>{
-    let soldNumber = 3
-    CartModel.find({orderStatus:soldNumber},(err,data)=>{
-        if(!err){
-            res.json(data)
-        }
-    })
-}
 
-let updateCartStatus = (req,res)=>{
-    let orderToChange = req.body.ordernumber;
-    let newStatus = req.body.newStatus;
-    let cancelReason = req.body.cancelReason;
-    CartModel.updateOne({orderNumber:orderToChange},{$set:{orderStatus:newStatus,cancelReason:cancelReason}},(err,data)=>{
-        if(!err){
-            if(data.nModified == 1){
-                res.send("Successfully updated quantity")
-            }else{
-                res.send("Cart model does not exist");
-            }
-        }else{
-            res.send("Something went wrong!")
-        }
-    })
-}
-
-module.exports={getAllCarts,getAllCartsByCustomerId,addNewProductToCart,removeProductFromCart,updateProductQuantity,createNewCart,getAllSoldCarts,updateCartStatus}
+module.exports={getAllCarts,getAllCartsByCustomerId,addNewProductToCart,removeProductFromCart,updateProductQuantity,createNewCart}

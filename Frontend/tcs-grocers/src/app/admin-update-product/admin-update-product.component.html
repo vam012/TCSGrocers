@@ -1,36 +1,118 @@
-<form #productIDRef="ngForm" (submit)="updateProductID(productIDRef.value)">
-    Product ID: <input type="text" name="productID" id="productID" ngModel/><br/>
-    <input type="submit" value="Update product ID"><br/>
-    <input type="reset" value="Reset Field"><br/>
-</form>
-Product ID To be updated is {{selectedProductID}}
+<div class=container>
+    <h3>Update A Product</h3>
+    <hr/>
+    <form #productIDRef="ngForm" (submit)="updateProductID(productIDRef)">
+        <div class="row justify-content-center">
+            <div class="col-lg-2">
+                <b>Product ID: </b>
+            </div>
+                <select name=productID class="col-lg-3" ngModel>
+                    <option selected value="" selected>Please select a Product ID</option>
+                    <option  *ngFor = 'let product of allProducts' [value] = "product._id">{{product._id}} - {{product.name}}</option>
+                </select>
+        </div>
+        <br/>
+        <div class="row justify-content-center">
+            <input type="submit" class="col-3 btn btn-success" value="Update Product ID"><br/>
+        </div>
+        <div class="row justify-content-center">
+            <input type="reset" class="col-3 btn btn-warning" value="Reset Field" (click)="selectedProductID=''"><br/>
+        </div>
+    </form>
+</div>
 <div *ngIf="selectedProductID != undefined && selectedProductID !=''">
+    <br/>
+    <h4>Product ID To be updated is: {{selectedProductID}}</h4>
     <hr/>
-    <form #productNameRef="ngForm" (submit)="updateProductName(productNameRef.value)">
-        Old Product Name is: "{{product.name}}"<br/>
-        New Product Name: <input type="text" name="productName" id="productName" ngModel/><br/>
-        <input type="submit" value="Update Product Name"><br/>
-        <input type="reset" value="Reset Field"><br/>
+    <form #productNameRef="ngForm" (submit)="updateProductName(productNameRef)">
+        <div class="row justify-content-center">
+            <div class="col-lg-12">
+                <h4>Product Name</h4>
+                <h5>Old Product Name is: "{{product.name}}"</h5>
+            </div>
+            <div class="col-lg-3">
+                <b>New Product Name: </b>
+            </div>
+            <div class="col-lg-3">
+                <input type="text" name="productName" id="productName" ngModel/><br/>
+            </div>
+        </div>
+        <br/>
+        <div class="row justify-content-center">
+            <input type="submit" class="col-3 btn btn-success" value="Update Product Name"><br/>
+        </div>
+        <div class="row justify-content-center">
+            <input type="reset" class="col-3 btn btn-warning" value="Reset Field"><br/>
+        </div>
+       <br/>
     </form>
     <hr/>
-    <form #productPriceRef="ngForm" (submit)="updateProductPrice(productPriceRef.value)">
-        Old Product Price is: ${{product.price}}<br/>
-        New Product Price: <input type="text" name="productPrice" id="productPrice" ngModel/><br/>
-        <input type="submit" value="Update Product Price"><br/>
-        <input type="reset" value="Reset Field"><br/>
+    <form #productPriceRef="ngForm" (submit)="updateProductPrice(productPriceRef)">
+        <div class="row justify-content-center">
+            <div class="col-lg-12">
+                <h4>Product Price</h4>
+                <h5>Old Product Price is: ${{product.price}}</h5>
+            </div>
+            <div class="col-lg-3">
+                <b>New Product Price: $</b>
+            </div>
+            <div class="col-lg-3">
+                <input type="text" name="productPrice" id="productPrice" ngModel/><br/>
+            </div>
+            <br/>
+        </div>
+        <br/>
+        <div class="row justify-content-center">
+            <input type="submit" class="col-3 btn btn-success" value="Update Product Name"><br/>
+        </div>
+        <div class="row justify-content-center">
+            <input type="reset" class="col-3 btn btn-warning" value="Reset Field"><br/>
+        </div>
+        <br/>
     </form>
     <hr/>
-    <form #productQuantityRef="ngForm" (submit)="updateProductQuantity(productQuantityRef.value)">
-        Old Product Quantity is: {{product.quantity}} pieces<br/>
-        New Product Quantity: <input type="text" name="productQuantity" id="productQuantity" ngModel/><br/>
-        <input type="submit" value="Update Product Quantity"><br/>
-        <input type="reset" value="Reset Field"><br/>
+    <form #productQuantityRef="ngForm" (submit)="updateProductQuantity(productQuantityRef)">
+        <div class="row justify-content-center">
+            <div class="col-lg-12">
+                <h4>Product Quantity</h4>
+                <h5>Old Product Quantity is: {{product.quantity}} pieces</h5>
+            </div>
+            <div class="col-lg-3">
+                <b>New Product Quantity: $</b>
+            </div>
+            <div class="col-lg-3">
+                <input type="text" name="productQuantity" id="productQuantity" ngModel/><br/>
+            </div>
+        </div>
+        <br/>
+        <div class="row justify-content-center">
+            <input type="submit" class="col-3 btn btn-success" value="Update Product Name"><br/>
+        </div>
+        <div class="row justify-content-center">
+            <input type="reset" class="col-3 btn btn-warning" value="Reset Field"><br/>
+        </div>
+        <br/>
     </form>
     <hr/>
-    <form #productDiscountyRef="ngForm" (submit)="updateProductDiscount(productDiscountyRef.value)">
-        Old Product Discount is: {{product.discount}}%<br/>
-        New Product Discount: <input type="text" name="productDiscount" id="productDiscount" ngModel/><br/>
-        <input type="submit" value="Update Product Discount%"><br/>
-        <input type="reset" value="Reset Field"><br/>
+    <form #productDiscountyRef="ngForm" (submit)="updateProductDiscount(productDiscountyRef)">
+        <div class="row justify-content-center">
+            <div class="col-lg-12">
+                <h4>Product Discount</h4>
+                <h5>Old Product Discount is: {{product.discount}}%</h5>
+            </div>
+            <div class="col-lg-3">
+                <b>New Product Discount: $</b>
+            </div>
+            <div class="col-lg-3">
+                <input type="text" name="productDiscount" id="productDiscount" ngModel/><br/>
+            </div>
+        </div>
+        <br/>
+        <div class="row justify-content-center">
+            <input type="submit" class="col-3 btn btn-success" value="Update Product Name"><br/>
+        </div>
+        <div class="row justify-content-center">
+            <input type="reset" class="col-3 btn btn-warning" value="Reset Field"><br/>
+        </div>
     </form>
 </div>

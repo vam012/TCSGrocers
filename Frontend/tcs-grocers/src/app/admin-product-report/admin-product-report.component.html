@@ -1,0 +1,14 @@
+<div>
+    <form #dataRef='ngForm'  (submit) = "gotoProductReport(dataRef.value)">
+        Enter Product ID for product report:
+        <input type="text" name="productID" id="productID"><br/>
+        <input type="submit" value="Get Report"/>
+        <input type="reset" value="Reset"/>
+
+    </form>
+</div>
+
+<div *ngIf = "!show">
+    {{msg}}
+
+</div>

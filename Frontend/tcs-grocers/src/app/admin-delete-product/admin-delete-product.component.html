@@ -1,5 +1,23 @@
-<form #productRef="ngForm" (submit)="deleteProduct(productRef.value)">
-    Product ID: <input type="text" name="productID" id="productID" ngModel/><br/>
-    <input type="submit" value="Delete Product"><br/>
-    <input type="reset" value="Reset Field"><br/>
-</form>
+<div class=container>
+    <h3>Delete Product</h3>
+    <hr/>
+    <form #productRef="ngForm" (submit)="deleteProduct(productRef)">
+        <div class="row justify-content-center">
+            <div class="col-lg-2">
+                <b>Product ID: </b>
+            </div>
+                <select name=productID class="col-lg-3" ngModel>
+                    <option selected value="" selected>Please select a Product ID</option>
+                    <option  *ngFor = 'let product of allProducts' [value] = "product._id">{{product._id}} - {{product.name}}</option>
+                </select>
+        </div>
+        <br/>
+        <div class="row justify-content-center">
+            <input type="submit" class="col-3 btn btn-success" value="Delete Product"><br/>
+        </div>
+        <div class="row justify-content-center">
+            <input type="reset" class="col-3 btn btn-warning" value="Reset Field"><br/>
+        </div>
+        <h3 class="text-primary">{{msg}}</h3>
+    </form>
+</div>

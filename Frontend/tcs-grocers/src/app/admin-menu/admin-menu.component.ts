@@ -14,28 +14,53 @@ export class AdminMenuComponent implements OnInit {
 
   ngOnInit(): void {
   }
-  goToAddNewProduct():void{
+
+  setAllButtonsToSecondary():void{
+    let x = document.getElementById("navbar")!.children;
+    for(let i=0;i<x.length-2;i++){
+      if(i%2==0){
+        x[i].children[0].className ="btn btn-secondary";
+      }
+    }
+  }
+
+  goToAddNewProduct(buttonRef:any):void{
+    this.setAllButtonsToSecondary()
     this.displayBlock = 1;
+    buttonRef.className = "btn btn-primary"
   }
-  goToDeleteProduct():void{
+  goToDeleteProduct(buttonRef:any):void{
+    this.setAllButtonsToSecondary()
     this.displayBlock = 2;
+    buttonRef.className = "btn btn-primary"
   }
-  goToUpdateProductInfo():void{
+  goToUpdateProductInfo(buttonRef:any):void{
+    this.setAllButtonsToSecondary()
     this.displayBlock = 3;
+    buttonRef.className = "btn btn-primary"
   }
-  goToProductRequestPage():void{
+  goToProductRequestPage(buttonRef:any):void{
+    this.setAllButtonsToSecondary()
     this.displayBlock = 4;
+    buttonRef.className = "btn btn-primary"
   }
-  goToAddNewEmployee():void{
+  goToAddNewEmployee(buttonRef:any):void{
+    this.setAllButtonsToSecondary()
     this.displayBlock = 5;
+    buttonRef.className = "btn btn-primary"
   }
-  goToDeleteEmployee():void{
+  goToDeleteEmployee(buttonRef:any):void{
+    this.setAllButtonsToSecondary()
     this.displayBlock = 6;
+    buttonRef.className = "btn btn-primary"
   }
-  goToGenerateReports():void{
+  goToGenerateReports(buttonRef:any):void{
+    this.setAllButtonsToSecondary()
     this.displayBlock = 7;
+    buttonRef.className = "btn btn-primary"
   }
   logoutAdmin():void{
-    console.log("todo admin logout")
+    sessionStorage.removeItem("adminToken");
+    this.router.navigate(["admin"])
   }
 }

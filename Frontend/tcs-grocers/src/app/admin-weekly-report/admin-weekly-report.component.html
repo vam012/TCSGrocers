@@ -1,0 +1,14 @@
+<div>
+    <form #dataRef='ngForm'  (submit) = "gotoWeekReport(dataRef.value)">
+        Enter week for weekly report:
+        <input type="week" name = "date" id="date" ngModel><br/>
+        <input type="submit" value="Get Report"/>
+        <input type="reset" value="Reset"/>
+
+    </form>
+</div>
+
+<div *ngIf = "!show">
+    {{msg}}
+
+</div>
