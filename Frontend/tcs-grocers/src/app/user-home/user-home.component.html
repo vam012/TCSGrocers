@@ -4,7 +4,7 @@
             <div class="cart_icon" routerLink="/cart">
                 <i class="fa fa-shopping-cart"></i>
                 <div class="cart_value">
-                    2
+                    {{cart_items}}
                 </div>
             </div>
             <div class="logout">
@@ -29,11 +29,11 @@
                         <h5>Available: {{prod.prodQuantity}}</h5>
                     </div>
                     <div class="userQuan">
-                        <button type="button" class="btnInc"><i class="fa fa-plus"></i></button> 
+                        <button type="button" class="btnInc" (click)=inc(prod)><i class="fa fa-plus"></i></button> 
                         <span>{{prod.qnt}}</span>
-                        <button type="button" class="btnInc"><i class="fa fa-minus"></i></button> 
+                        <button type="button" class="btnInc" (click)=dec(prod)><i class="fa fa-minus"></i></button> 
                     </div>
-                    <button type="button" class="cart_btn">Add To Cart</button>
+                    <button type="button" class="cart_btn" (click)="addCart(prod)">Add To Cart</button>
                 </div>
             </div>
         </div>

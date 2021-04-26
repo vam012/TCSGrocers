@@ -2,7 +2,7 @@ header{
     background-color: brown;
     padding: 20px 0;
 }
-.cart_icon{
+.cart_icon home_icon{
     position: relative;
 }
 .cart_icon i{
@@ -32,4 +32,31 @@ header{
 }
 .btn btn-primary{
     color: bisque;
+}
+.home_icon i{
+    font-size: 24px;
+    color: #fff;
+
+}
+.cart_Area{
+    padding: 40px 0;
+}
+table{
+    font-family: arial, sans-serif;
+    width: 100%;
+    border-collapse: collapse;
+}
+td{
+    padding: 40px;
+}
+.cart_heading{
+    margin-bottom: 10px;
+    padding-bottom: 30px;
+}
+.total{
+    padding: 30px;
+}
+.Checkout{
+    padding: 20px;
+    margin: 10px;
 }
