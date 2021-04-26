@@ -10,7 +10,7 @@ let OrderSchema = mongoose.Schema({
     }],
     orderDate:Date,
     orderAmount:Number,
-    orderStatus:Number,
+    orderStatus:String,
     cancelReason:String
 })
 

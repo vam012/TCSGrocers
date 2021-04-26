@@ -12,8 +12,7 @@ let getAllOrderDetails =(req,res)=> {
 }
 
 let getOrderById = (req,res)=>{
-    let oid = req.params.oid;
-    OrderModel.find({_id:oid},(err,data)=>{
+    OrderModel.find({_id:req.params.orderID},(err,data)=>{
         if(!err){
             res.json(data)
         }
@@ -21,8 +20,7 @@ let getOrderById = (req,res)=>{
 }
 
 let getOrderByCustomerId = (req,res)=>{
-    let cid = req.params.cid;
-    OrderModel.find({customerId:cid},(err,data)=>{
+    OrderModel.find({customerID:req.params.customerID},(err,data)=>{
         if(!err){
             res.json(data)
         }
@@ -30,8 +28,7 @@ let getOrderByCustomerId = (req,res)=>{
 }
 
 let getOrderByProductId = (req,res)=>{
-    let pid = req.params.pid;
-    OrderModel.find({productId:pid},(err,data)=>{
+    OrderModel.find({"productList._id":req.params.productID},(err,data)=>{
         if(!err){
             res.json(data)
         }
@@ -48,10 +45,10 @@ let storeNewOrder = (req,res)=>{
     let nextID = (holdArr.length == 0)? 100:holdArr[holdArr.length-1]._id+1;
     let  order = new OrderModel({
         _id:nextID,
-        customerId:req.body.customerId,
+        customerID:req.body.customerID,
         orderAmount:req.body.orderAmount,
         orderDate:Date.now(),
-        ProductList:[{_id:req.body.productId, quantity:req.body.quantity}],
+        productList:[{_id:req.body.productId, quantity:req.body.quantity}],
         orderStatus:"Order Placed",
         cancelReason:""
     })
