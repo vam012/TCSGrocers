@@ -35,7 +35,7 @@ import { AdminCustomerReportComponent } from './admin-customer-report/admin-cust
     AdminUpdateProductComponent,
     AdminViewRequestsComponent,
     UserHomeComponent,
-    CartComponent
+    CartComponent,
     AdminGenerateReportsComponent,
     AdminDailyReportComponent,
     AdminWeeklyReportComponent,

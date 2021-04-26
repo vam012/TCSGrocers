@@ -11,7 +11,7 @@ const routes: Routes = [
   {path:'\admin',component:AdminHomeComponent},
   {path:`\adminlogin`,component:AdminLoginComponent},
   {path:`user`,component:UserHomeComponent},
-  {path:`cart`,component:CartComponent}
+  {path:`cart`,component:CartComponent},
   {path:`\adminmenu`,component:AdminMenuComponent,canActivate:[AdminAuthGaurdService]}
 ];
 
