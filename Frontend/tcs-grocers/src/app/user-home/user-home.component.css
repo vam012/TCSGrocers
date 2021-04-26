@@ -1,0 +1,48 @@
+header{
+    background-color: brown;
+    padding: 20px 0;
+}
+.cart_icon{
+    position: relative;
+}
+.cart_icon i{
+    font-size: 24px;
+    color: #fff;
+    
+}
+.cart_value{
+    position: absolute;
+    top: -15px;
+    right: -28px;
+    background: #fff;
+    border: 1px solid #ccc;
+    border-radius: 50%;
+    padding: 4px 10px;
+    font-weight: 800;
+    font-size: 12px;
+}
+.logout {
+    right:-50px;
+    font-size: 16px;
+}
+.btns{
+    right: -35px;
+    color: crimson;
+    position: relative;
+}
+.product{
+    padding: 40px 0;
+}
+.box{
+    padding: 20px;
+    margin-top: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+.btnInc{
+    margin: 2px;
+    padding: 2px;
+}
+.cart_btn{
+    margin: 4px;
+}
