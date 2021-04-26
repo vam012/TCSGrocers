@@ -37,7 +37,6 @@ let storeNewProduct = (req,res)=>{
                 if(!err){
                     res.send("Data store successfully")
                 }else{
-                    console.log(err)
                     res.send("Something went wrong...")
                 }
             })

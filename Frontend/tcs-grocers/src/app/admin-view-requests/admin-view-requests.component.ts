@@ -24,18 +24,14 @@ export class AdminViewRequestsComponent implements OnInit {
   }
 
   getAllRequests():void{
-    this.prodReqServ.getAllProductRequests().subscribe(res=>this.productReqs=res,err=>console.log(err));
+    this.prodReqServ.getAllProductRequests().subscribe(res=>this.productReqs=res);
   }
 
   closeTicket(ticketID:number):void{
-    this.prodReqServ.closeProductRequestByID(ticketID).subscribe((res:string)=>{
-      console.log(res);
-      this.getAllRequests();})
+    this.prodReqServ.closeProductRequestByID(ticketID).subscribe((res:string)=>{this.getAllRequests();})
   }
   openTicket(ticketID:number):void{
-    this.prodReqServ.openeProductRequestByID(ticketID).subscribe((res:string)=>{
-      console.log(res);
-      this.getAllRequests();})
+    this.prodReqServ.openeProductRequestByID(ticketID).subscribe((res:string)=>{this.getAllRequests();})
   }
 
 

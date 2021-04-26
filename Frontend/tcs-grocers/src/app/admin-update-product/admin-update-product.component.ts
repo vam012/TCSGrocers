@@ -21,20 +21,19 @@ export class AdminUpdateProductComponent implements OnInit {
   }
 
   getProducts():void{
-    this.prodServ.getAllProducts().subscribe(res=>this.allProducts=res,err=>console.log(err))
+    this.prodServ.getAllProducts().subscribe(res=>this.allProducts=res)
   }
 
   updateProductID(formRef:any):void{
-    this.prodServ.getProductByID(formRef.value.productID).subscribe(res=>{this.selectedProductID = res[0]._id;this.product=res[0]},err=>console.log(err));
+    this.prodServ.getProductByID(formRef.value.productID).subscribe(res=>{this.selectedProductID = res[0]._id;this.product=res[0]});
   }
 
   getUpdatedProduct():void{
-    this.prodServ.getProductByID(this.selectedProductID).subscribe(res=>{this.selectedProductID = res[0]._id;this.product=res[0]},err=>console.log(err));
+    this.prodServ.getProductByID(this.selectedProductID).subscribe(res=>{this.selectedProductID = res[0]._id;this.product=res[0]});
   }
 
   updateProductName(formRef:any):void{
     this.prodServ.updateProductName({'productID':this.selectedProductID,'newName':formRef.value.productName}).subscribe((res:string)=>{
-      console.log(res);
       formRef.reset();
       this.getProducts();
       this.getUpdatedProduct();
@@ -44,7 +43,6 @@ export class AdminUpdateProductComponent implements OnInit {
 
   updateProductPrice(formRef:any):void{
     this.prodServ.updateProductPrice({'productID':this.selectedProductID,'newPrice':formRef.value.productPrice}).subscribe((res:string)=>{
-      console.log(res);
       formRef.reset();
       this.getProducts();
       this.getUpdatedProduct();
@@ -53,7 +51,6 @@ export class AdminUpdateProductComponent implements OnInit {
 
   updateProductQuantity(formRef:any):void{
     this.prodServ.updateProductQuantity({'productID':this.selectedProductID,'newQuantity':formRef.value.productQuantity}).subscribe((res:string)=>{
-      console.log(res);
       formRef.reset();
       this.getProducts();
       this.getUpdatedProduct();
@@ -62,7 +59,6 @@ export class AdminUpdateProductComponent implements OnInit {
 
   updateProductDiscount(formRef:any):void{
     this.prodServ.updateProductDiscount({'productID':this.selectedProductID,'newDiscount':formRef.value.productDiscount}).subscribe((res:string)=>{
-      console.log(res);
       formRef.reset();
       this.getProducts();
       this.getUpdatedProduct();
