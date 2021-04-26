@@ -14,6 +14,12 @@ import { AdminDeleteProductComponent } from './admin-delete-product/admin-delete
 import { AdminUpdateProductComponent } from './admin-update-product/admin-update-product.component';
 import { AdminViewRequestsComponent } from './admin-view-requests/admin-view-requests.component';
 import { HttpClientModule } from '@angular/common/http';
+import { AdminGenerateReportsComponent } from './admin-generate-reports/admin-generate-reports.component';
+import { AdminDailyReportComponent } from './admin-daily-report/admin-daily-report.component';
+import { AdminWeeklyReportComponent } from './admin-weekly-report/admin-weekly-report.component';
+import { AdminMonthlyReportComponent } from './admin-monthly-report/admin-monthly-report.component';
+import { AdminProductReportComponent } from './admin-product-report/admin-product-report.component';
+import { AdminCustomerReportComponent } from './admin-customer-report/admin-customer-report.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +32,13 @@ import { HttpClientModule } from '@angular/common/http';
     AdminAddProductComponent,
     AdminDeleteProductComponent,
     AdminUpdateProductComponent,
-    AdminViewRequestsComponent
+    AdminViewRequestsComponent,
+    AdminGenerateReportsComponent,
+    AdminDailyReportComponent,
+    AdminWeeklyReportComponent,
+    AdminMonthlyReportComponent,
+    AdminProductReportComponent,
+    AdminCustomerReportComponent
   ],
   imports: [
     BrowserModule,
