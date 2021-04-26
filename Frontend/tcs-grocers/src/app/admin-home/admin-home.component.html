@@ -1,3 +1,11 @@
-<input type=button value="Login" routerLink="/adminlogin"><br/>
-<input type=button value="Logout" (click)="logout()"><br/>
-<input type=button value="Back To Home" routerLink="/"><br/>
+<div class="container">
+    <div class="row justify-content-evenly">
+        <div class="col"><h1>Admin Login Menu</h1></div>
+    </div>
+    <hr/>
+    <div class="row justify-content-evenly">
+        <input type=button class="btn btn-secondary col-lg-2" routerLink="/" value="Back To Home"/>
+        <input type=button class="btn btn-primary col-lg-2" routerLink="/adminlogin" value=Login/>
+        <input type=button class="btn btn-danger col-lg-2" (click)="logout()" value=Logout/>
+    </div>
+</div>

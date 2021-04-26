@@ -9,8 +9,8 @@ import { ProductrequestsService } from '../productrequests.service';
   styleUrls: ['./admin-view-requests.component.css']
 })
 export class AdminViewRequestsComponent implements OnInit {
-  buttonMsg:string = "View Only Open Tickets"
-  openOnly:boolean=false;
+  openOnly:boolean=true;
+  buttonMsg:string = (this.openOnly)? "View All Tickets":"View Only Open Tickets";
   productReqs?:Array<ProductRequest>
   constructor(public router:Router, public prodReqServ:ProductrequestsService) { }
 

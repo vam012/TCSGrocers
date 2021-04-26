@@ -16,7 +16,13 @@ export class AdminAddProductComponent implements OnInit {
   }
 
   addNewProduct(productRef:any):void{
-    this.prodServ.addNewProduct(productRef).subscribe((res:string)=>this.msg=res)
+    if(productRef.valid){
+    this.prodServ.addNewProduct(productRef.value).subscribe((res:string)=>{
+      this.msg=res;
+    productRef.reset()})
+    }else{
+      this.msg="Please fill in all fields"
+    }
   }
 
 }
