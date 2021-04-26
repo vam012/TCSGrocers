@@ -47,7 +47,9 @@ export class CartComponent implements OnInit {
           console.log(singleItem)
           this.cartDetailsArr.splice(i,1);
           localStorage.setItem('cart',JSON.stringify(this.cartDetailsArr));
-          this.loadCart();        }
+          this.cart_items-=1;
+          this.loadCart();        
+        }
       }
     }
   }
