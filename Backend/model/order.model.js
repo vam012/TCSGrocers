@@ -1,8 +1,8 @@
-let mong = require("mongoose");
-let mongoose = new mong.Mongoose();
-mongoose.Promise = global.Promise;      // creating reference. 
+let mongoose = require("mongoose");
+mongoose.Promise = global.Promise;     // creating reference. 
 
 let OrderSchema = mongoose.Schema({
+    _id:Number,
     customerID:Number,
     productList:[{
         _id:Number,
@@ -14,6 +14,6 @@ let OrderSchema = mongoose.Schema({
     cancelReason:String
 })
 
-let OrderModel = mongoose.model("",OrderSchema,"orders");
+let OrderModel = mongoose.model("Order",OrderSchema,"orders");
 
 module.exports = OrderModel;
