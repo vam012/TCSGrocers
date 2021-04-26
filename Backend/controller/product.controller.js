@@ -35,7 +35,7 @@ let storeNewProduct = (req,res)=>{
             })
             product.save((err,result)=>{
                 if(!err){
-                    res.send("Data store successfully")
+                    res.send("Data stored successfully")
                 }else{
                     res.send("Something went wrong...")
                 }
