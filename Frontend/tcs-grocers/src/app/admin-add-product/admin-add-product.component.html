@@ -1,8 +1,37 @@
-<form #productRef="ngForm" (submit)="addNewProduct(productRef.value)">
-    Product Name: <input type="text" name="name" id="name" ngModel/><br/>
-    Product Price: <input type="text" name="price" id="price" ngModel/><br/>
-    Product Quantity: <input type="text" name="quantity" id="quantity" ngModel/><br/>
-    <input type="submit" value="Add New Product"><br/>
-    <input type="reset" value="Reset Fields"><br/>
-    {{msg}}
-</form>
+<div class=container>
+    <h3>Add Product</h3>
+    <hr/>
+    <form #productRef="ngForm" (submit)="addNewProduct(productRef)">
+        <div class="row justify-content-center">
+            <div class="col-lg-3">
+                <b>Product Name: </b>
+            </div>
+            <div class="col-lg-2">
+                <input type="text" name="name" id="name" ngModel/><br/>
+            </div>
+        </div>
+        <div class="row justify-content-center">
+            <div class="col-lg-3">
+                <b>Product Price: </b>
+            </div>
+            <div class="col-lg-2">
+                <input type="text" name="price" id="price" ngModel/><br/>
+            </div>
+        </div>
+        <div class="row justify-content-center">
+            <div class="col-lg-3">
+                <b>Product Quantity: </b>
+            </div>
+            <div class="col-lg-2">
+                <input type="text" name="quantity" id="quantity" ngModel/><br/>
+            </div>
+        </div>
+        <div class="row justify-content-center">
+            <input type="submit" class="col-3 btn btn-success" value="Add New Product"><br/>
+        </div>
+        <div class="row justify-content-center">
+            <input type="reset" class="col-3 btn btn-warning" value="Reset Fields"><br/>
+        </div>
+        <h3 class="text-primary">{{msg}}</h3>
+    </form>
+</div>
