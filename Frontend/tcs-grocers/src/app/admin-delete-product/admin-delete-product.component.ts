@@ -20,12 +20,12 @@ export class AdminDeleteProductComponent implements OnInit {
   }
   deleteProduct(productRef:any):void{
     this.prodServ.deleteProductByID(productRef.value.productID).subscribe((res:string)=>{this.msg=res;
-    productRef.reset()},(err:string)=>console.log(err));
+    productRef.reset()});
     this.getProducts();
   }
 
   getProducts():void{
-    this.prodServ.getAllProducts().subscribe(res=>this.allProducts=res,err=>console.log(err))
+    this.prodServ.getAllProducts().subscribe(res=>this.allProducts=res)
   }
 
 

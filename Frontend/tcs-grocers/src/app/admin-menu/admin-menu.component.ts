@@ -36,6 +36,7 @@ export class AdminMenuComponent implements OnInit {
     this.displayBlock = 7;
   }
   logoutAdmin():void{
-    console.log("todo admin logout")
+    sessionStorage.removeItem("adminToken");
+    this.router.navigate(["admin"])
   }
 }

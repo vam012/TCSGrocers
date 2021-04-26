@@ -16,8 +16,7 @@ export class AdminAddProductComponent implements OnInit {
   }
 
   addNewProduct(productRef:any):void{
-    this.prodServ.addNewProduct(productRef).subscribe((res:string)=>this.msg=res,(err:string)=>console.log(err))
-    console.log(`productname: ${productRef.name}, price: ${productRef.price}, quantity: ${productRef.quantity}`)
+    this.prodServ.addNewProduct(productRef).subscribe((res:string)=>this.msg=res)
   }
 
 }

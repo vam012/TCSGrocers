@@ -13,10 +13,18 @@ export class AdminLoginComponent implements OnInit {
   constructor(public router:Router, public adminServ:AdminService) { }
 
   ngOnInit(): void {
+    if(sessionStorage.getItem("adminToken")=="adminToken"){
+      this.router.navigate(['adminmenu']);
+    }
   }
 
   loginAttempt(loginRef:any):void{
-    this.adminServ.login(loginRef).subscribe((res:string)=>this.msg=res,(err:string)=>console.log(err));
+    this.adminServ.login(loginRef).subscribe((res:string)=>{
+      this.msg=res
+      if(this.msg == "Login successful"){
+        sessionStorage.setItem("adminToken","adminToken");  //This is maximum security
+        this.router.navigate(['adminmenu']);
+      }});
   }
 
 }
