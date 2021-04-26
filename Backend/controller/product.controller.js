@@ -22,26 +22,29 @@ let getProductById = (req,res)=>{
 //store new entry in db
 let storeNewProduct = (req,res)=>{
     let holdArr = [];
-    SupportTicketModel.find({},(err,data)=>{
+    ProductModel.find({},(err,data)=>{
         if(!err){   
             holdArr = data
-        }
-    });
-    let nextID = (holdArr.length == 0)? 100:holdArr[holdArr.length-1]._id+1;
-    let  product = new ProductModel({
-        _id:nextID,
-        name:req.body.name,
-        quantity:req.body.quantity,
-        price:req.body.price,
-        discount:0
-    })
-    product.save((err,result)=>{
-        if(!err){
-            res.send("Data store successfully")
+            let nextID = (holdArr.length == 0)? 100:holdArr[holdArr.length-1]._id+1;
+            let  product = new ProductModel({
+                _id:nextID,
+                name:req.body.name,
+                quantity:req.body.quantity,
+                price:req.body.price,
+                discount:0
+            })
+            product.save((err,result)=>{
+                if(!err){
+                    res.send("Data store successfully")
+                }else{
+                    console.log(err)
+                    res.send("Something went wrong...")
+                }
+            })
         }else{
             res.send("Something went wrong...")
         }
-    })
+    });
 }
 
 //delete product by id

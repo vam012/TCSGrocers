@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { ProductService } from '../product.service';
 
 @Component({
   selector: 'app-admin-add-product',
@@ -9,13 +10,14 @@ import { Router } from '@angular/router';
 export class AdminAddProductComponent implements OnInit {
 
   msg?:string;
-  constructor(public router:Router) { }
+  constructor(public router:Router,public prodServ:ProductService) { }
 
   ngOnInit(): void {
   }
 
   addNewProduct(productRef:any):void{
-    this.msg = `productname: ${productRef.productName}, price: ${productRef.price}, quantity: ${productRef.quantity}`
+    this.prodServ.addNewProduct(productRef).subscribe((res:string)=>this.msg=res,(err:string)=>console.log(err))
+    console.log(`productname: ${productRef.name}, price: ${productRef.price}, quantity: ${productRef.quantity}`)
   }
 
 }
