@@ -8,5 +8,26 @@
             <th>Request Type</th>
             <th *ngIf="!openOnly">Open/Closed</th>
         </thead>
+        <tbody *ngFor="let request of productReqs">
+            <tr *ngIf="!openOnly || (openOnly && request.openclosed==0)">
+                <td>{{request._id}}</td>
+                <td>{{request.employeeID}}</td>
+                <td>{{request.productID}}</td>
+                <td *ngIf="request.requestType==1">Update Name</td>
+                <td *ngIf="request.requestType==2">Update Price</td>
+                <td *ngIf="request.requestType==3">Update Quantity</td>
+                <td *ngIf="request.requestType==4">Update Discount</td>
+                <td *ngIf="request.requestType==5">Delete Product</td>
+                <td *ngIf="!openOnly && request.openclosed==0">Open</td>
+                <td *ngIf="!openOnly && request.openclosed==1">Closed</td>
+                <td *ngIf="request.openclosed==0">
+                    <button (click)="closeTicket(request._id)">Close Product Request #{{request._id}}</button>
+                </td>
+                <td *ngIf="request.openclosed==1">
+                    <button (click)="openTicket(request._id)">Open Product Request #{{request._id}}</button>
+                </td>
+            </tr>
+            
+        </tbody>
     </table>
 </div>

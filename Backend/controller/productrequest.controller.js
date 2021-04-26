@@ -28,7 +28,7 @@ let createNewProductRequest = (req,res)=>{
 
 let updateProductRequestStatus = (req,res)=>{
     let requestID = req.body.requestID;
-    let newStatus = req.body.openclosed;
+    let newStatus = req.body.newStatus;
     ProductRequestModel.updateOne({_id:requestID},{$set:{openclosed:newStatus}},(err,data)=>{
         if(!err){
             if(data.nModified==1){
