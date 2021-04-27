@@ -42,7 +42,7 @@ import { MainMenuComponent } from './main-menu/main-menu.component';
     SendRequestComponent,
     EditProfileComponent,
     UnlockUsersComponent,
-    UpdateOrderStatusComponent
+    UpdateOrderStatusComponent,
     UserHomeComponent,
     CartComponent,
     AdminGenerateReportsComponent,
