@@ -13,6 +13,10 @@ export class OrderService {
   getOrderByDay(date:any):Observable<Report[]>{
     return this.http.get<Report[]>(`http://localhost:7777/orders/getDailyData/${date}`)
   }
+  getOrderByMonth(date:any):Observable<Report[]>{
+    return this.http.get<Report[]>(`http://localhost:7777/orders/getMonthlyData/${date}`)
+  }
 
+  
 
 }

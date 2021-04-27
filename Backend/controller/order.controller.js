@@ -83,6 +83,16 @@ let getWeeklyData = (req,res)=>{
 }
 
 let getMonthlyData = (req,res)=>{
+    let dateString = req.params.date;
+    const dateSplit = dateString.split('-');
+    let year= parseInt(dateSplit[0]);
+    let month = parseInt(dateSplit[1]);
+    OrderModel.aggregate([{$project: {_id:1,year:{$year:"$orderDate"},month:{$month:"$orderDate"}, day:{$dayOfMonth:"$orderDate"},orderAmount:1}}, {$group: {_id:{year:"$year",month:"$month",day:"$day"}, sum:{$sum:"$orderAmount"}, count:{$sum:1}}},
+    {$match : {"_id.year" : year, "_id.month" : month}}],(err,data)=>{
+        if(!err){
+            res.json(data)
+        }
+    })  
 
 }
 

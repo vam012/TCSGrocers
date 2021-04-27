@@ -9,7 +9,7 @@ router.get("/getOrderByCustomerId/:cid",OrderController.getOrderByCustomerId)
 router.post("/storeNewOrder",OrderController.storeNewOrder)
 router.get("/getDailyData/:date",OrderController.getDailyData)
 router.get("/getWeeklyData",OrderController.getWeeklyData)
-router.get("/getMonthlyData",OrderController.getMonthlyData)
+router.get("/getMonthlyData/:date",OrderController.getMonthlyData)
 router.get("/getOrderByProductId/:pid",OrderController.getOrderByProductId)
 
 module.exports=router;
