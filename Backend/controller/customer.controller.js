@@ -5,30 +5,32 @@ let createNewCustomer = (req,res)=>{
     let holdArr = [];
     CustomerModel.find({},(err,data)=>{
         if(!err){   
-            holdArr = data
-        }
-    });
-    let nextID = (holdArr.length == 0)? 100:holdArr[holdArr.length-1]._id+1;
-    let newEmp = new CustomerModel({
-        _id:nextID,
-        fName:req.body.fName,
-        lName:req.body.lName,
-        email:req.body.email,
-        username:req.body.username,
-        password:req.body.password,
-        birthday:req.body.birthday,
-        phoneNumber:req.body.phoneNumber,
-        funds:1000,
-        failedLoginAttempts:0,
-        locked:0
-    });
-    newEmp.save((err,data)=>{
-        if(!err){
-            res.send("Data stored successfully")
+            holdArr = data;
+            let nextID = (holdArr.length == 0)? 100:holdArr[holdArr.length-1]._id+1;
+            let newEmp = new CustomerModel({
+                _id:nextID,
+                fName:req.body.fName,
+                lName:req.body.lName,
+                email:req.body.email,
+                username:req.body.username,
+                password:req.body.password,
+                birthday:req.body.birthday,
+                phoneNumber:req.body.phoneNumber,
+                funds:1000,
+                failedLoginAttempts:0,
+                locked:0
+            });
+            newEmp.save((err,data)=>{
+                if(!err){
+                    res.send("Data stored successfully")
+                }else{
+                    res.send("Something went wrong...")
+                }
+            })
         }else{
-            res.send("Something went wrong...")
+            res.send("Something went wrong...");
         }
-    })
+    });
 }
 
 let getAllCustomers = (req,res)=>{
