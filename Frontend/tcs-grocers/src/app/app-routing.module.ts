@@ -4,6 +4,7 @@ import { AdminAuthGaurdService } from './admin-auth-gaurd.service';
 import { AdminHomeComponent } from './admin-home/admin-home.component';
 import { AdminLoginComponent } from './admin-login/admin-login.component';
 import { AdminMenuComponent } from './admin-menu/admin-menu.component';
+import { UnlockUsersComponent } from './unlock-users/unlock-users.component';
 import { MainMenuComponent } from './main-menu/main-menu.component';
 import { CartComponent } from './cart/cart.component';
 import { UserHomeComponent } from './user-home/user-home.component';
