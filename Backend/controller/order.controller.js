@@ -40,24 +40,26 @@ let storeNewOrder = (req,res)=>{
     OrderModel.find({},(err,data)=>{
         if(!err){   
             holdArr = data
+            let nextID = (holdArr.length == 0)? 100:holdArr[holdArr.length-1]._id+1;
+            let  order = new OrderModel({
+                _id:nextID,
+                customerID:req.body.customerID,
+                orderAmount:req.body.orderAmount,
+                orderDate:Date.now(),
+                productList:[{_id:req.body.productId, quantity:req.body.quantity}],
+                orderStatus:"Order Placed",
+                cancelReason:""
+            })
+            order.save((err,result)=>{
+                if(!err){
+                    res.send("Data store successfully")
+                }else{
+                    res.send("Something went wrong...")
+                }
+            })
+        }else{
+            res.send("Something went wrong...")
         }
-        let nextID = (holdArr.length == 0)? 100:holdArr[holdArr.length-1]._id+1;
-        let  order = new OrderModel({
-            _id:nextID,
-            customerID:req.body.customerID,
-            orderAmount:req.body.orderAmount,
-            orderDate:Date.now(),
-            productList:[{_id:req.body.productId, quantity:req.body.quantity}],
-            orderStatus:"Order Placed",
-            cancelReason:""
-        })
-        order.save((err,result)=>{
-            if(!err){
-                res.send("Data store successfully")
-            }else{
-                res.send("Something went wrong...")
-            }
-        })
     });
 }
 
