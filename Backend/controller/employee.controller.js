@@ -1,6 +1,15 @@
 const { json } = require("body-parser");
 let EmployeeModel = require("../model/employee.model.js");
 
+let getAllEmployeeDetails =(req,res)=> {
+    EmployeeModel.find({},(err,data)=> {
+        if(!err){
+            res.json(data);
+        }
+    })
+}
+
+
 let login = (req,res)=>{
     let usernameAtt = req.body.username;
     let passwordAtt = req.body.password;
@@ -68,7 +77,7 @@ let createNewEmployee = (req,res)=>{
 }
 
 let deleteEmployeeById = (req,res)=>{
-    EmployeeModel.deleteOne({_id:req.params.pid},(err,data)=>{
+    EmployeeModel.deleteOne({_id:req.params.eid},(err,data)=>{
         if(!err ){
             if( data.deletedCount == 1){res.send("Employee deleted successfully ");}
             else{res.send("Employee not found")}
@@ -127,4 +136,4 @@ let updateUsername = (req,res)=>{
     })
 }
 
-module.exports={login,createNewEmployee,updatePassword,deleteEmployeeById,updateName,updateEmail,updateUsername}
+module.exports={login,createNewEmployee,updatePassword,deleteEmployeeById,updateName,updateEmail,updateUsername,getAllEmployeeDetails}
