@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ProductService } from '../product.service';
 import { RequestService } from '../request.service';
 
 @Component({
@@ -8,13 +9,13 @@ import { RequestService } from '../request.service';
 })
 export class SendRequestComponent implements OnInit {
 
-  constructor(public productSer:RequestService) { }
+  constructor(public productSer:ProductService) { }
 
   ngOnInit(): void {
   }
 
-  addProductQuantity(productRef:any){
+  updateProductQuantity(productRef:any){
     console.log(productRef);
-    this.productSer.sendRequest(productRef);
+    this.productSer.updateProductQuantity(productRef);
   }
 }
