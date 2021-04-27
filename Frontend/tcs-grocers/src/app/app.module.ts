@@ -14,6 +14,9 @@ import { AdminDeleteProductComponent } from './admin-delete-product/admin-delete
 import { AdminUpdateProductComponent } from './admin-update-product/admin-update-product.component';
 import { AdminViewRequestsComponent } from './admin-view-requests/admin-view-requests.component';
 import { HttpClientModule } from '@angular/common/http';
+import { SendRequestComponent } from './send-request/send-request.component';
+import { EditProfileComponent } from './edit-profile/edit-profile.component';
+import { UnlockUsersComponent } from './unlock-users/unlock-users.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +29,10 @@ import { HttpClientModule } from '@angular/common/http';
     AdminAddProductComponent,
     AdminDeleteProductComponent,
     AdminUpdateProductComponent,
-    AdminViewRequestsComponent
+    AdminViewRequestsComponent,
+    SendRequestComponent,
+    EditProfileComponent,
+    UnlockUsersComponent
   ],
   imports: [
     BrowserModule,

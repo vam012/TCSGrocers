@@ -1,0 +1,6 @@
+<form #userRef="ngForm" (ngSubmit)="unlockUser(userRef)">
+    <label>User Id</label>
+    <input type="text" name="id" ngModel><br>
+    <input type="submit" value="update status">
+    {{userMsg}}
+</form>
