@@ -62,9 +62,10 @@ let login = (req,res)=>{
             if(data.username===usernameAtt){
                 if(data.failedLoginAttempts>=3){
                     CustomerModel.updateOne({username:usernameAtt},{$set:{locked:1}},(err,res)=>{})
-                    res.send("Too many login attempts");
+                    res.send("Too many login attempts, please create a support ticket to have your account unlocked");
                 }else{
                     if(data.password===passwordAtt){
+                        CustomerModel.updateOne({username:usernameAtt},{$set:{failedLoginAttempts:0}},(err,res)=>{})
                         res.send("Login successful");
                     }else{
                         CustomerModel.updateOne({username:usernameAtt},{$inc:{failedLoginAttempts:1}},(err,res)=>{})
