@@ -9,6 +9,6 @@ export class AdminService {
   constructor(public http:HttpClient) { }
 
   login(loginRef:any):any{
-    return this.http.post("http://localhost:7777/admins/login",loginRef,{responseType: 'text'})
+    return this.http.post("http://localhost:7777/admin/login",loginRef,{responseType: 'text'})
   }
 }
