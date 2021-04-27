@@ -6,24 +6,26 @@ let createNewProductRequest = (req,res)=>{
     let holdArr = [];
     ProductRequestModel.find({},(err,data)=>{
         if(!err){   
-            holdArr = data
+            holdArr = data;
+            let nextID = (holdArr.length == 0)? 100:holdArr[holdArr.length-1]._id+1;
+            let newRequest = new ProductRequestModel({
+                _id:nextID,
+                employeeID:req.body.empID,
+                productID:req.body.prodID,
+                requestType:req.body.requestType,
+                openclosed:0
+            })
+            newRequest.save((err,data)=>{
+                if(!err){
+                    res.send("Successfully made request")
+                }else{
+                    res.send("Something went wrong")
+                }
+            })
+        }else{
+            res.send("Something went wrong...")
         }
     });
-    let nextID = (holdArr.length == 0)? 100:holdArr[holdArr.length-1]._id+1;
-    let newRequest = new ProductRequestModel({
-        _id:nextID,
-        employeeID:req.body.empID,
-        productID:req.body.prodID,
-        requestType:req.body.requestType,
-        openclosed:0
-    })
-    newRequest.save((err,data)=>{
-        if(!err){
-            res.send("Successfully made request")
-        }else{
-            res.send("Something went wrong")
-        }
-    })
 }
 
 let updateProductRequestStatus = (req,res)=>{
