@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { FormsModule } from '@angular/forms';
@@ -18,6 +17,15 @@ import { SendRequestComponent } from './send-request/send-request.component';
 import { EditProfileComponent } from './edit-profile/edit-profile.component';
 import { UnlockUsersComponent } from './unlock-users/unlock-users.component';
 import { UpdateOrderStatusComponent } from './update-order-status/update-order-status.component';
+import { UserHomeComponent } from './user-home/user-home.component';
+import { CartComponent } from './cart/cart.component';
+import { AdminGenerateReportsComponent } from './admin-generate-reports/admin-generate-reports.component';
+import { AdminDailyReportComponent } from './admin-daily-report/admin-daily-report.component';
+import { AdminWeeklyReportComponent } from './admin-weekly-report/admin-weekly-report.component';
+import { AdminMonthlyReportComponent } from './admin-monthly-report/admin-monthly-report.component';
+import { AdminProductReportComponent } from './admin-product-report/admin-product-report.component';
+import { AdminCustomerReportComponent } from './admin-customer-report/admin-customer-report.component';
+import { MainMenuComponent } from './main-menu/main-menu.component';
 
 @NgModule({
   declarations: [
@@ -35,6 +43,15 @@ import { UpdateOrderStatusComponent } from './update-order-status/update-order-s
     EditProfileComponent,
     UnlockUsersComponent,
     UpdateOrderStatusComponent
+    UserHomeComponent,
+    CartComponent,
+    AdminGenerateReportsComponent,
+    AdminDailyReportComponent,
+    AdminWeeklyReportComponent,
+    AdminMonthlyReportComponent,
+    AdminProductReportComponent,
+    AdminCustomerReportComponent,
+    MainMenuComponent
   ],
   imports: [
     BrowserModule,

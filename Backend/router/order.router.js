@@ -11,5 +11,6 @@ router.get("/getDailydata",OrderController.getDailydata)
 router.get("/getWeeklydata",OrderController.getWeeklydata)
 router.get("/getMonthlydata",OrderController.getMonthlydata)
 router.get("/getOrderByProductId/:productID",OrderController.getOrderByProductId)
+router.put("/updateOrderStatusByID",OrderController.updateOrderStatusByID)
 
 module.exports=router;

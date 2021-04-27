@@ -5,23 +5,25 @@ let createNewSupportTicket = (req,res)=>{
     let holdArr = [];
     SupportTicketModel.find({},(err,data)=>{
         if(!err){   
-            holdArr = data
+            holdArr = data;
+            let nextID = (holdArr.length == 0)? 100:holdArr[holdArr.length-1]._id+1;
+            let newTicket = new SupportTicketModel({
+                _id:nextID,
+                customerID:req.body.customerID,
+                reason:req.body.reason,
+                openclosed:0
+            })
+            newTicket.save((err,data)=>{
+                if(!err){
+                    res.send("Successfully made ticket")
+                }else{
+                    res.send("Something went wrong")
+                }
+            })
+        }else{
+            res.send("Something went wrong...");
         }
     });
-    let nextID = (holdArr.length == 0)? 100:holdArr[holdArr.length-1]._id+1;
-    let newTicket = new SupportTicketModel({
-        _id:nextID,
-        customerID:req.body.customerID,
-        reason:req.body.reason,
-        openclosed:0
-    })
-    newTicket.save((err,data)=>{
-        if(!err){
-            res.send("Successfully made ticket")
-        }else{
-            res.send("Something went wrong")
-        }
-    })
 }
 
 let updateSupportTicketStatus = (req,res)=>{

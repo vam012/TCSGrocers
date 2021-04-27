@@ -19,12 +19,16 @@ export class AdminLoginComponent implements OnInit {
   }
 
   loginAttempt(loginRef:any):void{
-    this.adminServ.login(loginRef).subscribe((res:string)=>{
+    if(loginRef.valid){
+    this.adminServ.login(loginRef.value).subscribe((res:string)=>{
       this.msg=res
       if(this.msg == "Login successful"){
         sessionStorage.setItem("adminToken","adminToken");  //This is maximum security
         this.router.navigate(['adminmenu']);
       }});
+    }else{
+      this.msg = "Please fill in all fields"
+    }
   }
 
 }

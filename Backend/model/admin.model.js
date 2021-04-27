@@ -6,6 +6,6 @@ let AdminSchema = mongoose.Schema({
     password:String
 })
 
-let AdminModel = mongoose.model("",AdminSchema,"admins");
+let AdminModel = mongoose.model("Admin",AdminSchema,"admins");
 
 module.exports = AdminModel;

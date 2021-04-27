@@ -40,25 +40,27 @@ let storeNewOrder = (req,res)=>{
     OrderModel.find({},(err,data)=>{
         if(!err){   
             holdArr = data
-        }
-    });
-    let nextID = (holdArr.length == 0)? 100:holdArr[holdArr.length-1]._id+1;
-    let  order = new OrderModel({
-        _id:nextID,
-        customerID:req.body.customerID,
-        orderAmount:req.body.orderAmount,
-        orderDate:Date.now(),
-        productList:[{_id:req.body.productId, quantity:req.body.quantity}],
-        orderStatus:"Order Placed",
-        cancelReason:""
-    })
-    order.save((err,result)=>{
-        if(!err){
-            res.send("Data store successfully")
+            let nextID = (holdArr.length == 0)? 100:holdArr[holdArr.length-1]._id+1;
+            let  order = new OrderModel({
+                _id:nextID,
+                customerID:req.body.customerID,
+                orderAmount:req.body.orderAmount,
+                orderDate:Date.now(),
+                productList:[{_id:req.body.productId, quantity:req.body.quantity}],
+                orderStatus:"Order Placed",
+                cancelReason:""
+            })
+            order.save((err,result)=>{
+                if(!err){
+                    res.send("Data store successfully")
+                }else{
+                    res.send("Something went wrong...")
+                }
+            })
         }else{
             res.send("Something went wrong...")
         }
-    })
+    });
 }
 
 let getDailydata = (req,res)=>{
@@ -73,8 +75,24 @@ let getMonthlydata = (req,res)=>{
 
 }
 
+let updateOrderStatusByID = (req,res)=>{
+    let orderID = req.body.orderID;
+    let newStatus = req.body.newOrderStatus;
+    OrderModel.updateOne({_id:orderID},{$set:{orderStatus:newOrderStatus}},(err,data)=>{
+        if(!err){
+            if(DataCue.nModified==1){
+                res.send("Order status updated successfully");
+            }else{
+                res.send("Order ID does not exist");
+            }
+        }else{
+            res.send("Something went wrong...")
+        }
+    })
+}
 
 
 
 
-module.exports={getAllOrderDetails,getOrderById,storeNewOrder,getOrderByCustomerId,getDailydata,getWeeklydata,getMonthlydata,getOrderByProductId}
+
+module.exports={getAllOrderDetails,getOrderById,storeNewOrder,getOrderByCustomerId,getDailydata,getWeeklydata,getMonthlydata,getOrderByProductId,updateOrderStatusByID}

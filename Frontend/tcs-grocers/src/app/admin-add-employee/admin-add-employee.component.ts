@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import {AdminService} from '../admin.service';
+import { EmployeeService } from '../employee.service';
 
 @Component({
   selector: 'app-admin-add-employee',
@@ -10,17 +12,21 @@ export class AdminAddEmployeeComponent implements OnInit {
 
   msg?: string;
 
-  constructor(public router:Router) { }
+  constructor(public empServ:EmployeeService, public router:Router) { }
 
   ngOnInit(): void {
   }
-  goToAdminMenu():void{
-    this.msg = "go back to admin menu"
-  }
-
-
   addNewEmployee(employeeRef:any):void{
-    this.msg = `Employee Firstname: ${employeeRef.employeeFirstName}, Employee Last Name: ${employeeRef.employeeLastName}, Employee Email Id: ${employeeRef.employeeEmailId}`
+    if(employeeRef.valid){
+      this.empServ.storeNewEmployeeDetails(employeeRef.value).subscribe((res:string)=>{
+        this.msg =res;
+        employeeRef.reset();
+    });
+
+    }else{
+      this.msg="Please fill in all fields"
+    }
+    
   }
 
 }

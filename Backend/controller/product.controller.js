@@ -81,7 +81,7 @@ let updateProductName= (req,res)=>{
 }
 
 let updateProductQuantity= (req,res)=>{
-    ProductModel.updateOne({_id:req.body.productID},{$set:{price:req.body.newQuantity}},(err,data)=>{
+    ProductModel.updateOne({_id:req.body.productID},{$set:{quantity:req.body.newQuantity}},(err,data)=>{
         if(!err ){
             if( data.nModified == 1){res.send("Product updated successfully ");}
             else{res.send("Product not found")}

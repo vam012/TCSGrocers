@@ -1,0 +1,15 @@
+<div>
+    <form #dataRef='ngForm'  (submit) = "gotoMonthReport(dataRef.value)">
+        Enter date for daily report:
+        <input type="month" name = "date" id="date" ngModel><br/>
+        <input type="submit" value="Get Report"/>
+        <input type="reset" value="Reset"/>
+
+    </form>
+</div>
+
+<div *ngIf = "!show">
+    {{msg}}
+
+</div>
+
