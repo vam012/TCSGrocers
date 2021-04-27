@@ -37,29 +37,34 @@ let updatePassword = (req,res)=>{
     })
 }
 
+
+
 let createNewEmployee = (req,res)=>{
     let holdArr = [];
+
     EmployeeModel.find({},(err,data)=>{
         if(!err){   
             holdArr = data
-        }
-    });
-    let nextID = (holdArr.length == 0)? 100:holdArr[holdArr.length-1]._id+1;
-    let newEmp = new EmployeeModel({
-        _id:nextID,
-        fName:req.body.fName,
-        lName:req.body.lName,
-        email:req.body.email,
-        username:req.body.username,
-        password:"password123"
-    });
-    newEmp.save((err,data)=>{
-        if(!err){
-            res.send("Data stored successfully")
+            let nextID = (holdArr.length == 0)? 100:holdArr[holdArr.length-1]._id+1;
+            let newEmp = new EmployeeModel({
+                _id:nextID,
+                fName:req.body.employeeFirstName,
+                lName:req.body.employeeLastName,
+                email:req.body.employeeEmailId,
+                username:req.body.employeeUserName,
+                password:"password123"
+            });
+            newEmp.save((err,data)=>{
+                if(!err){
+                    res.send("New Employee Added Successfully")
+                }else{
+                    res.send("Something went wrong...")
+                }
+            })  
         }else{
-            res.send("Something went wrong...")
-        }
-    })
+        res.send("Something went wrong...")
+    }
+    });
 }
 
 let deleteEmployeeById = (req,res)=>{
