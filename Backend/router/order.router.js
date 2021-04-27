@@ -8,7 +8,7 @@ router.get("/getOrderById/:oid",OrderController.getOrderById)
 router.get("/getOrderByCustomerId/:cid",OrderController.getOrderByCustomerId)
 router.post("/storeNewOrder",OrderController.storeNewOrder)
 router.get("/getDailyData/:date",OrderController.getDailyData)
-router.get("/getWeeklyData",OrderController.getWeeklyData)
+router.get("/getWeeklyData/:sdate/:edate",OrderController.getWeeklyData)
 router.get("/getMonthlyData/:date",OrderController.getMonthlyData)
 router.get("/getOrderByProductId/:pid",OrderController.getOrderByProductId)
 

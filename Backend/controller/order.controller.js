@@ -79,6 +79,13 @@ let getDailyData = (req,res)=>{
 }
 
 let getWeeklyData = (req,res)=>{
+    let startDate = new Date(req.params.sdate);
+    let endDate = new Date(req.params.edate);
+    OrderModel.aggregate([{$match : { "orderDate": { $gte: startDate, $lt: endDate} }},{$group : {_id : { $dateToString: { format: "%Y-%m-%d", date: "$orderDate" } },sum: { $sum:"$orderAmount"},count: { $sum: 1 }}}],(err,data)=>{
+        if(!err){
+            res.json(data)
+        }   
+    })
 
 }
 

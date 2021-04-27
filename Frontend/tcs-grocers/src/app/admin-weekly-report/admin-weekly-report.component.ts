@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { OrderService } from '../order.service';
+import { Weekreport } from '../weekreport.model';
 
 @Component({
   selector: 'app-admin-weekly-report',
@@ -11,13 +13,14 @@ export class AdminWeeklyReportComponent implements OnInit {
   
   show:boolean = true;
   msg?:string;
-  constructor(public router:Router) { }
+  reportdata?:Weekreport[]
+  constructor(public router:Router, public orderServ:OrderService) { }
 
   ngOnInit(): void {
   }
-  gotoWeekReport(dataRef:any){
-    this.msg = dataRef;
-    console.log(dataRef)
+  gotoWeekReport(dateRef:any){
+    this.orderServ.getOrderByWeek(dateRef.value.startDate,dateRef.value.endDate).subscribe(res=>this.reportdata=res);
+    console.log(this.reportdata)
     this.show = false;
   }
 }
