@@ -17,6 +17,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { SendRequestComponent } from './send-request/send-request.component';
 import { EditProfileComponent } from './edit-profile/edit-profile.component';
 import { UnlockUsersComponent } from './unlock-users/unlock-users.component';
+import { UpdateOrderStatusComponent } from './update-order-status/update-order-status.component';
 
 @NgModule({
   declarations: [
@@ -32,7 +33,8 @@ import { UnlockUsersComponent } from './unlock-users/unlock-users.component';
     AdminViewRequestsComponent,
     SendRequestComponent,
     EditProfileComponent,
-    UnlockUsersComponent
+    UnlockUsersComponent,
+    UpdateOrderStatusComponent
   ],
   imports: [
     BrowserModule,
