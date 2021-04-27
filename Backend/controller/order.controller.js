@@ -63,15 +63,26 @@ let storeNewOrder = (req,res)=>{
     });
 }
 
-let getDailydata = (req,res)=>{
+let getDailyData = (req,res)=>{
+    let dateString = req.params.date;
+    const dateSplit = dateString.split('-');
+    let year= parseInt(dateSplit[0]);
+    let month = parseInt(dateSplit[1]);
+    let day = parseInt(dateSplit[2]);
+    OrderModel.aggregate([{$project: {_id:1,year:{$year:"$orderDate"},month:{$month:"$orderDate"}, day:{$dayOfMonth:"$orderDate"},orderAmount:1}}, {$group: {_id:{year:"$year",month:"$month",day:"$day"}, sum:{$sum:"$orderAmount"}, count:{$sum:1}}},
+    {$match : {"_id.year" : year, "_id.month" : month, "_id.day" : day}}],(err,data)=>{
+        if(!err){
+            res.json(data)
+        }
+    })  
+    
+}
+
+let getWeeklyData = (req,res)=>{
 
 }
 
-let getWeeklydata = (req,res)=>{
-
-}
-
-let getMonthlydata = (req,res)=>{
+let getMonthlyData = (req,res)=>{
 
 }
 
@@ -79,4 +90,4 @@ let getMonthlydata = (req,res)=>{
 
 
 
-module.exports={getAllOrderDetails,getOrderById,storeNewOrder,getOrderByCustomerId,getDailydata,getWeeklydata,getMonthlydata,getOrderByProductId}
+module.exports={getAllOrderDetails,getOrderById,storeNewOrder,getOrderByCustomerId,getDailyData,getWeeklyData,getMonthlyData,getOrderByProductId}

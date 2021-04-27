@@ -1,9 +1,14 @@
-<div>
-    <input type="button" value="Daily Reports" (click)= "goToDailyReports()"><br/>
-    <input type="button" value="Weekly Reports" (click)= "goToWeeklyReports()"><br/>
-    <input type="button" value="Monthly Reports" (click)= "goToMonthlyReports()"><br/>
-    <input type="button" value="Product Reports" (click)= "goToProductReports()"><br/>
-    <input type="button" value="Customer Reports" (click)= "goToCustomerReports()"><br/>
+<div class="container">
+    <div class="row">
+        <div class="col">
+                <input type="button" class="btn btn-outline-secondary" value="Daily Reports" (click)= "goToDailyReports()">
+                <input type="button" class="btn btn-outline-secondary" value="Weekly Reports" (click)= "goToWeeklyReports()">
+                <input type="button" class="btn btn-outline-secondary" value="Monthly Reports" (click)= "goToMonthlyReports()">
+                <input type="button" class="btn btn-outline-secondary" value="Product Reports" (click)= "goToProductReports()">
+                <input type="button" class="btn btn-outline-secondary" value="Customer Reports" (click)= "goToCustomerReports()">
+        </div>
+    </div>
+    
     <app-admin-daily-report *ngIf="displayBlock==1"></app-admin-daily-report>
     <app-admin-weekly-report *ngIf="displayBlock==2"></app-admin-weekly-report>
     <app-admin-monthly-report *ngIf="displayBlock==3"></app-admin-monthly-report>

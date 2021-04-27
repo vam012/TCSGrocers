@@ -4,12 +4,12 @@ let OrderController = require("../controller/order.controller.js");
 
 //mapping sub path with http methods. 
 router.get("/getAllOrderDetails",OrderController.getAllOrderDetails)
-router.get("/getOrderById/:orderID",OrderController.getOrderById)
-router.get("/getOrderByCustomerId/:customerID",OrderController.getOrderByCustomerId)
+router.get("/getOrderById/:oid",OrderController.getOrderById)
+router.get("/getOrderByCustomerId/:cid",OrderController.getOrderByCustomerId)
 router.post("/storeNewOrder",OrderController.storeNewOrder)
-router.get("/getDailydata",OrderController.getDailydata)
-router.get("/getWeeklydata",OrderController.getWeeklydata)
-router.get("/getMonthlydata",OrderController.getMonthlydata)
-router.get("/getOrderByProductId/:productID",OrderController.getOrderByProductId)
+router.get("/getDailyData/:date",OrderController.getDailyData)
+router.get("/getWeeklyData",OrderController.getWeeklyData)
+router.get("/getMonthlyData",OrderController.getMonthlyData)
+router.get("/getOrderByProductId/:pid",OrderController.getOrderByProductId)
 
 module.exports=router;
