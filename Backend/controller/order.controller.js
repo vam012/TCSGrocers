@@ -113,4 +113,4 @@ let updateOrderStatusByID = (req,res)=>{
     })
 }
 
-module.exports={getAllOrderDetails,getOrderById,storeNewOrder,getOrderReportByCustomerId,getDailydata,getWeeklydata,getMonthlydata,updateOrderStatusByID}
+module.exports={getAllOrderDetails,getOrderById,storeNewOrder,getOrderReportByCustomerId,getDailyData,getWeeklyData,getMonthlyData,updateOrderStatusByID}
