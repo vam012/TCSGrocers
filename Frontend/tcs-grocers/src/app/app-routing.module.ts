@@ -8,6 +8,9 @@ import { UnlockUsersComponent } from './unlock-users/unlock-users.component';
 import { MainMenuComponent } from './main-menu/main-menu.component';
 import { CartComponent } from './cart/cart.component';
 import { UserHomeComponent } from './user-home/user-home.component';
+import { UserMainMenuComponent} from './user-main-menu/user-main-menu.component';
+import { UserSignUpComponent } from './user-sign-up/user-sign-up.component';
+import { UserRaiseTicketComponent} from './user-raise-ticket/user-raise-ticket.component';
 
 const routes: Routes = [
   {path:`\mainmenu`,component:MainMenuComponent},
@@ -16,7 +19,10 @@ const routes: Routes = [
   {path:`\adminmenu`,component:AdminMenuComponent,canActivate:[AdminAuthGaurdService]},
   {path:`user`,component:UserHomeComponent},
   {path:`cart`,component:CartComponent},
-  {path:``,redirectTo:"\mainmenu",pathMatch:"full"}
+  {path:``,redirectTo:"\mainmenu",pathMatch:"full"},
+  {path: `\UserMainMenu`, component:  UserMainMenuComponent},
+  {path: `\UserSignUp`, component: UserSignUpComponent},
+  {path: `\serviceRequest`, component: UserRaiseTicketComponent}
 ];
 
 @NgModule({
