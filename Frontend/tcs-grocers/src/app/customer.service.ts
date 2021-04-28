@@ -36,6 +36,18 @@ export class CustomerService {
     return this.http.get<User[]>("http://localhost:7777/customers/getCustomerById/"+id);
   }
 
+  getCustomerByUsername(username:any):Observable<User[]>{
+    return this.http.get<User[]>("http://localhost:7777/customers/getCustomerByUsername/"+username);
+  }
+
+  createUser(form:any):any{
+    return this.http.post("http://localhost:7777/customers/createNewCustomer",form,{responseType:'text'})
+  }
+
+  login(form:any):any{
+    return this.http.post("http://localhost:7777/customers/login",form,{responseType:'text'})
+  }
+
   
 
 }

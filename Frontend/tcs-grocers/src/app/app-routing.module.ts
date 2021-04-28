@@ -15,6 +15,8 @@ import { EmployeeAuthGuardService } from './employee-auth-guard.service';
 import { UserMainMenuComponent} from './user-main-menu/user-main-menu.component';
 import { UserSignUpComponent } from './user-sign-up/user-sign-up.component';
 import { UserRaiseTicketComponent} from './user-raise-ticket/user-raise-ticket.component';
+import { UserDashboardComponent } from './user-dashboard/user-dashboard.component';
+import { UserAuthGaurdService } from './user-auth-gaurd.service';
 
 const routes: Routes = [
   {path:`\mainmenu`,component:MainMenuComponent},
@@ -27,9 +29,8 @@ const routes: Routes = [
   {path:`user`,component:UserHomeComponent},
   {path:`cart`,component:CartComponent},
   {path:``,redirectTo:"\mainmenu",pathMatch:"full"},
-  {path: `\UserMainMenu`, component:  UserMainMenuComponent},
-  {path: `\UserSignUp`, component: UserSignUpComponent},
-  {path: `\serviceRequest`, component: UserRaiseTicketComponent}
+  {path: `user`, component:  UserMainMenuComponent},
+  {path:'usermenu',component:UserDashboardComponent,canActivate:[UserAuthGaurdService]}
 ];
 
 @NgModule({
