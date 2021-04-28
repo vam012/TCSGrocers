@@ -1,8 +1,8 @@
 <form #orderRef="ngForm" (ngSubmit)="updateStatus(orderRef.value)">
     <label>OrderId</label>
-    <input type="text" name="id" ngModel><br>
+    <input type="text" name="orderID" ngModel><br>
     <label for="">Status</label>
-    <input list="browsers" name="status" ngModel><br>
+    <input list="browsers" name="newOrderStatus" ngModel><br>
 
         <datalist id="browsers" ng-model>
             <option value="shipped">Shipped</option>
@@ -11,6 +11,7 @@
             <option value="cancelled">Cancelled</option>
         </datalist>
     
-        <input type="submit" value="Update Order Status"> 
+        <input type="submit" value="Update Order Status" (click)="processRefund()"/> 
 
 </form>
+

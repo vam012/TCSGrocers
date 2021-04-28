@@ -9,7 +9,7 @@ export class EmployeeService {
 
   constructor(public http:HttpClient) { }
   updatePassword(employeeId:any):any{
-    return this.http.put(`http://localhost:7777/employee/updatePassword/${employeeId}`,{responseType:"text"})
+    return this.http.put(`http://localhost:7777/employees/updatePassword/${employeeId}`,{responseType:"text"})
   }
   
 

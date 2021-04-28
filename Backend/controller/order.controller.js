@@ -78,15 +78,15 @@ let getMonthlydata = (req,res)=>{
 let updateOrderStatusByID = (req,res)=>{
     let orderID = req.body.orderID;
     let newStatus = req.body.newOrderStatus;
-    OrderModel.updateOne({_id:orderID},{$set:{orderStatus:newOrderStatus}},(err,data)=>{
+    OrderModel.updateOne({_id:orderID},{$set:{orderStatus:newStatus}},(err,data)=>{
         if(!err){
-            if(DataCue.nModified==1){
+            if(data.nModified==1){
                 res.send("Order status updated successfully");
             }else{
                 res.send("Order ID does not exist");
             }
         }else{
-            res.send("Something went wrong...")
+            res.send("Something went wrong...");
         }
     })
 }
