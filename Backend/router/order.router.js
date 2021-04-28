@@ -10,5 +10,6 @@ router.post("/storeNewOrder",OrderController.storeNewOrder)
 router.get("/getDailyData/:date",OrderController.getDailyData)
 router.get("/getWeeklyData/:sdate/:edate",OrderController.getWeeklyData)
 router.get("/getMonthlyData/:date",OrderController.getMonthlyData)
+router.put("/updateOrderStatusByID",OrderController.updateOrderStatusByID)
 
 module.exports=router;

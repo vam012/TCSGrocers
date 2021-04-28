@@ -1,0 +1,16 @@
+<form #orderRef="ngForm" (ngSubmit)="updateStatus(orderRef.value)">
+    <label>OrderId</label>
+    <input type="text" name="id" ngModel><br>
+    <label for="">Status</label>
+    <input list="browsers" name="status" ngModel><br>
+
+        <datalist id="browsers" ng-model>
+            <option value="shipped">Shipped</option>
+            <option value="OutForDelivery">Out for Delivery</option>
+            <option value="delivered">Delivered</option>
+            <option value="cancelled">Cancelled</option>
+        </datalist>
+    
+        <input type="submit" value="Update Order Status"> 
+
+</form>

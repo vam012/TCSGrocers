@@ -8,11 +8,23 @@ import { Router } from '@angular/router';
 })
 export class UserHomeComponent implements OnInit {
 
+  
   constructor(public router:Router) { }
 
   ngOnInit(): void {
     this.cartItem();
+    this.putUserInfo();
   }
+  putUserInfo(){
+    let userObj = sessionStorage.getItem('userInfo');
+    if(userObj==null){
+
+      let storeUserData:any = [{userID:120,userFunds:5000}];
+      sessionStorage.setItem('userInfo',JSON.stringify(storeUserData))
+  }
+}
+
+
   cart_items:number = 0;
   cartItem(){
     if(localStorage.getItem('cart')!=null){

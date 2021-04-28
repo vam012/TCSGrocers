@@ -1,0 +1,10 @@
+<div>
+    <form #productRef="ngForm" (ngSubmit)="updateProductQuantity(productRef.value)">
+        <label>Product Id</label>
+        <input type="text" name="productID" ngModel><br>
+        <label>New Quantity</label>
+        <input type="text" name="newQuantity" ngModel><br>
+        <input type="submit" value="Update Quantity">
+        <input type="reset" value="reset">
+    </form>
+</div>

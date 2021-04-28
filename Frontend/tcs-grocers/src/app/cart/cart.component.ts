@@ -8,12 +8,28 @@ import { Router } from '@angular/router';
 })
 export class CartComponent implements OnInit {
 
+  userId?:number;
+  userFunds:number=0
+  newBalance?:number;
+  orderProcessed:boolean = false;
+  orderNotProcessed:boolean = false;
   constructor(public router:Router) { }
 
   ngOnInit(): void {
+    this.getUserInfo();
     this.cartItem();
     this.cartDetails();
     this.loadCart();
+    this.orderNotProcessed = false;
+    this.orderProcessed = false;
+    
+  }
+  getUserInfo(){
+    if(sessionStorage.getItem('userInfo')!=null){
+      let customerInfo = JSON.parse(sessionStorage.getItem('userInfo')||'{}')
+      this.userId=customerInfo[0].userID;
+      this.userFunds = customerInfo[0].userFunds;
+    }
   }
   cart_items:number = 0;
   cartDetailsArr:any = [];
@@ -52,5 +68,27 @@ export class CartComponent implements OnInit {
         }
       }
     }
+  }
+  checkout(){
+    if(this.userFunds > this.total){
+      this.newBalance = this.userFunds - this.total;
+      this.orderProcessed=true;
+
+      // let orderArr = [
+      //   {
+      //     customerID:this.userId,
+      //     orderAmount:this.total,
+      //     productList:[{_id:req.body.productId, quantity:req.body.quantity}],
+      //   }
+      // ]
+      //here I have to add stuff from local and store in an array and then transfer it to the order model
+      localStorage.removeItem('cart');
+      window.setTimeout(function(){location.reload()},3000)
+    
+
+    }else{
+      this.orderNotProcessed = true;
+    }
+
   }
 }

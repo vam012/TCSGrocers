@@ -13,6 +13,10 @@ import { AdminDeleteProductComponent } from './admin-delete-product/admin-delete
 import { AdminUpdateProductComponent } from './admin-update-product/admin-update-product.component';
 import { AdminViewRequestsComponent } from './admin-view-requests/admin-view-requests.component';
 import { HttpClientModule } from '@angular/common/http';
+import { SendRequestComponent } from './send-request/send-request.component';
+import { EditProfileComponent } from './edit-profile/edit-profile.component';
+import { UnlockUsersComponent } from './unlock-users/unlock-users.component';
+import { UpdateOrderStatusComponent } from './update-order-status/update-order-status.component';
 import { UserHomeComponent } from './user-home/user-home.component';
 import { CartComponent } from './cart/cart.component';
 import { AdminGenerateReportsComponent } from './admin-generate-reports/admin-generate-reports.component';
@@ -35,6 +39,10 @@ import { MainMenuComponent } from './main-menu/main-menu.component';
     AdminDeleteProductComponent,
     AdminUpdateProductComponent,
     AdminViewRequestsComponent,
+    SendRequestComponent,
+    EditProfileComponent,
+    UnlockUsersComponent,
+    UpdateOrderStatusComponent,
     UserHomeComponent,
     CartComponent,
     AdminGenerateReportsComponent,

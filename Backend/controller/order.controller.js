@@ -97,8 +97,20 @@ let getMonthlyData = (req,res)=>{
 
 }
 
+let updateOrderStatusByID = (req,res)=>{
+    let orderID = req.body.orderID;
+    let newStatus = req.body.newOrderStatus;
+    OrderModel.updateOne({_id:orderID},{$set:{orderStatus:newOrderStatus}},(err,data)=>{
+        if(!err){
+            if(DataCue.nModified==1){
+                res.send("Order status updated successfully");
+            }else{
+                res.send("Order ID does not exist");
+            }
+        }else{
+            res.send("Something went wrong...")
+        }
+    })
+}
 
-
-
-
-module.exports={getAllOrderDetails,getOrderById,storeNewOrder,getOrderReportByCustomerId,getDailyData,getWeeklyData,getMonthlyData}
+module.exports={getAllOrderDetails,getOrderById,storeNewOrder,getOrderReportByCustomerId,getDailydata,getWeeklydata,getMonthlydata,updateOrderStatusByID}
