@@ -26,6 +26,9 @@ import { AdminMonthlyReportComponent } from './admin-monthly-report/admin-monthl
 import { AdminProductReportComponent } from './admin-product-report/admin-product-report.component';
 import { AdminCustomerReportComponent } from './admin-customer-report/admin-customer-report.component';
 import { MainMenuComponent } from './main-menu/main-menu.component';
+import { UserOrderStatusComponent } from './user-order-status/user-order-status.component';
+import { UserAddFundsComponent } from './user-add-funds/user-add-funds.component';
+import { UserEditProfileComponent } from './user-edit-profile/user-edit-profile.component';
 
 @NgModule({
   declarations: [
@@ -51,7 +54,10 @@ import { MainMenuComponent } from './main-menu/main-menu.component';
     AdminMonthlyReportComponent,
     AdminProductReportComponent,
     AdminCustomerReportComponent,
-    MainMenuComponent
+    MainMenuComponent,
+    UserOrderStatusComponent,
+    UserAddFundsComponent,
+    UserEditProfileComponent
   ],
   imports: [
     BrowserModule,
