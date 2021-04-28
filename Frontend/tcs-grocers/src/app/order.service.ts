@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { Order } from './order.model';
 import { Report } from './report.model';
 import { Weekreport } from './weekreport.model';
 
@@ -23,6 +24,9 @@ export class OrderService {
   }
 
 
-  
+  getOrderReportByCustomerId(customerId:any):Observable<Order[]>{
+    return this.http.get<Order[]>(`http://localhost:7777/orders/getOrderReportByCustomerId/${customerId}`)
+
+  }
 
 }

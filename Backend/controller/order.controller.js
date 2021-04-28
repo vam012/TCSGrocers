@@ -19,15 +19,16 @@ let getOrderById = (req,res)=>{
     })
 }
 
-let getOrderByCustomerId = (req,res)=>{
-    OrderModel.find({customerID:req.params.customerID},(err,data)=>{
+let getOrderReportByCustomerId = (req,res)=>{
+    OrderModel.find({customerID:req.params.cid},(err,data)=>{
         if(!err){
             res.json(data)
         }
     })
 }
 
-let getOrderByProductId = (req,res)=>{
+let getOrderReportByProductId = (req,res)=>{
+
     OrderModel.find({"productList._id":req.params.productID},(err,data)=>{
         if(!err){
             res.json(data)
@@ -107,4 +108,4 @@ let getMonthlyData = (req,res)=>{
 
 
 
-module.exports={getAllOrderDetails,getOrderById,storeNewOrder,getOrderByCustomerId,getDailyData,getWeeklyData,getMonthlyData,getOrderByProductId}
+module.exports={getAllOrderDetails,getOrderById,storeNewOrder,getOrderReportByCustomerId,getDailyData,getWeeklyData,getMonthlyData,getOrderReportByProductId}
