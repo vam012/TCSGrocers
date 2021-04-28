@@ -36,9 +36,9 @@ export class UpdateOrderStatusComponent implements OnInit {
     this.customerServ.getCustomerById(customerId).subscribe(result=>this.customerDetails=result);
     let refund = (refund_amount);// +  this.customerDetails?.funds;
     let funds = this.customerDetails?.funds;
-    console.log(typeof(refund));
-    console.log(typeof(funds));
-    let updated_amt:Number = refund? + fund;
+   // console.log(typeof(refund));
+    //console.log(typeof(funds));
+    let updated_amt:Number = refund + funds;
     this.customerServ.refundCustomerById(customerId,updated_amt).subscribe(result=>console.log(result));   
   }
 
