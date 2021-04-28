@@ -11,12 +11,14 @@ let getAllEmployeeDetails =(req,res)=> {
 
 
 let login = (req,res)=>{
-    let usernameAtt = req.body.username;
+    let empidAtt = req.body.empId;
     let passwordAtt = req.body.password;
-    EmployeeModel.find({username:usernameAtt},(err,data)=>{
+    EmployeeModel.findOne({_id:empidAtt},(err,data)=>{
         if(!err){   
             if(data.password===passwordAtt){
-                if(data.password==="pasword123"){res.send("Login successful, update password");}
+                if(data.password==="password123"){
+                    res.send("Login successful");
+                }
                 else{res.send("Login successful");}
             }else{
                 res.send("Incorrect password")
@@ -26,6 +28,8 @@ let login = (req,res)=>{
         }
     })
 }
+
+
 
 let updatePassword = (req,res)=>{
     let newPassword = req.body.newPassword;
