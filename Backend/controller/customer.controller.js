@@ -113,9 +113,9 @@ let addFunds = (req,res)=>{
 }
 
 let updateName = (req,res)=>{
-    let id = req.params.customerID;
-    let fName=req.params.fName;
-    let lName=req.params.lName;
+    let id = req.body.customerID;
+    let fName=req.body.fName;
+    let lName=req.body.lName;
     CustomerModel.updateOne({_id:id},{$set:{fName:fName,lName:lName}},(err,data)=>{
         if(!err){
             if(data.nModified==1){
@@ -130,8 +130,8 @@ let updateName = (req,res)=>{
 }
 
 let updateEmail = (req,res)=>{
-    let id = req.params.customerID;
-    let email=req.params.email;
+    let id = req.body.customerID;
+    let email=req.body.email;
     CustomerModel.updateOne({_id:id},{$set:{email:email}},(err,data)=>{
         if(!err){
             if(data.nModified==1){
@@ -146,8 +146,8 @@ let updateEmail = (req,res)=>{
 }
 
 let updateUsername = (req,res)=>{
-    let id = req.params.customerID;
-    let username=req.params.username;
+    let id = req.body.customerID;
+    let username=req.body.username;
     CustomerModel.updateOne({_id:id},{$set:{username:username}},(err,data)=>{
         if(!err){
             if(data.nModified==1){
@@ -162,13 +162,13 @@ let updateUsername = (req,res)=>{
 }
 
 let updatePassword = (req,res)=>{
-    let id = req.params.customerID;
+    let id = req.body.customerID;
     let newPassword=req.body.password;
     CustomerModel.find({_id:id},(err,data)=>{
         if(!err){
-            if(data.password!=newPassword){
-                CustomerModel.find({_id:id},{$set:{password:newPassword}},(err,data)=>{
-                    if(data.nModified==1){
+            if(data[0].password!=newPassword){
+                CustomerModel.updateOne({_id:id},{$set:{password:newPassword}},(err,ret)=>{
+                    if(ret.nModified==1){
                         res.send("Successfully updated user password");
                     }else{
                         res.send("User does not exist")
@@ -201,8 +201,8 @@ let updateBirthday = (req,res)=>{
 }
 
 let updatePhoneNumber = (req,res)=>{
-    let id = req.params.customerID;
-    let phoneNumber=req.params.phoneNumber;
+    let id = req.body.customerID;
+    let phoneNumber=req.body.phoneNumber;
     CustomerModel.updateOne({_id:id},{$set:{phoneNumber:phoneNumber}},(err,data)=>{
         if(!err){
             if(data.nModified==1){
