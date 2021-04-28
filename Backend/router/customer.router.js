@@ -16,5 +16,6 @@ router.put("/updateEmail/:customerID/:email",CustomerController.updateEmail);
 router.put("/updateUsername/:customerID/:username",CustomerController.updateUsername);
 router.put("/updateBirthday/:customerID/:birthday",CustomerController.updateBirthday);
 router.put("/updatePhoneNumber/:customerID/:phoneNumber",CustomerController.updatePhoneNumber);
+router.put("/refundCustomerById/:customerId/:refundAmount",CustomerController.refundCustomerById);
 
 module.exports=router;

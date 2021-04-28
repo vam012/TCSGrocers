@@ -76,20 +76,35 @@ let getMonthlydata = (req,res)=>{
 }
 
 let updateOrderStatusByID = (req,res)=>{
-    let orderID = req.body.orderID;
-    let newStatus = req.body.newOrderStatus;
-    OrderModel.updateOne({_id:orderID},{$set:{orderStatus:newStatus}},(err,data)=>{
-        if(!err){
-            if(data.nModified==1){
-                res.send("Order status updated successfully");
+    let orderID = req.params.oid;
+    let newStatus = req.params.orderStatus;
+    if(newStatus=='Cancelled'){
+        OrderModel.updateOne({_id:orderID},{$set:{orderStatus:newStatus, orderAmount:0}},(err,data)=>{
+            if(!err){
+                if(data.nModified==1){
+                    res.send("Order status updated successfully");
+                }else{
+                    res.send("Order ID does not exist");
+                }
             }else{
-                res.send("Order ID does not exist");
+                res.send("Something went wrong...");
             }
-        }else{
-            res.send("Something went wrong...");
-        }
-    })
+        })
+    }else{
+        OrderModel.updateOne({_id:orderID},{$set:{orderStatus:newStatus}},(err,data)=>{
+            if(!err){
+                if(data.nModified==1){
+                    res.send("Order status updated successfully");
+                }else{
+                    res.send("Order ID does not exist");
+                }
+            }else{
+                res.send("Something went wrong...");
+            }
+        })
+    }
 }
+
 
 
 

@@ -216,4 +216,22 @@ let updatePhoneNumber = (req,res)=>{
     })
 }
 
-module.exports={createNewCustomer,getAllCustomers,getCustomerById,login,unlockUser,addFunds,updateName,updateEmail,updateUsername,updatePassword,updateBirthday,updatePhoneNumber}
+
+let refundCustomerById = (req,res)=>{
+    let id = req.params.customerId;
+    let amount = req.params.refundAmount;
+    console.log("Here.")
+    CustomerModel.updateOne({_id:id},{$inc:{funds:amount}},(err,data)=>{
+        if(!err){
+            if(data.nModified==1){
+                res.send("Successfully refunded the amount");
+            }else{
+                res.send("No refund granted")
+            }
+        }else{
+            res.send("Something went wrong")
+        }
+    })
+}
+
+module.exports={createNewCustomer,getAllCustomers,getCustomerById,login,unlockUser,addFunds,updateName,updateEmail,updateUsername,updatePassword,updateBirthday,updatePhoneNumber,refundCustomerById}
