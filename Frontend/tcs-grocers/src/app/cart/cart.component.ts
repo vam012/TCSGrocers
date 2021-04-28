@@ -9,6 +9,7 @@ import { CartService } from '../cart.service';
 })
 export class CartComponent implements OnInit {
 
+  msg?:string;
   userId:string="";
   userFunds:number=0
   newBalance?:number;
@@ -93,8 +94,9 @@ export class CartComponent implements OnInit {
       }
 
       localStorage.removeItem(this.userId);
-      window.setTimeout(function(){location.reload()},3000);
+     // window.setTimeout(function(){location.reload()},3000);
       this.cartSer.addNewOrder(this.OrderDetails).subscribe((res:string)=>{
+        this.msg=res;
         })
       console.log(this.OrderDetails);
     
