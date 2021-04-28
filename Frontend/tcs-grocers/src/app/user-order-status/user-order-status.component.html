@@ -1,1 +1,22 @@
-<p>user-order-status works!</p>
+<div class=container-fluid>
+    <div class='row justify-content-center'>
+        <table class='table table-hover table-striped'>
+            <thead>
+                <tr class=table-dark>
+                    <th scope=col>Order ID</th>
+                    <th scope=col>Order Date</th>
+                    <th scope=col>Order Status</th>
+                    <th scope=col>Order Amount</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor='let order of allUserOrders'>
+                    <th scope=row>{{order._id}}</th>
+                    <td>{{order.orderDate}}</td>
+                    <td>{{order.orderStatus}}</td>
+                    <td>${{order.orderAmount}}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
