@@ -53,35 +53,40 @@ getUserInfo(){
       prodName:"hp laptop",
       prodPrice:"1000",
       prodQuantity: 25,
-      qnt:1
+      qnt:1,
+      discount:50
     },
     {
       prodId:2,
       prodName:"Hair dryer",
       prodPrice:"100",
       prodQuantity: 20,
-      qnt:1
+      qnt:1,
+      discount:25
     },
     {
       prodId:3,
       prodName:"Perfume",
       prodPrice:"80",
       prodQuantity: 15,
-      qnt:1
+      qnt:1,
+      discount:5
     },
     {
       prodId:4,
       prodName:"TV",
       prodPrice:"1200",
       prodQuantity: 10,
-      qnt:1
+      qnt:1,
+      discount:10
     },
     {
       prodId:5,
       prodName:"Monitor",
       prodPrice:"300",
       prodQuantity: 5,
-      qnt:1
+      qnt:1,
+      discount:30
     }
 
   ];

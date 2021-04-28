@@ -35,6 +35,7 @@ export class CartComponent implements OnInit {
   }
   cart_items:number = 0;
   cartDetailsArr:any = [];
+  
   OrderDetails:any = {
      customerID:Number,
      orderAmount:Number,
@@ -62,7 +63,7 @@ export class CartComponent implements OnInit {
     if(localStorage.getItem(this.userId)){
       this.cartDetailsArr = JSON.parse(localStorage.getItem(this.userId)||'{}');
       this.total = this.cartDetailsArr.reduce(function(acc:any,val:any){
-        return acc+(val.prodPrice * val.qnt);
+        return acc+((val.prodPrice * val.qnt)*(val.discount/100));
       },0)
     }
   }
@@ -94,10 +95,11 @@ export class CartComponent implements OnInit {
       }
 
       localStorage.removeItem(this.userId);
-     // window.setTimeout(function(){location.reload()},3000);
+     
       this.cartSer.addNewOrder(this.OrderDetails).subscribe((res:string)=>{
         this.msg=res;
         })
+      window.setTimeout(function(){location.reload()},3000);
       console.log(this.OrderDetails);
     
 
