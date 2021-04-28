@@ -1,14 +1,51 @@
-<div>
-    <form #dataRef='ngForm'  (submit) = "gotoProductReport(dataRef.value)">
-        Enter Product ID for product report:
-        <input type="text" name="productID" id="productID"><br/>
-        <input type="submit" value="Get Report"/>
-        <input type="reset" value="Reset"/>
 
+
+<div class="container">
+    <form  #dataRef='ngForm'  (ngSubmit) = "gotoProductReport(dataRef)">
+        <div class="row justify-content">
+            <div class="col-lg-3">
+                <b> Enter Product ID for report:</b>
+            </div>
+            <div class="col-lg-2">
+                <input type="text" name = "productID" id="productID" ngModel>
+            </div>
+            <div class="row justify-content">
+                <input type="submit" class="col-3 btn btn-success" value="Get Report"><br/>
+            </div>
+            <div class="row justify-content">
+                <input type="reset" class="col-3 btn btn-warning" value="Reset"><br/>
+            </div>
+        </div>
     </form>
+
 </div>
 
-<div *ngIf = "!show">
-    {{msg}}
-
+<div class="container" *ngIf = "!show">
+    <div class="justify-content-center">
+        <table class=table>
+            <thead>
+                <tr>
+                    <th scope=col>Product ID</th>
+                    <th scope=col>Product Name </th>
+                    <th scope=col>Available Quantity</th>
+                    <th scope=col>Listed Price</th>
+                    <th scope=col>Discount</th>
+    
+                </tr>
+            </thead>
+            <tbody *ngFor="let report of reportdata">
+                <tr>
+                    <td>{{report._id}}</td>
+                    <td>{{report.name}}</td>
+                    <td>{{report.quantity}}</td>
+                    <td>${{report.price}}</td>
+                    <td>${{report.discount}}</td>
+                    
+                </tr>
+                
+            </tbody>
+        </table>
+    </div>
+        
+    
 </div>

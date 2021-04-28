@@ -1,14 +1,53 @@
-<div>
-    <form #dataRef='ngForm'  (submit) = "gotoWeekReport(dataRef.value)">
-        Enter week for weekly report:
-        <input type="week" name = "date" id="date" ngModel><br/>
-        <input type="submit" value="Get Report"/>
-        <input type="reset" value="Reset"/>
-
+<div class="container">
+    <form  #dataRef='ngForm'  (ngSubmit) = "gotoWeekReport(dataRef)">
+        <div class="row justify-content">
+            <div class="col-sm-3">
+                <b> Enter Start Date for Weekly report:</b>
+            </div>
+            <div class="col-sm-2">
+                <input type="date" name = "startDate" id="date" ngModel>
+            </div>
+        </div>
+        <div class="row justify-content">
+            <div class="col-sm-3">
+                <b> Enter End Date for Weekly report:</b>
+            </div>
+            <div class="col-sm-2">
+                <input type="date" name = "endDate"  ngModel>
+            </div>
+            <div class="row justify-content">
+                <input type="submit" class="col-3 btn btn-success" value="Get Report"><br/>
+            </div>
+            <div class="row justify-content">
+                <input type="reset" class="col-3 btn btn-warning" value="Reset"><br/>
+            </div>
+        </div>
+            
     </form>
+
 </div>
 
-<div *ngIf = "!show">
-    {{msg}}
-
+<div class="container" *ngIf = "!show">
+    <div class="justify-content-center">
+        <table class=table>
+            <thead>
+                <tr>
+                    <th scope=col>Report Date:</th>
+                    <th scope=col>Total Sales</th>
+                    <th scope=col>Total Customers Ordered</th>
+                </tr>
+            </thead>
+            <tbody *ngFor="let report of reportdata">
+                <tr>
+                    <td>{{report._id}}</td>
+                    <td>${{report.sum}}</td>
+                    <td>{{report.count}}</td>
+                    
+                </tr>
+                
+            </tbody>
+        </table>
+    </div>
+        
+    
 </div>

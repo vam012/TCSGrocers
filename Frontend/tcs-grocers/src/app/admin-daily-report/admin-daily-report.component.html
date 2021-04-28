@@ -1,14 +1,44 @@
-<div>
-    <form #dataRef='ngForm'  (submit) = "gotoDayReport(dataRef.value)">
-        Enter date for daily report:
-        <input type="date" name = "date" id="date" ngModel><br/>
-        <input type="submit" value="Get Report"/>
-        <input type="reset" value="Reset"/>
-
+<div class="container">
+    <form  #dataRef='ngForm'  (ngSubmit) = "gotoDayReport(dataRef)">
+        <div class="row justify-content">
+            <div class="col-lg-3">
+                <b> Enter date for daily report:</b>
+            </div>
+            <div class="col-lg-2">
+                <input type="date" name = "date" id="date" ngModel>
+            </div>
+            <div class="row justify-content">
+                <input type="submit" class="col-3 btn btn-success" value="Get Report"><br/>
+            </div>
+            <div class="row justify-content">
+                <input type="reset" class="col-3 btn btn-warning" value="Reset"><br/>
+            </div>
+        </div>
     </form>
+
 </div>
 
-<div *ngIf = "!show">
-    {{msg}}
-
+<div class="container" *ngIf = "!show" id = "data">
+    <div class="justify-content-center">
+        <table class=table>
+            <thead>
+                <tr>
+                    <th scope=col>Report Date:</th>
+                    <th scope=col>Total Sales</th>
+                    <th scope=col>Total Customers Ordered</th>
+                </tr>
+            </thead>
+            <tbody *ngFor="let report of reportdata">
+                <tr>
+                    <td>{{report._id.month}}-{{report._id.day}}-{{report._id.year}}</td>
+                    <td>${{report.sum}}</td>
+                    <td>{{report.count}}</td>
+                    
+                </tr>
+                
+            </tbody>
+        </table>
+    </div>
+        
+    
 </div>

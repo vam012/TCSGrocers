@@ -19,21 +19,15 @@ let getOrderById = (req,res)=>{
     })
 }
 
-let getOrderByCustomerId = (req,res)=>{
-    OrderModel.find({customerID:req.params.customerID},(err,data)=>{
+let getOrderReportByCustomerId = (req,res)=>{
+    OrderModel.find({customerID:req.params.cid},(err,data)=>{
         if(!err){
             res.json(data)
         }
     })
 }
 
-let getOrderByProductId = (req,res)=>{
-    OrderModel.find({"productList._id":req.params.productID},(err,data)=>{
-        if(!err){
-            res.json(data)
-        }
-    })
-}
+
 
 let storeNewOrder = (req,res)=>{
     let holdArr = [];
@@ -46,7 +40,7 @@ let storeNewOrder = (req,res)=>{
                 customerID:req.body.customerID,
                 orderAmount:req.body.orderAmount,
                 orderDate:Date.now(),
-                productList:[{_id:req.body.productId, quantity:req.body.quantity}],
+                productList:req.body.productList,
                 orderStatus:"Order Placed",
                 cancelReason:""
             })
@@ -63,15 +57,43 @@ let storeNewOrder = (req,res)=>{
     });
 }
 
-let getDailydata = (req,res)=>{
+let getDailyData = (req,res)=>{
+    let dateString = req.params.date;
+    const dateSplit = dateString.split('-');
+    let year= parseInt(dateSplit[0]);
+    let month = parseInt(dateSplit[1]);
+    let day = parseInt(dateSplit[2]);
+    OrderModel.aggregate([{$project: {_id:1,year:{$year:"$orderDate"},month:{$month:"$orderDate"}, day:{$dayOfMonth:"$orderDate"},orderAmount:1}}, {$group: {_id:{year:"$year",month:"$month",day:"$day"}, sum:{$sum:"$orderAmount"}, count:{$sum:1}}},
+    {$match : {"_id.year" : year, "_id.month" : month, "_id.day" : day}}],(err,data)=>{
+        if(!err){
+            res.json(data)
+        }
+    })  
+    
+}
+
+let getWeeklyData = (req,res)=>{
+    let startDate = new Date(req.params.sdate);
+    let endDate = new Date(req.params.edate);
+    OrderModel.aggregate([{$match : { "orderDate": { $gte: startDate, $lt: endDate} }},{$group : {_id : { $dateToString: { format: "%Y-%m-%d", date: "$orderDate" } },sum: { $sum:"$orderAmount"},count: { $sum: 1 }}}],(err,data)=>{
+        if(!err){
+            res.json(data)
+        }   
+    })
 
 }
 
-let getWeeklydata = (req,res)=>{
-
-}
-
-let getMonthlydata = (req,res)=>{
+let getMonthlyData = (req,res)=>{
+    let dateString = req.params.date;
+    const dateSplit = dateString.split('-');
+    let year= parseInt(dateSplit[0]);
+    let month = parseInt(dateSplit[1]);
+    OrderModel.aggregate([{$project: {_id:1,year:{$year:"$orderDate"},month:{$month:"$orderDate"}, day:{$dayOfMonth:"$orderDate"},orderAmount:1}}, {$group: {_id:{year:"$year",month:"$month",day:"$day"}, sum:{$sum:"$orderAmount"}, count:{$sum:1}}},
+    {$match : {"_id.year" : year, "_id.month" : month}}],(err,data)=>{
+        if(!err){
+            res.json(data)
+        }
+    })  
 
 }
 
@@ -91,8 +113,4 @@ let updateOrderStatusByID = (req,res)=>{
     })
 }
 
-
-
-
-
-module.exports={getAllOrderDetails,getOrderById,storeNewOrder,getOrderByCustomerId,getDailydata,getWeeklydata,getMonthlydata,getOrderByProductId,updateOrderStatusByID}
+module.exports={getAllOrderDetails,getOrderById,storeNewOrder,getOrderReportByCustomerId,getDailydata,getWeeklydata,getMonthlydata,updateOrderStatusByID}

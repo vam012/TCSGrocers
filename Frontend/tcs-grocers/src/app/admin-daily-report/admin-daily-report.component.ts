@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { OrderService } from '../order.service';
+import { Report } from '../report.model';
 
 @Component({
   selector: 'app-admin-daily-report',
@@ -10,14 +12,16 @@ export class AdminDailyReportComponent implements OnInit {
 
   show:boolean = true;
   msg?:string;
-  constructor(public router:Router) { }
+  reportdata?:Report[]
+  constructor(public router:Router, public orderServ:OrderService) { }
 
   ngOnInit(): void {
   }
 
-  gotoDayReport(dataRef:any){
-    this.msg = dataRef;
+  gotoDayReport(dateRef:any):void{
+    this.orderServ.getOrderByDay(dateRef.value.date).subscribe(res=>this.reportdata=res);
     this.show = false;
-  }
+    dateRef.reset();
+  };
 
 }
