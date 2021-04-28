@@ -8,12 +8,15 @@ import { Router } from '@angular/router';
 })
 export class UserHomeComponent implements OnInit {
 
+  userId:string="";
+  userFunds:number=0
   
   constructor(public router:Router) { }
 
   ngOnInit(): void {
     this.cartItem();
     this.putUserInfo();
+    this.getUserInfo();
   }
   putUserInfo(){
     let userObj = sessionStorage.getItem('userInfo');
@@ -23,13 +26,23 @@ export class UserHomeComponent implements OnInit {
       sessionStorage.setItem('userInfo',JSON.stringify(storeUserData))
   }
 }
+getUserInfo(){
+  if(sessionStorage.getItem('userInfo')!=null){
+    let customerInfo = JSON.parse(sessionStorage.getItem('userInfo')||'{}')
+    this.userId=customerInfo[0].userID;
+    this.userFunds = customerInfo[0].userFunds;
+  }
+}
 
 
   cart_items:number = 0;
   cartItem(){
-    if(localStorage.getItem('cart')!=null){
-      let cartItems = JSON.parse(localStorage.getItem('cart') || '{}');
+    if(localStorage.getItem(this.userId)!=null){
+      let cartItems = JSON.parse(localStorage.getItem(this.userId) || '{}');
       this.cart_items = cartItems.length;
+      console.log(this.cart_items);
+    }else{
+      console.log("null")
     }
   }
   prodCart:any=[];
@@ -88,12 +101,12 @@ export class UserHomeComponent implements OnInit {
   }
   addCart(prod:any){
     
-    let cartObj = localStorage.getItem('cart');
+    let cartObj = localStorage.getItem(this.userId);
     if(cartObj==null){
 
       let storeCartData:any = [];
       storeCartData.push(prod);
-      localStorage.setItem('cart',JSON.stringify(storeCartData))
+      localStorage.setItem(this.userId,JSON.stringify(storeCartData))
       
     }else{
       var id = prod.prodId;
@@ -109,10 +122,10 @@ export class UserHomeComponent implements OnInit {
       }
       if(inddex == -1){
         this.prodCart.push(prod);
-        localStorage.setItem('cart',JSON.stringify(this.prodCart));
+        localStorage.setItem(this.userId,JSON.stringify(this.prodCart));
       }
       else{
-        localStorage.setItem('cart',JSON.stringify(this.prodCart));
+        localStorage.setItem(this.userId,JSON.stringify(this.prodCart));
       }
     }
     this.cartItem();
