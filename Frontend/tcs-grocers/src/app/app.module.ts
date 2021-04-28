@@ -26,6 +26,10 @@ import { AdminMonthlyReportComponent } from './admin-monthly-report/admin-monthl
 import { AdminProductReportComponent } from './admin-product-report/admin-product-report.component';
 import { AdminCustomerReportComponent } from './admin-customer-report/admin-customer-report.component';
 import { MainMenuComponent } from './main-menu/main-menu.component';
+import { UserMainMenuComponent } from './user-main-menu/user-main-menu.component';
+import { UserDashboardComponent } from './user-dashboard/user-dashboard.component';
+import { UserRaiseTicketComponent } from './user-raise-ticket/user-raise-ticket.component';
+import { UserSignUpComponent } from './user-sign-up/user-sign-up.component';
 import { UserOrderStatusComponent } from './user-order-status/user-order-status.component';
 import { UserAddFundsComponent } from './user-add-funds/user-add-funds.component';
 import { UserEditProfileComponent } from './user-edit-profile/user-edit-profile.component';
@@ -58,6 +62,10 @@ import { EmployeeMenuComponent } from './employee-menu/employee-menu.component';
     AdminProductReportComponent,
     AdminCustomerReportComponent,
     MainMenuComponent,
+    UserMainMenuComponent,
+    UserDashboardComponent,
+    UserRaiseTicketComponent,
+    UserSignUpComponent,
     UserOrderStatusComponent,
     UserAddFundsComponent,
     UserEditProfileComponent,

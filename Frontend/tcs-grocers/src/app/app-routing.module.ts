@@ -12,6 +12,9 @@ import { EmployeeHomeComponent } from './employee-home/employee-home.component';
 import { EmployeeLoginComponent } from './employee-login/employee-login.component';
 import { EmployeeMenuComponent } from './employee-menu/employee-menu.component';
 import { EmployeeAuthGuardService } from './employee-auth-guard.service';
+import { UserMainMenuComponent} from './user-main-menu/user-main-menu.component';
+import { UserSignUpComponent } from './user-sign-up/user-sign-up.component';
+import { UserRaiseTicketComponent} from './user-raise-ticket/user-raise-ticket.component';
 
 const routes: Routes = [
   {path:`\mainmenu`,component:MainMenuComponent},
@@ -23,7 +26,10 @@ const routes: Routes = [
   {path:`\employeemenu`,component:EmployeeMenuComponent,canActivate:[EmployeeAuthGuardService]},
   {path:`user`,component:UserHomeComponent},
   {path:`cart`,component:CartComponent},
-  {path:``,redirectTo:"\mainmenu",pathMatch:"full"}
+  {path:``,redirectTo:"\mainmenu",pathMatch:"full"},
+  {path: `\UserMainMenu`, component:  UserMainMenuComponent},
+  {path: `\UserSignUp`, component: UserSignUpComponent},
+  {path: `\serviceRequest`, component: UserRaiseTicketComponent}
 ];
 
 @NgModule({
