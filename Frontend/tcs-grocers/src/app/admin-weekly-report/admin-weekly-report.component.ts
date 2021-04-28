@@ -20,7 +20,7 @@ export class AdminWeeklyReportComponent implements OnInit {
   }
   gotoWeekReport(dateRef:any){
     this.orderServ.getOrderByWeek(dateRef.value.startDate,dateRef.value.endDate).subscribe(res=>this.reportdata=res);
-    console.log(this.reportdata)
     this.show = false;
+    dateRef.reset();
   }
 }

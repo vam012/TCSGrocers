@@ -27,14 +27,7 @@ let getOrderReportByCustomerId = (req,res)=>{
     })
 }
 
-let getOrderReportByProductId = (req,res)=>{
 
-    OrderModel.find({"productList._id":req.params.productID},(err,data)=>{
-        if(!err){
-            res.json(data)
-        }
-    })
-}
 
 let storeNewOrder = (req,res)=>{
     let holdArr = [];
@@ -47,7 +40,7 @@ let storeNewOrder = (req,res)=>{
                 customerID:req.body.customerID,
                 orderAmount:req.body.orderAmount,
                 orderDate:Date.now(),
-                productList:[{_id:req.body.productId, quantity:req.body.quantity}],
+                productList:req.body.productList,
                 orderStatus:"Order Placed",
                 cancelReason:""
             })
@@ -108,4 +101,4 @@ let getMonthlyData = (req,res)=>{
 
 
 
-module.exports={getAllOrderDetails,getOrderById,storeNewOrder,getOrderReportByCustomerId,getDailyData,getWeeklyData,getMonthlyData,getOrderReportByProductId}
+module.exports={getAllOrderDetails,getOrderById,storeNewOrder,getOrderReportByCustomerId,getDailyData,getWeeklyData,getMonthlyData}

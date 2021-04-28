@@ -20,8 +20,8 @@ export class AdminDailyReportComponent implements OnInit {
 
   gotoDayReport(dateRef:any):void{
     this.orderServ.getOrderByDay(dateRef.value.date).subscribe(res=>this.reportdata=res);
-    console.log(this.reportdata)
     this.show = false;
+    dateRef.reset();
   };
 
 }

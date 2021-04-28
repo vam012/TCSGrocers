@@ -21,8 +21,8 @@ export class AdminMonthlyReportComponent implements OnInit {
 
   gotoMonthReport(dateRef:any){
     this.orderServ.getOrderByMonth(dateRef.value.date).subscribe(res=>this.reportdata=res);
-    console.log(this.reportdata)
     this.show = false;
+    dateRef.reset();
   }
 
 
