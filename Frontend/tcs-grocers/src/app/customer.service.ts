@@ -8,6 +8,9 @@ import { User } from './user.model';
   providedIn: 'root'
 })
 export class CustomerService {
+  addFunds(id:any,funds:any):any {
+    return this.http.put(`http://localhost:7777/customers/addFunds`,{customerID:id,fundsToAdd:funds},{responseType:'text'})
+  }
   
   constructor(public http: HttpClient) { }
 

@@ -97,9 +97,9 @@ let unlockUser = (req,res)=>{
 }
 
 let addFunds = (req,res)=>{
-    let id = req.params.customerID;
-    let fundsToAdd = req.params.fundsToAdd;
-    CustomerModel.updateOne({_id:id},{$ince:{funds:fundsToAdd}},(err,data)=>{
+    let id = req.body.customerID;
+    let fundsToAdd = req.body.fundsToAdd;
+    CustomerModel.updateOne({_id:id},{$inc:{funds:fundsToAdd}},(err,data)=>{
         if(!err){
             if(data.nModified==1){
                 res.send("Successfully updated user funds");

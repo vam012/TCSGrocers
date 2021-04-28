@@ -10,7 +10,7 @@ router.get("/getAllCustomers",CustomerController.getAllCustomers);
 router.get("/getCustomerById/:customerID",CustomerController.getCustomerById);
 
 router.put("/unlockUser/:customerID",CustomerController.unlockUser);
-router.put("/addFunds/:customerID/:fundsToAdd",CustomerController.addFunds);
+router.put("/addFunds",CustomerController.addFunds);
 router.put("/updateName/:customerID/:fName/:lName",CustomerController.updateName);
 router.put("/updateEmail/:customerID/:email",CustomerController.updateEmail);
 router.put("/updateUsername/:customerID/:username",CustomerController.updateUsername);
