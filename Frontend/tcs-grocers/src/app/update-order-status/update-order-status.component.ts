@@ -11,10 +11,10 @@ import { OrderService } from '../order.service';
 })
 export class UpdateOrderStatusComponent implements OnInit {
   updateMsg: any;
-  customerDetails?:Customer;
+  customerDetails!:Customer;
 
   constructor(public orderSer:OrderService, public customerServ:CustomerService) { }
-  details?:Order;
+  details!:Order;
   ngOnInit(): void {
   }
 
@@ -34,11 +34,11 @@ export class UpdateOrderStatusComponent implements OnInit {
     let refund_amount = (this.details?.orderAmount);
     let customerId = this.details?.customerID;
     this.customerServ.getCustomerById(customerId).subscribe(result=>this.customerDetails=result);
-    let refund = (refund_amount);// +  this.customerDetails?.funds;
-    let funds = this.customerDetails?.funds;
+    let refund:number = (refund_amount);// +  this.customerDetails?.funds;
+    let funds:number = this.customerDetails?.funds;
    // console.log(typeof(refund));
     //console.log(typeof(funds));
-    let updated_amt:Number = refund + funds;
+    let updated_amt:number = refund + funds;
     this.customerServ.refundCustomerById(customerId,updated_amt).subscribe(result=>console.log(result));   
   }
 

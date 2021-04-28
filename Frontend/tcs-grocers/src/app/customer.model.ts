@@ -7,7 +7,7 @@ export class Customer{
     	public password:String,
     	public birthday:String,
     	public phoneNumber:String,
-    	public funds:Number,
+    	public funds:number,
     	public failedLoginAttempts:Number,
     	public locked:Number){}
 }

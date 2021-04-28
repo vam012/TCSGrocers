@@ -6,7 +6,7 @@ export class Order{
             quantity:Number
         },
         public orderDate:String,
-        public orderAmount:Number,
+        public orderAmount:number,
         public orderStatus:String,
         public cancelReason:String){}
 }
