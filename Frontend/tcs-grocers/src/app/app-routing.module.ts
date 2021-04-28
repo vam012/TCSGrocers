@@ -8,6 +8,10 @@ import { UnlockUsersComponent } from './unlock-users/unlock-users.component';
 import { MainMenuComponent } from './main-menu/main-menu.component';
 import { CartComponent } from './cart/cart.component';
 import { UserHomeComponent } from './user-home/user-home.component';
+import { EmployeeHomeComponent } from './employee-home/employee-home.component';
+import { EmployeeLoginComponent } from './employee-login/employee-login.component';
+import { EmployeeMenuComponent } from './employee-menu/employee-menu.component';
+import { EmployeeAuthGuardService } from './employee-auth-guard.service';
 import { UserMainMenuComponent} from './user-main-menu/user-main-menu.component';
 import { UserSignUpComponent } from './user-sign-up/user-sign-up.component';
 import { UserRaiseTicketComponent} from './user-raise-ticket/user-raise-ticket.component';
@@ -19,6 +23,11 @@ const routes: Routes = [
   {path:'\admin',component:AdminHomeComponent},
   {path:`\adminlogin`,component:AdminLoginComponent},
   {path:`\adminmenu`,component:AdminMenuComponent,canActivate:[AdminAuthGaurdService]},
+  {path:'\employee',component:EmployeeHomeComponent},
+  {path:`\employeelogin`,component:EmployeeLoginComponent},
+  {path:`\employeemenu`,component:EmployeeMenuComponent,canActivate:[EmployeeAuthGuardService]},
+  {path:`user`,component:UserHomeComponent},
+  {path:`cart`,component:CartComponent},
   {path:``,redirectTo:"\mainmenu",pathMatch:"full"},
   {path: `user`, component:  UserMainMenuComponent},
   {path:'usermenu',component:UserDashboardComponent,canActivate:[UserAuthGaurdService]}

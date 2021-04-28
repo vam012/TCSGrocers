@@ -8,6 +8,10 @@ import { Observable } from 'rxjs';
 export class EmployeeService {
 
   constructor(public http:HttpClient) { }
+  login(loginRef:any):any{
+    return this.http.post("http://localhost:7777/employees/login",loginRef,{responseType: 'text'})
+  }
+
   updatePassword(employeeId:any):any{
     return this.http.put(`http://localhost:7777/employee/updatePassword/${employeeId}`,{responseType:"text"})
   }
