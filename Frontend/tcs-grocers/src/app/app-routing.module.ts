@@ -26,7 +26,6 @@ const routes: Routes = [
   {path:'\employee',component:EmployeeHomeComponent},
   {path:`\employeelogin`,component:EmployeeLoginComponent},
   {path:`\employeemenu`,component:EmployeeMenuComponent,canActivate:[EmployeeAuthGuardService]},
-  {path:`user`,component:UserHomeComponent},
   {path:`cart`,component:CartComponent},
   {path:``,redirectTo:"\mainmenu",pathMatch:"full"},
   {path: `user`, component:  UserMainMenuComponent},
