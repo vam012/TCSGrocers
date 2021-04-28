@@ -2,7 +2,7 @@ let express = require("express");
 let router = express.Router();  //router reference. 
 let EmployeeController = require("../controller/employee.controller.js");
 
-router.get("/login",EmployeeController.login);
+router.post("/login",EmployeeController.login);
 router.get("/allEmployeeDetails",EmployeeController.getAllEmployeeDetails)
 
 router.post("/createNewEmployee",EmployeeController.createNewEmployee);

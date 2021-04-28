@@ -29,6 +29,9 @@ import { MainMenuComponent } from './main-menu/main-menu.component';
 import { UserOrderStatusComponent } from './user-order-status/user-order-status.component';
 import { UserAddFundsComponent } from './user-add-funds/user-add-funds.component';
 import { UserEditProfileComponent } from './user-edit-profile/user-edit-profile.component';
+import { EmployeeHomeComponent } from './employee-home/employee-home.component';
+import { EmployeeLoginComponent } from './employee-login/employee-login.component';
+import { EmployeeMenuComponent } from './employee-menu/employee-menu.component';
 
 @NgModule({
   declarations: [
@@ -57,7 +60,10 @@ import { UserEditProfileComponent } from './user-edit-profile/user-edit-profile.
     MainMenuComponent,
     UserOrderStatusComponent,
     UserAddFundsComponent,
-    UserEditProfileComponent
+    UserEditProfileComponent,
+    EmployeeHomeComponent,
+    EmployeeLoginComponent,
+    EmployeeMenuComponent
   ],
   imports: [
     BrowserModule,
