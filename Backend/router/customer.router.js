@@ -4,17 +4,17 @@ let CustomerController = require("../controller/customer.controller.js");
 
 router.post("/createNewCustomer",CustomerController.createNewCustomer);
 router.post("/login",CustomerController.login);
-router.post("/updatePassword/:customerID",CustomerController.updatePassword)
 
 router.get("/getAllCustomers",CustomerController.getAllCustomers);
 router.get("/getCustomerById/:customerID",CustomerController.getCustomerById);
 
 router.put("/unlockUser/:customerID",CustomerController.unlockUser);
-router.put("/addFunds/:customerID/:fundsToAdd",CustomerController.addFunds);
-router.put("/updateName/:customerID/:fName/:lName",CustomerController.updateName);
-router.put("/updateEmail/:customerID/:email",CustomerController.updateEmail);
-router.put("/updateUsername/:customerID/:username",CustomerController.updateUsername);
-router.put("/updateBirthday/:customerID/:birthday",CustomerController.updateBirthday);
+router.put("/updatePassword",CustomerController.updatePassword)
+router.put("/addFunds",CustomerController.addFunds);
+router.put("/updateName",CustomerController.updateName);
+router.put("/updateEmail",CustomerController.updateEmail);
+router.put("/updateUsername",CustomerController.updateUsername);
+router.put("/updateBirthday:customerID/:birthday",CustomerController.updateBirthday);
 router.put("/updatePhoneNumber/:customerID/:phoneNumber",CustomerController.updatePhoneNumber);
 
 module.exports=router;

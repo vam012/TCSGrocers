@@ -1,0 +1,106 @@
+<div class=container>
+    <h3>What would you like to update?</h3>
+    <div class="row justify-content-evenly">
+                <input type="button" class="btn col btn-outline-secondary" value="First Name" (click)= "changePanel(1)">
+                <input type="button" class="btn col btn-outline-secondary" value="Last Name" (click)= "changePanel(2)">
+                <input type="button" class="btn col btn-outline-secondary" value="Phone Number" (click)= "changePanel(3)">
+                <input type="button" class="btn col btn-outline-secondary" value="Email" (click)= "changePanel(4)">
+                <input type="button" class="btn col btn-outline-secondary" value="Password" (click)= "changePanel(5)">
+    </div>
+    <br/>
+    <form *ngIf='panelToShow==1' #formRef='ngForm' (submit)=updateFirstName(formRef)>
+        <div class="row justify-content-center">
+            <div class="col-lg-12">
+                <h4>Your First Name is  {{firstName}}</h4>
+            </div>
+            <div class="col-3">
+                <b>New First Name: </b>
+            </div>
+            <div class="col-3">
+                <input type="text" name="fName" id="fName" ngModel/><br/>
+            </div>
+        </div>
+        <br/>
+        <h6 class=text-danger>{{msg}}</h6>
+        <div class="row justify-content-center">
+            <input type="submit" class="col-3 btn btn-success" value="Update First Name"><br/>
+        </div>
+    </form>
+    <form *ngIf='panelToShow==2' #formRef='ngForm' (submit)=updateLastName(formRef)>
+        <div class="row justify-content-center">
+            <div class="col-lg-12">
+                <h4>Your Last Name is  {{lastName}}</h4>
+            </div>
+            <div class="col-3">
+                <b>New Last Name: </b>
+            </div>
+            <div class="col-3">
+                <input type="text" name="lName" id="lName" ngModel/><br/>
+            </div>
+        </div>
+        <br/>
+        <h6 class=text-danger>{{msg}}</h6>
+        <div class="row justify-content-center">
+            <input type="submit" class="col-3 btn btn-success" value="Update Last Name"><br/>
+        </div>
+    </form>
+    <form *ngIf='panelToShow==3' #formRef='ngForm' (submit)=updatePhoneNumber(formRef)>
+        <div class="row justify-content-center">
+            <div class="col-lg-12">
+                <h4>Your Phone Number is  {{phoneNumber}}</h4>
+            </div>
+            <div class="col-3">
+                <b>New Phone Number: </b>
+            </div>
+            <div class="col-3">
+                <input type="text" name="phoneNumber" id="phoneNumber" ngModel/><br/>
+            </div>
+        </div>
+        <br/>
+        <h6 class=text-danger>{{msg}}</h6>
+        <div class="row justify-content-center">
+            <input type="submit" class="col-3 btn btn-success" value="Update Phone Number"><br/>
+        </div>
+    </form>
+    <form *ngIf='panelToShow==4' #formRef='ngForm' (submit)=updateEmail(formRef)>
+        <div class="row justify-content-center">
+            <div class="col-lg-12">
+                <h4>Your Email is  {{email}}</h4>
+            </div>
+            <div class="col-3">
+                <b>New Email: </b>
+            </div>
+            <div class="col-3">
+                <input type="text" name="email" id="email" ngModel/><br/>
+            </div>
+        </div>
+        <br/>
+        <h6 class=text-danger>{{msg}}</h6>
+        <div class="row justify-content-center">
+            <input type="submit" class="col-3 btn btn-success" value="Update Email"><br/>
+        </div>
+    </form>
+    <form *ngIf='panelToShow==5' #formRef='ngForm' (submit)=updatePassword(formRef)>
+        <div class="row justify-content-center">
+            <div class="col-3">
+                <b>New Password: </b>
+            </div>
+            <div class="col-3">
+                <input type="password" name="password" id="password" ngModel/><br/>
+            </div>
+        </div>
+        <div class="row justify-content-center">
+            <div class="col-3">
+                <b>Re-Enter New Password: </b>
+            </div>
+            <div class="col-3">
+                <input type="password" name="passwordAgain" id="passwordAgain" ngModel/><br/>
+            </div>
+        </div>
+        <br/>
+        <h6 class=text-danger>{{msg}}</h6>
+        <div class="row justify-content-center">
+            <input type="submit" class="col-3 btn btn-success" value="Update Password"><br/>
+        </div>
+    </form>
+</div>

@@ -30,6 +30,9 @@ import { UserMainMenuComponent } from './user-main-menu/user-main-menu.component
 import { UserDashboardComponent } from './user-dashboard/user-dashboard.component';
 import { UserRaiseTicketComponent } from './user-raise-ticket/user-raise-ticket.component';
 import { UserSignUpComponent } from './user-sign-up/user-sign-up.component';
+import { UserOrderStatusComponent } from './user-order-status/user-order-status.component';
+import { UserAddFundsComponent } from './user-add-funds/user-add-funds.component';
+import { UserEditProfileComponent } from './user-edit-profile/user-edit-profile.component';
 
 @NgModule({
   declarations: [
@@ -59,7 +62,10 @@ import { UserSignUpComponent } from './user-sign-up/user-sign-up.component';
     UserMainMenuComponent,
     UserDashboardComponent,
     UserRaiseTicketComponent,
-    UserSignUpComponent
+    UserSignUpComponent,
+    UserOrderStatusComponent,
+    UserAddFundsComponent,
+    UserEditProfileComponent
   ],
   imports: [
     BrowserModule,
