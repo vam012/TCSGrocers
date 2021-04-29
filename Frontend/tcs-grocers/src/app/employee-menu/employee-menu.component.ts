@@ -42,7 +42,7 @@ export class EmployeeMenuComponent implements OnInit {
     buttonRef.className = "btn btn-primary"
   }
   logoutEmployee(){
-      sessionStorage.removeItem("employeeToken");
+      sessionStorage.removeItem("empToken");
       this.router.navigate(["employee"])
     }
   }

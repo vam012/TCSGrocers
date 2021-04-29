@@ -12,8 +12,8 @@ export class EmployeeService {
     return this.http.post("http://localhost:7777/employees/login",loginRef,{responseType: 'text'})
   }
 
-  updatePassword(employeeId:any):any{
-    return this.http.put(`http://localhost:7777/employee/updatePassword/${employeeId}`,{responseType:"text"})
+  updatePassword(passwordRef:any):any{
+    return this.http.put("http://localhost:7777/employees/updatePassword/",passwordRef,{responseType:"text"})
   }
   
 

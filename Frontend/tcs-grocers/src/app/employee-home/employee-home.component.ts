@@ -13,7 +13,7 @@ export class EmployeeHomeComponent implements OnInit {
   ngOnInit(): void {
   }
   logout():void{
-    sessionStorage.removeItem("employeeToken");
+    sessionStorage.removeItem("empToken");
     this.router.navigate(["employee"])
 
   }

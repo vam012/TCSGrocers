@@ -1,10 +1,31 @@
-<div>
+<div class="container">
+    <h3>Send a request</h3>
+    <hr>
+
     <form #productRef="ngForm" (ngSubmit)="updateProductQuantity(productRef.value)">
-        <label>Product Id</label>
-        <input type="text" name="productID" ngModel><br>
-        <label>New Quantity</label>
-        <input type="text" name="newQuantity" ngModel><br>
-        <input type="submit" value="Update Quantity">
-        <input type="reset" value="reset">
+        <div class="row justify-content-center">
+            <div class="col-lg-3">
+                <b>Product ID:</b>
+            </div>
+            <div class="col-lg-2">
+                <input type="text" name="productID" id="productID" required ngModel />
+
+            </div>
+        </div>
+        <div class="row justify-content-center">
+            <div class="col-lg-3">
+                <b>New Quantity:</b>
+            </div>
+            <div class="col-lg-2">
+                <input type="text" name="newQuantity" id="newQuantity" required ngModel />
+
+            </div>
+        </div>
+        <div class="row justify-content-center">
+            <input type="submit" class="col-3 btn btn-success" value="Update Quantity"><br />
+        </div>
+        <div class="row justify-content-center">
+            <input type="reset" class="col-3 btn btn-warning" value="Reset"><br />
+        </div>
     </form>
 </div>

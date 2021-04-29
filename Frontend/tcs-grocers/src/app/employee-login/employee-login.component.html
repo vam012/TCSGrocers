@@ -1,7 +1,7 @@
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-12"><h1>Employee Login</h1></div>
-        <input type="button" class="btn btn-secondary col-lg-3" value="Go Back To Admin Home" routerLink="/employee">
+        <input type="button" class="btn btn-secondary col-lg-3" value="Go Back To Employee Home" routerLink="/employee">
     </div>
 </div>
 <hr>
@@ -32,4 +32,8 @@
             <input type="reset" class="col-2 btn btn-warning" value="Reset Fields"><br/>
         </div>
     </form>
+</div>
+
+<div class="container" *ngIf = "!show">
+    <app-edit-profile></app-edit-profile>
 </div>

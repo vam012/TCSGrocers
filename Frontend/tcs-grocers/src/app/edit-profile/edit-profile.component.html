@@ -1,8 +1,41 @@
-<form #passwordRef="ngForm" (ngSubmit)="updatePass(passwordRef.value)">
-    <label>Employee ID</label>
-    <input type="text" name="id" ngModel><br>
-    <label>New Password</label>
-    <input type="text" name="newPassword" ngModel><br>
-    <input type="submit" name="Forgot Password" [disabled]='!passwordRef.valid'>
-    {{updateMsg}}
+<div class="container">
+    <h3>Update Password</h3>
+    <hr>
+    <form #passwordRef="ngForm" (ngSubmit)="updatePassword(passwordRef)">
+        <div class="row justify-content-center">
+            <div class="col-lg-3">
+                <b>Employee ID:</b>
+            </div>
+            <div class="col-lg-2">
+                <input type="text" name="empId" id="empId" required ngModel />
+
+            </div>
+        </div>
+        <div class="row justify-content-center">
+            <div class="col-lg-3">
+                <b>Old Password:</b>
+            </div>
+            <div class="col-lg-2">
+                <input type="password" name="oldPassword" id="oldPassword" required ngModel />
+
+            </div>
+        </div>
+        <div class="row justify-content-center">
+            <div class="col-lg-3">
+                <b>New Password:</b>
+            </div>
+            <div class="col-lg-2">
+                <input type="password" name="newPassword" id="newPassword" required ngModel />
+
+            </div>
+        </div>
+        <div class="row justify-content-center">
+            <input type="submit" class="col-3 btn btn-success" value="Update Password"><br />
+        </div>
+        <div class="row justify-content-center">
+            <input type="reset" class="col-3 btn btn-warning" value="Reset"><br />
+        </div>
+        <h3 class="text-primary">{{updateMsg}}</h3>
+
     </form>
+</div>
