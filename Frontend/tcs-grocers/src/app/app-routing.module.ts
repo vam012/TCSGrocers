@@ -31,8 +31,7 @@ const routes: Routes = [
   {path:`cart`,component:CartComponent},
   {path:``,redirectTo:"\mainmenu",pathMatch:"full"},
   {path: `user`, component:  UserMainMenuComponent},
-  {path:'usermenu',component:UserDashboardComponent,canActivate:[UserAuthGaurdService]},
-  {path:'test',component:UpdateOrderStatusComponent}//used for testing please delete!
+  {path:'usermenu',component:UserDashboardComponent,canActivate:[UserAuthGaurdService]}
 ];
 
 @NgModule({
