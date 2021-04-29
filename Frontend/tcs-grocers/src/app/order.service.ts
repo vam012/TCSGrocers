@@ -9,9 +9,12 @@ import { Weekreport } from './weekreport.model';
   providedIn: 'root'
 })
 export class OrderService {
-  updateOrderStatusByID(orderID: any,orderStatus:any) {
+  getAllOrders():Observable<Order[]>{
+    return this.http.get<Order[]>('http://localhost:7777/orders//getAllOrderDetails')
+  }
+  updateOrderStatusByID(orderRef:any) {
     
-    return this.http.put(`http://localhost:7777/orders/updateOrderStatusByID/${orderID}/${orderStatus}`,{responseType:"text"})
+    return this.http.put(`http://localhost:7777/orders/updateOrderStatusByID/`,orderRef,{responseType:"text"})
   }
 
   getOrderById(id:any){
@@ -20,6 +23,10 @@ export class OrderService {
 
   getCustomerById(id:any){
     return this.http.get(`http://localhost:7777/orders/getCustomerById/${id}`);
+  }
+
+  deleteOrderByID(id:any):any{
+    return this.http.delete(`http://localhost:7777/orders/deleteOrderByID/${id}`,{responseType:'text'});
   }
 
 

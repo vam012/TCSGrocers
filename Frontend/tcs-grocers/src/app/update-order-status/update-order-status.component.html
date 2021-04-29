@@ -1,17 +1,34 @@
-<form #orderRef="ngForm" (ngSubmit)="updateStatus(orderRef)">
-    <label>OrderId</label>
-    <input type="text" name="orderID" ngModel><br>
-    <label for="">Status</label>
-    <input list="browsers" name="newOrderStatus" ngModel><br>
-
-        <datalist id="browsers" ng-model>
-            <option value="Shipped"></option>
-            <option value="Out For Delivery"></option>
-            <option value="Delivered"></option>
-            <option value="Cancelled"></option>
-        </datalist>
-    
-        <input type="submit" value="Update Order Status"/> 
-</form>
-
+<div class=container>
+    <h3>All Open Orders</h3>
+</div>
+<div class=container-fluid>
+    <div class='row justify-content-center'>
+        <table class='table table-hover table-striped'>
+            <thead>
+                <tr class=table-dark>
+                    <th scope=col>Order ID</th>
+                    <th scope=col>Order Date</th>
+                    <th scope=col>Order Status</th>
+                    <th scope=col>Order Amount</th>
+                    <th scope=col>Move Order to Next Step</th>
+                    <th scope=col>Cancel Order</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor='let order of allOpenOrders'>
+                    <th scope=row *ngIf='order.orderStatus!="Delivered"'>{{order._id}}</th>
+                    <td *ngIf='order.orderStatus!="Delivered"'>{{order.orderDate}}</td>
+                    <td *ngIf='order.orderStatus!="Delivered"'>{{order.orderStatus}}</td>
+                    <td *ngIf='order.orderStatus!="Delivered"'>${{order.orderAmount}}</td>
+                    <td *ngIf='order.orderStatus!="Delivered"'>
+                        <button class='btn btn-success' (click)='moveOrderToNextStep(order)'>Move to Next Step</button>
+                    </td>
+                    <td *ngIf='order.orderStatus!="Delivered"'>
+                        <button class='btn btn-danger' (click)='cancelOrder(order)'>Cancel Order</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
 
