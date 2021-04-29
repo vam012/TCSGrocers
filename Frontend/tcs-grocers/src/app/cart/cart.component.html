@@ -33,7 +33,7 @@
             </tr>
             <tr *ngFor = "let cartItem of cartDetailsArr">
                 <td>{{cartItem.name}}</td>
-                <td>${{cartItem.price}}</td>
+                <td>${{cartItem.qnt * cartItem.price}}</td>
                 <td>{{cartItem.qnt}}</td>
                 <td>${{cartItem.qnt * cartItem.price | number}}</td>
                 <td><button type="button" class="removeItem" (click)=deleteItem(cartItem.prodId)><i class="fa fa-trash"></i></button></td>
