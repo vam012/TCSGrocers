@@ -28,9 +28,9 @@ const routes: Routes = [
   {path:`\employee`,component:EmployeeHomeComponent},
   {path:`\employeelogin`,component:EmployeeLoginComponent},
   {path:`\employeemenu`,component:EmployeeMenuComponent,canActivate:[EmployeeAuthGuardService]},
-  {path:`cart`,component:CartComponent},
+  {path:`cart`,component:CartComponent,canActivate:[UserAuthGaurdService]},
   {path:``,redirectTo:"\mainmenu",pathMatch:"full"},
-  {path: `user`, component:  UserMainMenuComponent},
+  {path:`user`, component:  UserMainMenuComponent},
   {path:'usermenu',component:UserDashboardComponent,canActivate:[UserAuthGaurdService]}
 ];
 

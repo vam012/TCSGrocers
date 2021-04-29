@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { CartService } from '../cart.service';
 import { CustomerService } from '../customer.service';
+import { ProductService } from '../product.service';
 import { User } from '../user.model';
 
 @Component({
@@ -19,7 +20,7 @@ export class CartComponent implements OnInit {
   newBalance?:number;
   orderProcessed:boolean = false;
   orderNotProcessed:boolean = false;
-  constructor(public router:Router, public cartSer:CartService,public userServ:CustomerService) { }
+  constructor(public router:Router, public cartSer:CartService,public userServ:CustomerService,public productServ:ProductService) { }
 
   ngOnInit(): void {
     this.getUserInfo();
@@ -99,7 +100,9 @@ export class CartComponent implements OnInit {
       if(localStorage.getItem(this.userId)){
         this.cartDetailsArrs = JSON.parse(localStorage.getItem(this.userId)||'{}');
         for (let i=0; i<this.cartDetailsArrs.length;i++){
-          this.OrderDetails.productList.push({_id:this.cartDetailsArrs[i].prodId,quantity:this.cartDetailsArrs[i].qnt});
+          this.OrderDetails.productList.push({_id:this.cartDetailsArrs[i]._id,quantity:this.cartDetailsArrs[i].qnt});
+          let newQnt = parseInt(this.cartDetailsArr[i].quantity) - parseInt(this.cartDetailsArrs[i].qnt);
+          this.productServ.updateProductQuantity({productID:this.cartDetailsArrs[i]._id,newQuantity:newQnt}).subscribe()
         } 
         this.OrderDetails.orderAmount = this.total;
         this.OrderDetails.customerID = this.userId;
@@ -118,7 +121,7 @@ export class CartComponent implements OnInit {
         this.msg = res;
       //  this.updateUserFunds();
       });
-      window.setTimeout(function(){location.reload()},3000);
+      window.setTimeout(function(){location.reload()},1000);
       console.log(this.OrderDetails);
     
 

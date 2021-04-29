@@ -20,13 +20,13 @@ export class UserHomeComponent implements OnInit {
   constructor(public router:Router,public prodServ:ProductService,public userServ:CustomerService) { }
 
   ngOnInit(): void {
-    this.getProducts()
     this.cartItem();
     //this.putUserInfo();
     this.getUserInfo();
+    this.getProducts()
   }
   getProducts():void{
-    this.prodServ.getAllProducts().subscribe(res=>this.productArray=res)
+    this.prodServ.getAllProducts().subscribe(res=>this.productArray=res);
   }
   putUserInfo(){
     let userObj = sessionStorage.getItem('userInfo');
