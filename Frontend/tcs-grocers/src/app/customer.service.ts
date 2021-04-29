@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { Customer } from './customer.model';
 import { User } from './user.model';
-//import { Customer } from './model/model.customer';
 
 @Injectable({
   providedIn: 'root'
@@ -32,10 +32,27 @@ export class CustomerService {
     return this.http.put(`http://localhost:7777/customers/unlockUser/${id}`,{responseType:"text"});
   }
 
+  
+  refundCustomerById(customerId:any,refundAmount:any){
+    return this.http.put(`http://localhost:7777/customers/refundCustomerById/${customerId}/${refundAmount}`,{responseType:"text"});
+  }
+
   getCustomerById(id:any):Observable<User[]>{
     return this.http.get<User[]>("http://localhost:7777/customers/getCustomerById/"+id);
   }
 
-  
+  getCustomerByUsername(username:any):Observable<User[]>{
+    return this.http.get<User[]>("http://localhost:7777/customers/getCustomerByUsername/"+username);
+  }
+
+  createUser(form:any):any{
+    return this.http.post("http://localhost:7777/customers/createNewCustomer",form,{responseType:'text'})
+  }
+
+  login(form:any):any{
+    return this.http.post("http://localhost:7777/customers/login",form,{responseType:'text'})
+  }
+
+ 
 
 }

@@ -58,5 +58,16 @@ let getAllOpenTickets = (req,res)=>{
     })
 }
 
-module.exports={createNewSupportTicket,updateSupportTicketStatus,getAllTickets,getAllOpenTickets};
+
+let getOpenTicketsByID = (req,res)=>{
+    SupportTicketModel.find({openclosed:0,customerID:req.params.id},(err,data)=>{
+        if(!err){
+            res.json(data);
+        }else{
+            res.json([])
+        }
+    })
+}
+
+module.exports={createNewSupportTicket,updateSupportTicketStatus,getAllTickets,getAllOpenTickets,getOpenTicketsByID};
 
