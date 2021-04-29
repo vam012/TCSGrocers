@@ -12,6 +12,8 @@ import { User } from '../user.model';
 })
 export class UserHomeComponent implements OnInit {
 
+  cartItems?:Array<Product>;
+  cart_items:number = 0;
   userId:string="";
   userFunds:number=0
   user?:User;
@@ -20,13 +22,27 @@ export class UserHomeComponent implements OnInit {
   constructor(public router:Router,public prodServ:ProductService,public userServ:CustomerService) { }
 
   ngOnInit(): void {
+    this.getUserInfo();
     this.cartItem();
     //this.putUserInfo();
-    this.getUserInfo();
     this.getProducts()
   }
   getProducts():void{
-    this.prodServ.getAllProducts().subscribe(res=>this.productArray=res);
+    this.prodServ.getAllProducts().subscribe(res=>{
+      this.productArray=res
+      console.log(this.productArray)
+      console.log(this.cartItems)
+      if(this.cartItems!=null){
+        this.cart_items = this.cartItems!.length;
+        for (let i = 0; i < this.productArray!.length;i++){
+          for(let j = 0; j < this.cartItems!.length;j++){
+            if(this.productArray![i]._id===this.cartItems![j]._id){
+              this.productArray![i].qnt = this.cartItems![j].qnt
+            }
+          }
+        }
+      }
+    });
   }
   putUserInfo(){
     let userObj = sessionStorage.getItem('userInfo');
@@ -50,15 +66,10 @@ getUserInfo(){
     }
 }
 
-
-  cart_items:number = 0;
   cartItem(){
     if(localStorage.getItem(this.userId)!=null){
-      let cartItems = JSON.parse(localStorage.getItem(this.userId) || '{}');
-      this.cart_items = cartItems.length;
-      console.log(this.cart_items);
-    }else{
-      console.log("null")
+      this.cartItems = JSON.parse(localStorage.getItem(this.userId) || '{}');
+      this.cart_items = this.cartItems!.length;
     }
   }
   prodCart:any=[];
@@ -87,14 +98,13 @@ getUserInfo(){
       localStorage.setItem(this.userId,JSON.stringify(storeCartData))
       
     }else{
-      var id = prod.prodId;
+      var id = prod._id;
       let inddex:number = -1;
       this.prodCart = JSON.parse(cartObj);
       for(let i=0; i<this.prodCart.length; i++){
-        if(parseInt(id) === parseInt(this.prodCart[i].prodId)){
+        if(parseInt(id) === parseInt(this.prodCart[i]._id)){
           this.prodCart[i].qnt = prod.qnt;
           inddex = i;
-         
           break;
         }
       }
