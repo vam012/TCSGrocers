@@ -1,10 +1,33 @@
-<div>
-    <form #productRef="ngForm" (ngSubmit)="updateProductQuantity(productRef.value)">
-        <label>Product Id</label>
-        <input type="text" name="productID" ngModel><br>
-        <label>New Quantity</label>
-        <input type="text" name="newQuantity" ngModel><br>
-        <input type="submit" value="Update Quantity">
-        <input type="reset" value="reset">
+<div class=container>
+    <h2>Submit a product Request</h2>
+    <form #productRef="ngForm" (ngSubmit)="createTicket(productRef)">
+    <div class='row justify-content-center'>
+        <div class=col-3> <b>Product Id:</b> </div>
+        <select name=productID class="col-3" ngModel required>
+            <option selected value="" selected>Please select a Product ID</option>
+            <option  *ngFor = 'let product of allProducts' [value] = "product._id">{{product._id}} - {{product.name}}</option>
+        </select> 
+    </div>
+    <br>
+    <div class='row justify-content-center'>
+        <div class=col-3> <b>Request Type</b> </div>
+        <select name=requestType class="col-3" ngModel required>
+            <option selected value="" selected>Please select a Request Type</option>
+            <option value=1>Update Name</option>
+            <option value=2>Update Price</option>
+            <option value=3>Update Quantity</option>
+            <option value=4>Update Discount</option>
+            <option value=5>Delete Product</option>
+        </select> 
+    </div>
+    <br/>
+    <h3 class='text-danger'>{{msg}}</h3>
+    <div class='row justify-content-center'>
+        <input type="submit" class='btn btn-success col-3' value="Send Product Request"/>
+    </div>
+    <br/>
+    <div class='row justify-content-center'>
+        <input type="reset" class='btn btn-warning col-3' value="Reset Fields"/>
+    </div>
     </form>
 </div>

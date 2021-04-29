@@ -21,4 +21,9 @@ export class ProductrequestsService {
   openeProductRequestByID(requestID:any):any{
     return this.http.put(`http://localhost:7777/productrequests/closeProductRequestByID`,{'requestID':requestID,'newStatus':0},{responseType:'text'});
   }
+
+  createNewProductRequest(request:any):any{
+    console.log(request)
+    return this.http.post(`http://localhost:7777/productrequests/createNewProductRequest`,request,{responseType:'text'})
+  }
 }
