@@ -72,10 +72,11 @@ export class CartComponent implements OnInit {
   }
   loadCart(){
     if(localStorage.getItem(this.userId)){
+      this.total=0;
       this.cartDetailsArr = JSON.parse(localStorage.getItem(this.userId)||'{}');
       for (let index = 0; index < this.cartDetailsArr.length; index++) {
         const item = this.cartDetailsArr[index];
-        this.total= this.total+ (item.qnt * (item.price * ((100-item.discount)/100))); 
+        this.total= this.total + (item.qnt * (item.price * ((100-item.discount)/100))); 
       }
     }
   }
@@ -83,7 +84,7 @@ export class CartComponent implements OnInit {
     if(localStorage.getItem(this.userId)){
       this.cartDetailsArr = JSON.parse(localStorage.getItem(this.userId)||'{}');
       for (let i=0; i<this.cartDetailsArr.length;i++){
-        if(this.cartDetailsArr[i].prodId === singleItem){
+        if(this.cartDetailsArr[i]._id === singleItem){
           console.log(singleItem)
           this.cartDetailsArr.splice(i,1);
           localStorage.setItem(this.userId,JSON.stringify(this.cartDetailsArr));
