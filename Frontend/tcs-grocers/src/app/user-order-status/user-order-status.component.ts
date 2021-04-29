@@ -23,7 +23,7 @@ export class UserOrderStatusComponent implements OnInit {
       this.userID = "100"
     }else if (this.hold!=null){
       let userInfo = JSON.parse(this.hold);
-      this.userID = userInfo.userID;
+      this.userID = userInfo;
     }
     this.userServ.getCustomerById(this.userID).subscribe(res=>{
       this.user=res[0];

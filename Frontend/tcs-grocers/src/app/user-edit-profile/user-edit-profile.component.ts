@@ -27,7 +27,7 @@ export class UserEditProfileComponent implements OnInit {
       this.userID = "100"
     }else if (this.hold!=null){
       let userInfo = JSON.parse(this.hold);
-      this.userID = userInfo.userID;
+      this.userID = userInfo;
     }
     this.userServ.getCustomerById(this.userID).subscribe(res=>{
       this.user=res[0];
@@ -44,34 +44,51 @@ export class UserEditProfileComponent implements OnInit {
   }
 
   updateFirstName(formRef:any){
+    if(formRef.valid){
     this.userServ.updateName(this.userID,formRef.value.fName,this.user.lName).subscribe((res:string)=>{
       this.msg = res;
         this.updateInfo();
         formRef.reset();
-    })
+    });
+    }else{
+      this.msg="Please fill in all fields"
+    }
   }
   updateLastName(formRef:any){
+    if(formRef.valid){
     this.userServ.updateName(this.userID,this.user.fName,formRef.value.lName).subscribe((res:string)=>{
       this.msg = res;
         this.updateInfo();
         formRef.reset();
     })
+    }else{
+      this.msg="Please fill in all fields"
+    }
   }
   updatePhoneNumber(formRef:any){
+    if(formRef.valid){
     this.userServ.updatePhoneNumber(this.userID,formRef.value.phoneNumber).subscribe((res:string)=>{
       this.msg = res;
         this.updateInfo();
         formRef.reset();
     })
+  }else{
+      this.msg="Please fill in all fields"
+    }
   }
   updateEmail(formRef:any){
+    if(formRef.valid){
     this.userServ.updateEmail(this.userID,formRef.value.email).subscribe((res:string)=>{
       this.msg = res;
         this.updateInfo();
         formRef.reset();
     })
+  }else{
+    this.msg="Please fill in all fields"
+  }
   }
   updatePassword(formRef:any){
+    if(formRef.valid){
     if(formRef.value.password == formRef.value.passwordAgain){
       this.userServ.updatePassword(this.userID,formRef.value.password).subscribe((res:string)=>{
         this.msg = res;
@@ -81,6 +98,9 @@ export class UserEditProfileComponent implements OnInit {
     }else{
       this.msg="Passwords do not match";
       formRef.reset()
+    }
+  }else{
+      this.msg="Please fill in all fields"
     }
   }
   updateInfo() {
