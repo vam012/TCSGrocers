@@ -23,7 +23,7 @@ export class EmployeeLoginComponent implements OnInit {
         this.show = false;
       }else{
         if(this.msg == "Login successful"){
-          sessionStorage.setItem("empToken","empToken");  //This is maximum security
+          sessionStorage.setItem("empToken",loginRef.value.empId);  //This is maximum security
           this.router.navigate(['employeemenu']);
         }
       }

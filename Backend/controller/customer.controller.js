@@ -76,22 +76,24 @@ let login = (req,res)=>{
     let passwordAtt = req.body.password;
     CustomerModel.find({username:usernameAtt},(err,data)=>{
         if(!err){
-            if(data[0].username===usernameAtt){
-                if(data[0].failedLoginAttempts>=3){
-                    CustomerModel.updateOne({username:usernameAtt},{$set:{locked:1}},(err,res)=>{})
-                    res.send("Too many login attempts, please create a support ticket to have your account unlocked");
-                }else{
-                    if(data[0].password===passwordAtt){
-                        CustomerModel.updateOne({username:usernameAtt},{$set:{failedLoginAttempts:0}},(err,res)=>{})
-                        res.send("Login successful");
+            if(data.length==1){
+                if(data[0].username===usernameAtt){
+                    if(data[0].failedLoginAttempts>=3){
+                        CustomerModel.updateOne({username:usernameAtt},{$set:{locked:1}},(err,res)=>{})
+                        res.send("Too many login attempts, please create a support ticket to have your account unlocked");
                     }else{
-                        CustomerModel.updateOne({username:usernameAtt},{$inc:{failedLoginAttempts:1}},(err,res)=>{})
-                        res.send("Incorrect password");
+                        if(data[0].password===passwordAtt){
+                            CustomerModel.updateOne({username:usernameAtt},{$set:{failedLoginAttempts:0}},(err,res)=>{})
+                            res.send("Login successful");
+                        }else{
+                            CustomerModel.updateOne({username:usernameAtt},{$inc:{failedLoginAttempts:1}},(err,res)=>{})
+                            res.send("Incorrect password");
+                        }
                     }
                 }
             }else{
                 res.send("Incorrect username")
-        }
+            }
         }else{
             res.send("Something went wrong");
         }
@@ -100,7 +102,7 @@ let login = (req,res)=>{
 
 let unlockUser = (req,res)=>{
     let id = req.body.userID;
-    CustomerModel.updateOne({_id:id},{$set:{locked:0,$set:{failedLoginAttempts:0}}},(err,data)=>{
+    CustomerModel.updateOne({_id:id},{$set:{locked:0,failedLoginAttempts:0}},(err,data)=>{
         if(!err){
             if(data.nModified==1){
                 res.send("Successfully unlocked user");
