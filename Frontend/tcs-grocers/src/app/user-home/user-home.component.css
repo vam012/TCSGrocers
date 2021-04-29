@@ -1,5 +1,5 @@
 header{
-    background-color: rgb(90, 92, 182);
+    background-color:#A9A9A9;
     padding: 20px 0;
 }
 .cart_icon{
@@ -10,6 +10,7 @@ header{
     color: #fff;
     
 }
+
 .cart_value{
     position: absolute;
     top: -15px;
@@ -38,10 +39,14 @@ header{
     margin-top: 10px;
     border: 1px solid #ccc;
     border-radius: 4px;
+
 }
 .btnInc{
     margin: 2px;
     padding: 2px;
+    border-radius: 50%;
+    text-align: center;
+
 }
 .cart_btn{
     margin: 4px;
