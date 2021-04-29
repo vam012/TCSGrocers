@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import {EmployeeService} from '../employee.service'
 
 @Component({
@@ -9,14 +10,18 @@ import {EmployeeService} from '../employee.service'
 export class EditProfileComponent implements OnInit {
   updateMsg?: string;
   
-  constructor(public editSer:EmployeeService) { }
+  constructor(public editSer:EmployeeService, public router:Router) { }
 
   ngOnInit(): void {
   }
 
-  updatePass(passwordRef:any){
-    this.editSer.updatePassword(passwordRef.value.id).subscribe((result:string)=>{
+  updatePassword(passwordRef:any){
+
+      this.editSer.updatePassword(passwordRef.value).subscribe((result:string)=>{
       this.updateMsg=result;
-    })
+      passwordRef.reset();
+      sessionStorage.removeItem("empToken");
+      this.router.navigate(["employee"])
+      })
   }
 }

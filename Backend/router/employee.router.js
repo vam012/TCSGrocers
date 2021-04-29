@@ -7,7 +7,7 @@ router.get("/allEmployeeDetails",EmployeeController.getAllEmployeeDetails)
 
 router.post("/createNewEmployee",EmployeeController.createNewEmployee);
 
-router.put("/updatePassword/:id",EmployeeController.updatePassword);
+router.put("/updatePassword",EmployeeController.updatePassword);
 
 router.delete("/deleteEmployeeById/:eid",EmployeeController.deleteEmployeeById)
 

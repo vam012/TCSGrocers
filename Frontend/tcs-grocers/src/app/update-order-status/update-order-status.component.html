@@ -1,17 +1,36 @@
-<form #orderRef="ngForm" (ngSubmit)="updateStatus(orderRef)">
-    <label>OrderId</label>
-    <input type="text" name="orderID" ngModel><br>
-    <label for="">Status</label>
-    <input list="browsers" name="newOrderStatus" ngModel><br>
+<div class="conatiner">
+    <h3>Update Order Status</h3>
+    <hr>
+    <form #orderRef="ngForm" (ngSubmit)="updateStatus(orderRef.value)">
+        <div class="row justify-content-center">
+            <div class="col-lg-3">
+                <b>Order ID:</b>
+            </div>
+            <div class="col-lg-2">
+                <input type="text" name="id" id="id" required ngModel />
 
-        <datalist id="browsers" ng-model>
-            <option value="Shipped"></option>
-            <option value="Out For Delivery"></option>
-            <option value="Delivered"></option>
-            <option value="Cancelled"></option>
-        </datalist>
-    
-        <input type="submit" value="Update Order Status"/> 
-</form>
-
-
+            </div>
+        </div>
+        <div class="row justify-content-center">
+            <div class="col-lg-3">
+                <b>Status:</b>
+            </div>
+            <div class="col-lg-2">
+                <input list="browsers" name="status" id="status" required ngModel >
+                    <datalist id="browsers" ng-model>
+                        <option value="shipped">Shipped</option>
+                        <option value="OutForDelivery">Out for Delivery</option>
+                        <option value="delivered">Delivered</option>
+                        <option value="cancelled">Cancelled</option>
+                    </datalist>
+            </div>
+        </div>
+        <div class="row justify-content-center">
+            <input type="submit" class="col-3 btn btn-success" value="Update Order Status"><br />
+        </div>
+        <div class="row justify-content-center">
+            <input type="reset" class="col-3 btn btn-warning" value="Reset"><br />
+        </div>
+        
+    </form>
+</div>
