@@ -25,7 +25,7 @@ const routes: Routes = [
   {path:'\admin',component:AdminHomeComponent},
   {path:`\adminlogin`,component:AdminLoginComponent},
   {path:`\adminmenu`,component:AdminMenuComponent,canActivate:[AdminAuthGaurdService]},
-  {path:'\employee',component:EmployeeHomeComponent},
+  {path:`\employee`,component:EmployeeHomeComponent},
   {path:`\employeelogin`,component:EmployeeLoginComponent},
   {path:`\employeemenu`,component:EmployeeMenuComponent,canActivate:[EmployeeAuthGuardService]},
   {path:`cart`,component:CartComponent},

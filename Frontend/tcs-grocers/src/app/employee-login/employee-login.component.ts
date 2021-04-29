@@ -9,6 +9,7 @@ import { EmployeeService } from '../employee.service';
 })
 export class EmployeeLoginComponent implements OnInit {
   msg?:string;
+  show:boolean = true;
   constructor(public router:Router, public empServ:EmployeeService) { }
 
   ngOnInit(): void {
@@ -18,10 +19,15 @@ export class EmployeeLoginComponent implements OnInit {
     if(loginRef.valid){
     this.empServ.login(loginRef.value).subscribe((res:string)=>{
       this.msg=res
-      if(this.msg == "Login successful"){
-        sessionStorage.setItem("empToken","empToken");  //This is maximum security
-        this.router.navigate(['employeemenu']);
-      }});
+      if(this.msg == "Login successful and update password"){
+        this.show = false;
+      }else{
+        if(this.msg == "Login successful"){
+          sessionStorage.setItem("empToken","empToken");  //This is maximum security
+          this.router.navigate(['employeemenu']);
+        }
+      }
+    });
     }else{
       this.msg = "Please fill in all fields"
     }
