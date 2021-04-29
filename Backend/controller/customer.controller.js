@@ -102,7 +102,7 @@ let login = (req,res)=>{
 
 let unlockUser = (req,res)=>{
     let id = req.body.userID;
-    CustomerModel.updateOne({_id:id},{$set:{locked:0,$set:{failedLoginAttempts:0}}},(err,data)=>{
+    CustomerModel.updateOne({_id:id},{$set:{locked:0,failedLoginAttempts:0}},(err,data)=>{
         if(!err){
             if(data.nModified==1){
                 res.send("Successfully unlocked user");
