@@ -10,7 +10,7 @@ import { ProductService } from '../product.service';
 })
 export class AdminUpdateProductComponent implements OnInit {
 
-  product:Product=new Product(1,"null",-1,-1,-1);
+  product:Product=new Product(1,"null",-1,-1,-1,1);
   allProducts?:Array<Product>;
   selectedProductID?:any;
   productPriceErrMsg?:string;

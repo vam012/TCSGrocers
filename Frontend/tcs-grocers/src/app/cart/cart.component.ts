@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { CartService } from '../cart.service';
+import { CustomerService } from '../customer.service';
+import { User } from '../user.model';
 
 @Component({
   selector: 'app-cart',
@@ -12,10 +14,11 @@ export class CartComponent implements OnInit {
   msg?:string;
   userId:string="";
   userFunds:number=0
+  user?:User;
   newBalance?:number;
   orderProcessed:boolean = false;
   orderNotProcessed:boolean = false;
-  constructor(public router:Router, public cartSer:CartService) { }
+  constructor(public router:Router, public cartSer:CartService,public userServ:CustomerService) { }
 
   ngOnInit(): void {
     this.getUserInfo();
@@ -63,7 +66,7 @@ export class CartComponent implements OnInit {
     if(localStorage.getItem(this.userId)){
       this.cartDetailsArr = JSON.parse(localStorage.getItem(this.userId)||'{}');
       this.total = this.cartDetailsArr.reduce(function(acc:any,val:any){
-        return acc+((val.prodPrice * val.qnt)*(val.discount/100));
+        return acc+((val.price * val.qnt)*(val.discount/100));
       },0)
     }
   }
@@ -99,6 +102,14 @@ export class CartComponent implements OnInit {
       this.cartSer.addNewOrder(this.OrderDetails).subscribe((res:string)=>{
         this.msg=res;
         })
+      // this.userServ.getCustomerById(this.userId).subscribe(res=>{
+      //   this.user=res[0];
+      //   this.userFunds = this.user.funds - this.total;
+      // });
+      this.userServ.addFunds(this.userId,(this.total*-1)).subscribe((res:string)=>{
+        this.msg = res;
+      //  this.updateUserFunds();
+      });
       window.setTimeout(function(){location.reload()},3000);
       console.log(this.OrderDetails);
     
@@ -108,4 +119,5 @@ export class CartComponent implements OnInit {
     }
 
   }
+
 }
