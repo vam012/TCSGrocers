@@ -32,10 +32,6 @@ export class CustomerService {
     return this.http.put(`http://localhost:7777/customers/unlockUser/${id}`,{responseType:"text"});
   }
 
-  getCustomerById(id:any):Observable<Customer>{
-    return this.http.get<Customer>(`http://localhost:7777/customer/getCustomerById/${id}`);
-  }
-
   
   refundCustomerById(customerId:any,refundAmount:any){
     return this.http.put(`http://localhost:7777/customers/refundCustomerById/${customerId}/${refundAmount}`,{responseType:"text"});

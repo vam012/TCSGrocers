@@ -33,13 +33,13 @@ export class UpdateOrderStatusComponent implements OnInit {
     this.orderSer.getOrderById(orderRef.value.orderID).subscribe(result=>this.details=result);
     let refund_amount = (this.details?.orderAmount);
     let customerId = this.details?.customerID;
-    this.customerServ.getCustomerById(customerId).subscribe(result=>this.customerDetails=result);
-    let refund:number = (refund_amount);// +  this.customerDetails?.funds;
-    let funds:number = this.customerDetails?.funds;
+    //this.customerServ.getCustomerById(customerId).subscribe(result=>this.customerDetails=result);
+    //let refund:number = (refund_amount);// +  this.customerDetails?.funds;
+    //let funds:number = this.customerDetails?.funds;
    // console.log(typeof(refund));
     //console.log(typeof(funds));
-    let updated_amt:number = refund + funds;
-    this.customerServ.refundCustomerById(customerId,updated_amt).subscribe(result=>console.log(result));   
+    //let updated_amt:number = refund + funds;
+    //this.customerServ.refundCustomerById(customerId,updated_amt).subscribe(result=>console.log(result));   
   }
 
 }
