@@ -4,29 +4,35 @@ let CustomerModel = require("../model/customer.model.js");
 let createNewCustomer = (req,res)=>{
     let holdArr = [];
     CustomerModel.find({},(err,data)=>{
-        if(!err){   
-            holdArr = data;
-            let nextID = (holdArr.length == 0)? 100:holdArr[holdArr.length-1]._id+1;
-            let newEmp = new CustomerModel({
-                _id:nextID,
-                fName:req.body.fName,
-                lName:req.body.lName,
-                email:req.body.email,
-                username:req.body.username,
-                password:req.body.password,
-                birthday:req.body.birthday,
-                phoneNumber:req.body.phoneNumber,
-                funds:1000,
-                failedLoginAttempts:0,
-                locked:0
-            });
-            newEmp.save((err,data)=>{
-                if(!err){
-                    res.send("Data stored successfully")
+        if(!err){
+            CustomerModel.find({username:req.body.username},(err,check)=>{
+                if(check.length==0){
+                    holdArr = data;
+                    let nextID = (holdArr.length == 0)? 100:holdArr[holdArr.length-1]._id+1;
+                    let newEmp = new CustomerModel({
+                        _id:nextID,
+                        fName:req.body.fName,
+                        lName:req.body.lName,
+                        email:req.body.email,
+                        username:req.body.username,
+                        password:req.body.password,
+                        birthday:req.body.birthday,
+                        phoneNumber:req.body.phoneNumber,
+                        funds:1000,
+                        failedLoginAttempts:0,
+                        locked:0
+                    });
+                    newEmp.save((err,data)=>{
+                        if(!err){
+                            res.send("Data stored successfully")
+                        }else{
+                            res.send("Something went wrong...")
+                        }
+                    })
                 }else{
-                    res.send("Something went wrong...")
+                    res.send("Username is taken")
                 }
-            })
+            })   
         }else{
             res.send("Something went wrong...");
         }
@@ -54,17 +60,28 @@ let getCustomerById = (req,res)=>{
     })
 }
 
+let getCustomerByUsername = (req,res)=>{
+    let username = req.params.username;
+    CustomerModel.find({username:username},(err,data)=>{
+        if(!err){
+            res.json(data);
+        }else{
+            res.send("Something went wrong")
+        }
+    })
+}
+
 let login = (req,res)=>{
     let usernameAtt = req.body.username;
     let passwordAtt = req.body.password;
     CustomerModel.find({username:usernameAtt},(err,data)=>{
         if(!err){
-            if(data.username===usernameAtt){
-                if(data.failedLoginAttempts>=3){
+            if(data[0].username===usernameAtt){
+                if(data[0].failedLoginAttempts>=3){
                     CustomerModel.updateOne({username:usernameAtt},{$set:{locked:1}},(err,res)=>{})
                     res.send("Too many login attempts, please create a support ticket to have your account unlocked");
                 }else{
-                    if(data.password===passwordAtt){
+                    if(data[0].password===passwordAtt){
                         CustomerModel.updateOne({username:usernameAtt},{$set:{failedLoginAttempts:0}},(err,res)=>{})
                         res.send("Login successful");
                     }else{
@@ -97,9 +114,9 @@ let unlockUser = (req,res)=>{
 }
 
 let addFunds = (req,res)=>{
-    let id = req.params.customerID;
-    let fundsToAdd = req.params.fundsToAdd;
-    CustomerModel.updateOne({_id:id},{$ince:{funds:fundsToAdd}},(err,data)=>{
+    let id = req.body.customerID;
+    let fundsToAdd = req.body.fundsToAdd;
+    CustomerModel.updateOne({_id:id},{$inc:{funds:fundsToAdd}},(err,data)=>{
         if(!err){
             if(data.nModified==1){
                 res.send("Successfully updated user funds");
@@ -113,9 +130,9 @@ let addFunds = (req,res)=>{
 }
 
 let updateName = (req,res)=>{
-    let id = req.params.customerID;
-    let fName=req.params.fName;
-    let lName=req.params.lName;
+    let id = req.body.customerID;
+    let fName=req.body.fName;
+    let lName=req.body.lName;
     CustomerModel.updateOne({_id:id},{$set:{fName:fName,lName:lName}},(err,data)=>{
         if(!err){
             if(data.nModified==1){
@@ -130,8 +147,8 @@ let updateName = (req,res)=>{
 }
 
 let updateEmail = (req,res)=>{
-    let id = req.params.customerID;
-    let email=req.params.email;
+    let id = req.body.customerID;
+    let email=req.body.email;
     CustomerModel.updateOne({_id:id},{$set:{email:email}},(err,data)=>{
         if(!err){
             if(data.nModified==1){
@@ -146,8 +163,8 @@ let updateEmail = (req,res)=>{
 }
 
 let updateUsername = (req,res)=>{
-    let id = req.params.customerID;
-    let username=req.params.username;
+    let id = req.body.customerID;
+    let username=req.body.username;
     CustomerModel.updateOne({_id:id},{$set:{username:username}},(err,data)=>{
         if(!err){
             if(data.nModified==1){
@@ -162,13 +179,13 @@ let updateUsername = (req,res)=>{
 }
 
 let updatePassword = (req,res)=>{
-    let id = req.params.customerID;
+    let id = req.body.customerID;
     let newPassword=req.body.password;
     CustomerModel.find({_id:id},(err,data)=>{
         if(!err){
-            if(data.password!=newPassword){
-                CustomerModel.find({_id:id},{$set:{password:newPassword}},(err,data)=>{
-                    if(data.nModified==1){
+            if(data[0].password!=newPassword){
+                CustomerModel.updateOne({_id:id},{$set:{password:newPassword}},(err,ret)=>{
+                    if(ret.nModified==1){
                         res.send("Successfully updated user password");
                     }else{
                         res.send("User does not exist")
@@ -201,8 +218,8 @@ let updateBirthday = (req,res)=>{
 }
 
 let updatePhoneNumber = (req,res)=>{
-    let id = req.params.customerID;
-    let phoneNumber=req.params.phoneNumber;
+    let id = req.body.customerID;
+    let phoneNumber=req.body.phoneNumber;
     CustomerModel.updateOne({_id:id},{$set:{phoneNumber:phoneNumber}},(err,data)=>{
         if(!err){
             if(data.nModified==1){
@@ -217,10 +234,10 @@ let updatePhoneNumber = (req,res)=>{
 }
 
 
+
 let refundCustomerById = (req,res)=>{
     let id = req.params.customerId;
     let amount = req.params.refundAmount;
-    console.log("Here.")
     CustomerModel.updateOne({_id:id},{$inc:{funds:amount}},(err,data)=>{
         if(!err){
             if(data.nModified==1){
@@ -234,4 +251,5 @@ let refundCustomerById = (req,res)=>{
     })
 }
 
-module.exports={createNewCustomer,getAllCustomers,getCustomerById,login,unlockUser,addFunds,updateName,updateEmail,updateUsername,updatePassword,updateBirthday,updatePhoneNumber,refundCustomerById}
+module.exports={createNewCustomer,getAllCustomers,getCustomerById,getCustomerByUsername,login,unlockUser,addFunds,updateName,updateEmail,updateUsername,updatePassword,updateBirthday,updatePhoneNumber,refundCustomerById}
+

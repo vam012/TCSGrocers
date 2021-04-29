@@ -1,0 +1,91 @@
+<!---
+public fName:string,
+        public lName:string,
+        public email:string,
+        public username:string,
+        public password:string,
+        public birthday:string,
+        public phoneNumber:string,
+        public funds:number,
+        public failedLoginAttempts:number,
+        public locked:number-->
+<div class=container>
+  <h1>Create a new Account</h1>
+  <hr/>
+  <form #formRef="ngForm" (submit)=createNewUser(formRef)>
+    <div class=container>
+      <div class='row justify-content-evenly'>
+        <div class=col-5>
+          <div class=container>
+            <div class='row justify-content-center'>
+              <div class='col-6'>
+                <b>First Name</b>
+              </div>
+              <div class=col-6>
+                <input type="text" name="fName" id="fName" ngModel required>
+              </div>
+            </div>
+            <div class='row justify-content-center'>
+              <div class='col-6'>
+                <b>Last Name</b>
+              </div>
+              <div class=col-6>
+                <input type="text" name="lName" id="lName" ngModel required>
+              </div>
+            </div>
+            <div class='row justify-content-center'>
+              <div class='col-6'>
+                <b>Birthday</b>
+              </div>
+              <div class=col-6>
+                <input type="date" name="birthday" id="birthday" ngModel required>
+              </div>
+            </div>
+            <div class='row justify-content-center'>
+              <div class='col-6'>
+                <b>Phone Number</b>
+              </div>
+              <div class=col-6>
+                <input type="text" name="phoneNumber" id="phoneNumber" ngModel required>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class=col-5>
+          <div class=container>
+            <div class='row justify-content-center'>
+              <div class='col-6'>
+                <b>UserName</b>
+              </div>
+              <div class=col-6>
+                <input type="text" name="username" id="username" ngModel required>
+              </div>
+            </div>
+            <div class='row justify-content-center'>
+              <div class='col-6'>
+                <b>Password</b>
+              </div>
+              <div class=col-6>
+                <input type="password" name="password" id="password" ngModel required>
+              </div>
+            </div>
+            <br/><br/>
+              <h3 class='text-danger'> {{msg}}</h3>
+            <br/><br/>
+            <div class='row justify-content-center'>
+              <input type="submit" class=' col-6 btn btn-success' value="Create new User"><br/>
+            </div>
+            <div class='row justify-content-center'>
+              <input type="reset" class=' col-6 btn btn-warning' value="Reset Fields">
+            </div>
+            
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    
+    
+  </form>
+  
+</div>

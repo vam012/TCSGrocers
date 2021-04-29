@@ -12,7 +12,7 @@
                     </div>
                 </div>
                 <div class="logout">
-                    <input class="btns" type="button" value="logout">
+                    <input class="btns" type="button" value="Dashboard">
                 </div>
         
             </div>
@@ -45,7 +45,16 @@
                 <h3 class="total">Total - ${{total}}</h3>
             </div>
             <div class="col-md-6 text-right">
-                <button type="button" class="Checkout"><i class="fa fa-shopping-bag"></i></button>
+                <button type="button" class="Checkout" (click)="checkout()"><i class="fa fa-shopping-bag"></i></button>
+            </div>
+            <div >
+                <hr>
+                <div *ngIf="orderProcessed">
+                    Congratulations!! Your Order went through and your remaining balance is {{newBalance}}
+                </div>
+                <div *ngIf="orderNotProcessed">
+                    Sorry!! You dont have enough funds in your account..
+                </div>
             </div>
         </div>
     </div>

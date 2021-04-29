@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { Product } from '../product.model';
+import { ProductService } from '../product.service';
 
 @Component({
   selector: 'app-admin-product-report',
@@ -10,15 +12,17 @@ export class AdminProductReportComponent implements OnInit {
 
   show:boolean = true;
   msg?:string;
-  constructor(public router:Router) { }
+  reportdata?:Product[];
+  constructor(public router:Router, public prodServ:ProductService) { }
 
   ngOnInit(): void {
   }
   
-  gotoProductReport(dataRef:any){
-    this.msg = dataRef;
+  gotoProductReport(dateRef:any){
+    this.prodServ.getProductByID(dateRef.value.productID).subscribe(res=>this.reportdata=res);
     this.show = false;
+    dateRef.reset();
   }
 
-  
+
 }

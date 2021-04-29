@@ -1,14 +1,49 @@
-<div>
-    <form #dataRef='ngForm'  (submit) = "gotoCustomerReport(dataRef.value)">
-        Enter Customer ID for customer report:
-        <input type="text" name="customerID" id="customerID"><br/>
-        <input type="submit" value="Get Report"/>
-        <input type="reset" value="Reset"/>
 
+<div class="container">
+    <form  #dataRef='ngForm'  (ngSubmit) = "gotoCustomerReport(dataRef)">
+        <div class="row justify-content">
+            <div class="col-lg-3">
+                <b> Enter Customer ID for report:</b>
+            </div>
+            <div class="col-lg-2">
+                <input type="text" name = "customerID" id="customerID" ngModel>
+            </div>
+            <div class="row justify-content">
+                <input type="submit" class="col-3 btn btn-success" value="Get Report"><br/>
+            </div>
+            <div class="row justify-content">
+                <input type="reset" class="col-3 btn btn-warning" value="Reset"><br/>
+            </div>
+        </div>
     </form>
+
 </div>
 
-<div *ngIf = "!show">
-    {{msg}}
-
+<div class="container" *ngIf = "!show">
+    <div class="justify-content-center">
+        <table class=table>
+            <thead>
+                <tr>
+                    <th scope=col>Customer ID</th>
+                    <th scope=col>Order Date</th>
+                    <th scope=col>Order Amount</th>
+                    <th scope=col>Order Status</th>
+    
+                </tr>
+            </thead>
+            <tbody *ngFor="let report of reportdata">
+                <tr>
+                    <td>{{report.customerID}}</td>
+                    <td>{{report.orderDate.substr(0,10)}}</td>
+                    <td>${{report.orderAmount}}</td>
+                    <td>{{report.orderStatus}}</td>
+        
+                    
+                </tr>
+                
+            </tbody>
+        </table>
+    </div>
+        
+    
 </div>

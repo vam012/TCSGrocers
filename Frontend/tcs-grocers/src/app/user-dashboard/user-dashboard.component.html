@@ -1,0 +1,27 @@
+<div class=container-fluid>
+    <div class="row justify-content-center">
+        <div class="col-12"><h1>Customer Home Menu</h1></div>
+        <input type="button" class="btn btn-secondary col-lg-3" value="Go Back To Customer Login" routerLink="/user">
+    </div>
+    <hr/>
+    <div class="row">
+        <div class="col-3 justify-content-start">
+            <div class=container id=navbar>
+                <div class="row"><input type="button" class='btn btn-secondary' value="Cart" #button1 (click)=goToCart(button1)></div><br/>
+                <div class="row"><input type="button" class='btn btn-secondary' value="Check Order Status" #button2 (click)=goToOrderStatus(button2)></div><br/>
+                <div class="row"><input type="button" class='btn btn-secondary' value="Edit User Profile" #button3 (click)=goToEditProfile(button3)></div><br/>
+                <div class="row"><input type="button" class='btn btn-secondary' value="Add Funds To Account"#button4 (click)=goToAddFunds(button4)></div><br/>
+                <div class="row"><input type="button" class='btn btn-danger' value="Logout" (click)=logoutUser()></div><br/>
+            </div>
+            
+        </div>
+        <div class="col-9 align-items-center">
+            <div class=container>
+                <app-cart *ngIf="displayBlock==1"></app-cart>
+                <app-user-order-status *ngIf="displayBlock==2"></app-user-order-status>
+                <app-user-edit-profile *ngIf="displayBlock==3"></app-user-edit-profile>
+                <app-user-add-funds *ngIf="displayBlock==4"></app-user-add-funds>
+            </div>
+        </div>
+    </div>
+</div>
