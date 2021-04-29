@@ -17,7 +17,7 @@
             <tbody>
                 <tr *ngFor='let order of allOpenOrders'>
                     <th scope=row *ngIf='order.orderStatus!="Delivered"'>{{order._id}}</th>
-                    <td *ngIf='order.orderStatus!="Delivered"'>{{order.orderDate}}</td>
+                    <td *ngIf='order.orderStatus!="Delivered"'>{{order.orderDate.substr(0,10)}}</td>
                     <td *ngIf='order.orderStatus!="Delivered"'>{{order.orderStatus}}</td>
                     <td *ngIf='order.orderStatus!="Delivered"'>${{order.orderAmount}}</td>
                     <td *ngIf='order.orderStatus!="Delivered"'>
