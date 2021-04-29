@@ -5,8 +5,8 @@ export class Order{
             _id:Number,
             quantity:Number
         },
-        public orderDate:String,
-        public orderAmount:Number,
-        public orderStatus:String,
-        public cancelReason:String){}
+        public orderDate:string,
+        public orderAmount:number,
+        public orderStatus:string,
+        public cancelReason:string){}
 }

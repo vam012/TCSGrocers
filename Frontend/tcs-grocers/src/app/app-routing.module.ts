@@ -8,6 +8,7 @@ import { UnlockUsersComponent } from './unlock-users/unlock-users.component';
 import { MainMenuComponent } from './main-menu/main-menu.component';
 import { CartComponent } from './cart/cart.component';
 import { UserHomeComponent } from './user-home/user-home.component';
+import { UpdateOrderStatusComponent } from './update-order-status/update-order-status.component';
 import { EmployeeHomeComponent } from './employee-home/employee-home.component';
 import { EmployeeLoginComponent } from './employee-login/employee-login.component';
 import { EmployeeMenuComponent } from './employee-menu/employee-menu.component';
