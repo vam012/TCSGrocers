@@ -2,17 +2,17 @@
     <div class="container">
         <div class="row">
             <div class="col-md-6">
-                <div class="home_icon" routerLink="/user"><i class="fa fa-home"></i></div>
+                <div class="home_icon" routerLink="/usermenu"><i class="fa fa-home"></i></div>
             </div>
             <div class="col-md-6 text-right">
-                <div class="cart_icon" routerLink="/cart">
+                <div class="cart_icon">
                     <i class="fa fa-shopping-cart"></i>
                     <div class="cart_value">
                         {{cart_items}}
                     </div>
                 </div>
                 <div class="logout">
-                    <input class="btns" type="button" value="Dashboard">
+                    <input class="btns" type="button" value="Dashboard" routerLink="/usermenu">
                 </div>
         
             </div>
@@ -33,9 +33,9 @@
             </tr>
             <tr *ngFor = "let cartItem of cartDetailsArr">
                 <td>{{cartItem.name}}</td>
-                <td>{{cartItem.price}}</td>
+                <td>${{cartItem.price}}</td>
                 <td>{{cartItem.qnt}}</td>
-                <td>{{cartItem.qnt * cartItem.price | number}}</td>
+                <td>${{cartItem.qnt * cartItem.price | number}}</td>
                 <td><button type="button" class="removeItem" (click)=deleteItem(cartItem.prodId)><i class="fa fa-trash"></i></button></td>
             </tr>
         </table>

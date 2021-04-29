@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { CustomerService } from '../customer.service';
+import { User } from '../user.model';
 
 @Component({
   selector: 'app-user-dashboard',
@@ -7,12 +9,28 @@ import { Router } from '@angular/router';
   styleUrls: ['./user-dashboard.component.css']
 })
 export class UserDashboardComponent implements OnInit {
-
+  userId:string="";
+  fName:string="";
+  lName:string="";
+  user?:User;
+  hold:any="";
   displayBlock:number=0;
 
-  constructor(public router:Router) { }
+  constructor(public router:Router,public userServ:CustomerService) { }
 
   ngOnInit(): void {
+    this.hold= sessionStorage.getItem("userInfo")
+    if(this.hold==null){
+      this.userId = "100"
+    }else if (this.hold!=null){
+      let userInfo = JSON.parse(this.hold);
+      this.userId = userInfo;
+      this.userServ.getCustomerById(this.userId).subscribe(res=>{
+        this.user=res[0];
+        this.fName = this.user.fName;
+        this.lName = this.user.lName;
+      });
+    }
   }
 
   setAllButtonsToSecondary():void{

@@ -8,7 +8,7 @@
                 </div>
             </div>
             <div class="logout">
-                <input class="btns" type="button" value="Dashboard">
+                <input class="btns" type="button" value="To Checkout" routerLink="/cart">
             </div>
     
         </div>
@@ -23,7 +23,7 @@
                         <h4>{{prod.name}}</h4>
                     </div>
                     <div class="prodPrice">
-                        <h5>{{prod.price}}</h5>
+                        <h5>${{prod.price}}</h5>
                     </div>
                     <div class="prodQuan">
                         <h5>Available: {{prod.quantity}}</h5>

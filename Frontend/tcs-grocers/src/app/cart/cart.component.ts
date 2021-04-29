@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { CartService } from '../cart.service';
 import { CustomerService } from '../customer.service';
+import { ProductService } from '../product.service';
 import { User } from '../user.model';
 
 @Component({
@@ -11,6 +12,7 @@ import { User } from '../user.model';
 })
 export class CartComponent implements OnInit {
 
+  hold:any="";
   msg?:string;
   userId:string="";
   userFunds:number=0
@@ -18,7 +20,7 @@ export class CartComponent implements OnInit {
   newBalance?:number;
   orderProcessed:boolean = false;
   orderNotProcessed:boolean = false;
-  constructor(public router:Router, public cartSer:CartService,public userServ:CustomerService) { }
+  constructor(public router:Router, public cartSer:CartService,public userServ:CustomerService,public productServ:ProductService) { }
 
   ngOnInit(): void {
     this.getUserInfo();
@@ -30,11 +32,17 @@ export class CartComponent implements OnInit {
     
   }
   getUserInfo(){
-    if(sessionStorage.getItem('userInfo')!=null){
-      let customerInfo = JSON.parse(sessionStorage.getItem('userInfo')||'{}')
-      this.userId=customerInfo[0].userID;
-      this.userFunds = customerInfo[0].userFunds;
-    }
+    this.hold= sessionStorage.getItem("userInfo")
+      if(this.hold==null){
+        this.userId = "100"
+      }else if (this.hold!=null){
+        let userInfo = JSON.parse(this.hold);
+        this.userId = userInfo;
+        this.userServ.getCustomerById(this.userId).subscribe(res=>{
+          this.user=res[0];
+          this.userFunds = this.user.funds;
+        });
+      }
   }
   cart_items:number = 0;
   cartDetailsArr:any = [];
@@ -65,9 +73,10 @@ export class CartComponent implements OnInit {
   loadCart(){
     if(localStorage.getItem(this.userId)){
       this.cartDetailsArr = JSON.parse(localStorage.getItem(this.userId)||'{}');
-      this.total = this.cartDetailsArr.reduce(function(acc:any,val:any){
-        return acc+((val.price * val.qnt)*(val.discount/100));
-      },0)
+      for (let index = 0; index < this.cartDetailsArr.length; index++) {
+        const item = this.cartDetailsArr[index];
+        this.total= this.total+ (item.qnt * (item.price * ((100-item.discount)/100))); 
+      }
     }
   }
   deleteItem(singleItem:any){
@@ -91,7 +100,9 @@ export class CartComponent implements OnInit {
       if(localStorage.getItem(this.userId)){
         this.cartDetailsArrs = JSON.parse(localStorage.getItem(this.userId)||'{}');
         for (let i=0; i<this.cartDetailsArrs.length;i++){
-          this.OrderDetails.productList.push({_id:this.cartDetailsArrs[i].prodId,quantity:this.cartDetailsArrs[i].qnt});
+          this.OrderDetails.productList.push({_id:this.cartDetailsArrs[i]._id,quantity:this.cartDetailsArrs[i].qnt});
+          let newQnt = parseInt(this.cartDetailsArr[i].quantity) - parseInt(this.cartDetailsArrs[i].qnt);
+          this.productServ.updateProductQuantity({productID:this.cartDetailsArrs[i]._id,newQuantity:newQnt}).subscribe()
         } 
         this.OrderDetails.orderAmount = this.total;
         this.OrderDetails.customerID = this.userId;
@@ -110,7 +121,7 @@ export class CartComponent implements OnInit {
         this.msg = res;
       //  this.updateUserFunds();
       });
-      window.setTimeout(function(){location.reload()},3000);
+      window.setTimeout(function(){location.reload()},1000);
       console.log(this.OrderDetails);
     
 
