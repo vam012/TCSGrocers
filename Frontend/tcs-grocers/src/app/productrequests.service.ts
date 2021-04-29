@@ -23,7 +23,6 @@ export class ProductrequestsService {
   }
 
   createNewProductRequest(request:any):any{
-    console.log(request)
     return this.http.post(`http://localhost:7777/productrequests/createNewProductRequest`,request,{responseType:'text'})
   }
 }

@@ -15,7 +15,6 @@ let createNewProductRequest = (req,res)=>{
                 requestType:req.body.requestType,
                 openclosed:0
             })
-            console.log(newRequest)
             newRequest.save((err,data)=>{
                 if(!err){
                     res.send("Successfully made request")
