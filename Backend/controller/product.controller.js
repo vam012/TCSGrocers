@@ -31,7 +31,8 @@ let storeNewProduct = (req,res)=>{
                 name:req.body.name,
                 quantity:req.body.quantity,
                 price:req.body.price,
-                discount:0
+                discount:0,
+                qnt:1
             })
             product.save((err,result)=>{
                 if(!err){

@@ -6,7 +6,8 @@ let ProductSchema = mongoose.Schema({
     name:String,
     quantity:Number,
     price:Number,
-    discount:Number
+    discount:Number,
+    qnt:Number
 })
 
 let ProductModel = mongoose.model("Product",ProductSchema,"products");
