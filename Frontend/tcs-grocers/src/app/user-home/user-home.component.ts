@@ -1,5 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { CustomerService } from '../customer.service';
+import { Product } from '../product.model';
+import { ProductService } from '../product.service';
+import { User } from '../user.model';
 
 @Component({
   selector: 'app-user-home',
@@ -10,13 +14,18 @@ export class UserHomeComponent implements OnInit {
 
   userId:string="";
   userFunds:number=0
-  
-  constructor(public router:Router) { }
+  user?:User;
+  productArray?:Array<Product>;
+  constructor(public router:Router,public prodServ:ProductService,public userServ:CustomerService) { }
 
   ngOnInit(): void {
+    this.getProducts()
     this.cartItem();
-    this.putUserInfo();
+    //this.putUserInfo();
     this.getUserInfo();
+  }
+  getProducts():void{
+    this.prodServ.getAllProducts().subscribe(res=>this.productArray=res)
   }
   putUserInfo(){
     let userObj = sessionStorage.getItem('userInfo');
@@ -29,8 +38,14 @@ export class UserHomeComponent implements OnInit {
 getUserInfo(){
   if(sessionStorage.getItem('userInfo')!=null){
     let customerInfo = JSON.parse(sessionStorage.getItem('userInfo')||'{}')
-    this.userId=customerInfo[0].userID;
-    this.userFunds = customerInfo[0].userFunds;
+   //console.log(customerInfo)
+    // this.userId=customerInfo[0].userInfo;
+    this.userId = customerInfo;
+    this.userServ.getCustomerById(this.userId).subscribe(res=>{
+      this.user=res[0];
+      this.userFunds = this.user.funds;
+    });
+    // this.userFunds = customerInfo[0].userFunds;
   }
 }
 
@@ -47,49 +62,49 @@ getUserInfo(){
   }
   prodCart:any=[];
   //for now it is hard coded... this will come from PRODUCT table API
-  productArray=[
-    {
-      prodId:1, //unique ID
-      prodName:"hp laptop",
-      prodPrice:"1000",
-      prodQuantity: 25,
-      qnt:1,
-      discount:50
-    },
-    {
-      prodId:2,
-      prodName:"Hair dryer",
-      prodPrice:"100",
-      prodQuantity: 20,
-      qnt:1,
-      discount:25
-    },
-    {
-      prodId:3,
-      prodName:"Perfume",
-      prodPrice:"80",
-      prodQuantity: 15,
-      qnt:1,
-      discount:5
-    },
-    {
-      prodId:4,
-      prodName:"TV",
-      prodPrice:"1200",
-      prodQuantity: 10,
-      qnt:1,
-      discount:10
-    },
-    {
-      prodId:5,
-      prodName:"Monitor",
-      prodPrice:"300",
-      prodQuantity: 5,
-      qnt:1,
-      discount:30
-    }
+  // productArray=[
+  //   {
+  //     prodId:1, //unique ID
+  //     prodName:"hp laptop",
+  //     prodPrice:"1000",
+  //     prodQuantity: 25,
+  //     qnt:1,
+  //     discount:50
+  //   },
+  //   {
+  //     prodId:2,
+  //     prodName:"Hair dryer",
+  //     prodPrice:"100",
+  //     prodQuantity: 20,
+  //     qnt:1,
+  //     discount:25
+  //   },
+  //   {
+  //     prodId:3,
+  //     prodName:"Perfume",
+  //     prodPrice:"80",
+  //     prodQuantity: 15,
+  //     qnt:1,
+  //     discount:5
+  //   },
+  //   {
+  //     prodId:4,
+  //     prodName:"TV",
+  //     prodPrice:"1200",
+  //     prodQuantity: 10,
+  //     qnt:1,
+  //     discount:10
+  //   },
+  //   {
+  //     prodId:5,
+  //     prodName:"Monitor",
+  //     prodPrice:"300",
+  //     prodQuantity: 5,
+  //     qnt:1,
+  //     discount:30
+  //   }
 
-  ];
+  // ];
   inc(prod:any){
 
     if(prod.qnt != prod.prodQuantity){
