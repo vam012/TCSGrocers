@@ -22,12 +22,12 @@ export class UserAddFundsComponent implements OnInit {
       this.userID = "100"
     }else if (this.hold!=null){
       let userInfo = JSON.parse(this.hold);
-      this.userID = userInfo.userID;
+      this.userID = userInfo;
+      this.userServ.getCustomerById(this.userID).subscribe(res=>{
+        this.user=res[0];
+        this.funds = this.user.funds;
+      });
     }
-    this.userServ.getCustomerById(this.userID).subscribe(res=>{
-      this.user=res[0];
-      this.funds = this.user.funds;
-    });
   }
 
   updateUserFunds():void {
@@ -38,11 +38,15 @@ export class UserAddFundsComponent implements OnInit {
   }
 
   addFunds(formRef:any){
+    if(formRef.valid){
     this.userServ.addFunds(this.userID,formRef.value.funds).subscribe((res:string)=>{
       this.msg = res;
       formRef.reset();
       this.updateUserFunds();
     });
+  }else{
+    this.msg="Please fill in all fields"
+  }
   }
 
 }
