@@ -11,6 +11,7 @@ import { User } from '../user.model';
 })
 export class CartComponent implements OnInit {
 
+  hold:any="";
   msg?:string;
   userId:string="";
   userFunds:number=0
@@ -30,11 +31,17 @@ export class CartComponent implements OnInit {
     
   }
   getUserInfo(){
-    if(sessionStorage.getItem('userInfo')!=null){
-      let customerInfo = JSON.parse(sessionStorage.getItem('userInfo')||'{}')
-      this.userId=customerInfo[0].userID;
-      this.userFunds = customerInfo[0].userFunds;
-    }
+    this.hold= sessionStorage.getItem("userInfo")
+      if(this.hold==null){
+        this.userId = "100"
+      }else if (this.hold!=null){
+        let userInfo = JSON.parse(this.hold);
+        this.userId = userInfo;
+        this.userServ.getCustomerById(this.userId).subscribe(res=>{
+          this.user=res[0];
+          this.userFunds = this.user.funds;
+        });
+      }
   }
   cart_items:number = 0;
   cartDetailsArr:any = [];
@@ -65,9 +72,10 @@ export class CartComponent implements OnInit {
   loadCart(){
     if(localStorage.getItem(this.userId)){
       this.cartDetailsArr = JSON.parse(localStorage.getItem(this.userId)||'{}');
-      this.total = this.cartDetailsArr.reduce(function(acc:any,val:any){
-        return acc+((val.price * val.qnt)*(val.discount/100));
-      },0)
+      for (let index = 0; index < this.cartDetailsArr.length; index++) {
+        const item = this.cartDetailsArr[index];
+        this.total= this.total+ (item.qnt * (item.price * ((100-item.discount)/100))); 
+      }
     }
   }
   deleteItem(singleItem:any){
