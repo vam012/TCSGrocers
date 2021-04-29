@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { CartService } from '../cart.service';
 
 @Component({
   selector: 'app-cart',
@@ -8,12 +9,13 @@ import { Router } from '@angular/router';
 })
 export class CartComponent implements OnInit {
 
+  msg?:string;
   userId:string="";
   userFunds:number=0
   newBalance?:number;
   orderProcessed:boolean = false;
   orderNotProcessed:boolean = false;
-  constructor(public router:Router) { }
+  constructor(public router:Router, public cartSer:CartService) { }
 
   ngOnInit(): void {
     this.getUserInfo();
@@ -33,6 +35,16 @@ export class CartComponent implements OnInit {
   }
   cart_items:number = 0;
   cartDetailsArr:any = [];
+  
+  OrderDetails:any = {
+     customerID:Number,
+     orderAmount:Number,
+     productList:[{
+        _id:Number,
+        quantity:Number
+    }]
+  };
+  cartDetailsArrs:any = [];
   total:number = 0;
   cartItem(){
     if(localStorage.getItem(this.userId)!=null){
@@ -51,7 +63,7 @@ export class CartComponent implements OnInit {
     if(localStorage.getItem(this.userId)){
       this.cartDetailsArr = JSON.parse(localStorage.getItem(this.userId)||'{}');
       this.total = this.cartDetailsArr.reduce(function(acc:any,val:any){
-        return acc+(val.prodPrice * val.qnt);
+        return acc+((val.prodPrice * val.qnt)*(val.discount/100));
       },0)
     }
   }
@@ -70,23 +82,25 @@ export class CartComponent implements OnInit {
     }
   }
   checkout(){
-    if(this.userFunds > this.total){
+    if((this.userFunds > this.total)&&(localStorage.getItem(this.userId)!=null)){
       this.newBalance = this.userFunds - this.total;
       this.orderProcessed=true;
+      if(localStorage.getItem(this.userId)){
+        this.cartDetailsArrs = JSON.parse(localStorage.getItem(this.userId)||'{}');
+        for (let i=0; i<this.cartDetailsArrs.length;i++){
+          this.OrderDetails.productList.push({_id:this.cartDetailsArrs[i].prodId,quantity:this.cartDetailsArrs[i].qnt});
+        } 
+        this.OrderDetails.orderAmount = this.total;
+        this.OrderDetails.customerID = this.userId;
+      }
 
-      /* let orderArr = [
-        // this.orderservice.addOrder().subscribe(res=>{
-
-      //  })
-      //   {
-      //     customerID:this.userId,
-      //     orderAmount:this.total,
-      //     productList:[{_id:req.body.productId, quantity:req.body.quantity}],
-      //   }
-      // ]
-      //here I have to add stuff from local and store in an array and then transfer it to the order model*/
       localStorage.removeItem(this.userId);
-      window.setTimeout(function(){location.reload()},3000)
+     
+      this.cartSer.addNewOrder(this.OrderDetails).subscribe((res:string)=>{
+        this.msg=res;
+        })
+      window.setTimeout(function(){location.reload()},3000);
+      console.log(this.OrderDetails);
     
 
     }else{
