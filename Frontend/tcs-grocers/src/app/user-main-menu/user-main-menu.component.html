@@ -2,7 +2,7 @@
 <div class=container *ngIf='!showCreate && !showUnlock'>
 <h1>User Login Page</h1>
 <div class="row justify-content-center">
-  <button class='btn btn-secondary col-3' routerLink="mainmenu">Back to main menu</button>
+  <button class='btn btn-secondary col-3' routerLink="/mainmenu">Back to main menu</button>
 </div>
 <br/>
   <form #loginRef="ngForm" (submit)="loginAttempt(loginRef)">
