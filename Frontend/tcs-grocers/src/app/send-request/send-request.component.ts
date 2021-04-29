@@ -19,12 +19,12 @@ export class SendRequestComponent implements OnInit {
   ngOnInit(): void {
     this.getProducts();
 
-    this.hold= sessionStorage.getItem("employeeToken")
+    this.hold= sessionStorage.getItem("empToken")
     if(this.hold==null){
       this.empID = "-1"
     }else if (this.hold!=null){
       let userInfo = JSON.parse(this.hold);
-      this.empID = userInfo.userID;
+      this.empID = userInfo;
     }
   }
 
