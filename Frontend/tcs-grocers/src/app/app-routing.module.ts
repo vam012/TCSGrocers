@@ -32,7 +32,7 @@ const routes: Routes = [
   {path:``,redirectTo:"\mainmenu",pathMatch:"full"},
   {path: `user`, component:  UserMainMenuComponent},
   {path:'usermenu',component:UserDashboardComponent,canActivate:[UserAuthGaurdService]},
-  {path:'test',component:SendRequestComponent}//used for testing please delete!
+  {path:'test',component:UnlockUsersComponent}//used for testing please delete!
 ];
 
 @NgModule({

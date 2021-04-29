@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CustomerService } from '../customer.service';
+import { SupportTicket } from '../supportticket.model';
+import { SupportticketsService } from '../supporttickets.service';
 
 @Component({
   selector: 'app-unlock-users',
@@ -7,20 +9,25 @@ import { CustomerService } from '../customer.service';
   styleUrls: ['./unlock-users.component.css']
 })
 export class UnlockUsersComponent implements OnInit {
-  userMsg?: string;
+  acctReqs?:Array<SupportTicket>
 
-  constructor(public detailSer:CustomerService, public userSer:CustomerService) { }
+  constructor(public supportTicketServ:SupportticketsService, public userServ:CustomerService) { }
 
   ngOnInit(): void {
+    this.getReqs()
   }
 
+  getReqs():void{
+    this.supportTicketServ.getAllSupportTickets().subscribe(res=>this.acctReqs=res);
+  }
 
-
-  unlockUser(userRef:any):void{
-    console.log(userRef);
-    this.userSer.unlockUser(userRef.value.id).subscribe((result:string)=>{
-      this.userMsg=result;
-    })
+  closeTicket(ticketID:any,customerID:any):void{
+    console.log(ticketID)
+    this.userServ.unlockUser({userID:customerID}).subscribe(
+      (res:string)=>{
+        this.supportTicketServ.closeTicketByID(ticketID).subscribe((res:string)=>this.getReqs())
+      }
+    )
   }
 
 }

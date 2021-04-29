@@ -28,8 +28,8 @@ export class CustomerService {
   
   constructor(public http: HttpClient) { }
 
-  unlockUser(id:any):any{
-    return this.http.put(`http://localhost:7777/customers/unlockUser/${id}`,{responseType:"text"});
+  unlockUser(idRef:any):any{
+    return this.http.put(`http://localhost:7777/customers/unlockUser/`,idRef,{responseType:"text"});
   }
 
   
