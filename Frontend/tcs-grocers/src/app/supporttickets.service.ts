@@ -25,4 +25,8 @@ export class SupportticketsService {
   updateSupportTicketStatus(supportRef:any):any{
     return this.http.put(`http://localhost:7777/supporttickets/updateSupportTicketStatus`,supportRef)
   }
+
+  closeTicketByID(supportRef:any):any{
+    return this.http.delete(`http://localhost:7777/supporttickets/closeTicketByID/${supportRef}`,{responseType:'text'})
+  }
 }

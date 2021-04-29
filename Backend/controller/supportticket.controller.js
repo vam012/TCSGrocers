@@ -69,5 +69,18 @@ let getOpenTicketsByID = (req,res)=>{
     })
 }
 
-module.exports={createNewSupportTicket,updateSupportTicketStatus,getAllTickets,getAllOpenTickets,getOpenTicketsByID};
+let closeSupportTicketByID = (req,res)=>{
+    let ticketID = req.params.ticketID;
+    SupportTicketModel.deleteOne({_id:ticketID},(err,data)=>{
+        if(!err){
+            if(data.nRemoved==1){
+                res.send("Deleted");
+            }else{
+                res.send("Does not exist");
+            }
+        }
+    })
+}
+
+module.exports={createNewSupportTicket,updateSupportTicketStatus,getAllTickets,getAllOpenTickets,getOpenTicketsByID,closeSupportTicketByID};
 

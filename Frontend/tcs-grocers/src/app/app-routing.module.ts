@@ -18,6 +18,7 @@ import { UserSignUpComponent } from './user-sign-up/user-sign-up.component';
 import { UserRaiseTicketComponent} from './user-raise-ticket/user-raise-ticket.component';
 import { UserDashboardComponent } from './user-dashboard/user-dashboard.component';
 import { UserAuthGaurdService } from './user-auth-gaurd.service';
+import { SendRequestComponent } from './send-request/send-request.component';
 
 const routes: Routes = [
   {path:`\mainmenu`,component:MainMenuComponent},
@@ -30,7 +31,8 @@ const routes: Routes = [
   {path:`cart`,component:CartComponent},
   {path:``,redirectTo:"\mainmenu",pathMatch:"full"},
   {path: `user`, component:  UserMainMenuComponent},
-  {path:'usermenu',component:UserDashboardComponent,canActivate:[UserAuthGaurdService]}
+  {path:'usermenu',component:UserDashboardComponent,canActivate:[UserAuthGaurdService]},
+  {path:'test',component:UpdateOrderStatusComponent}//used for testing please delete!
 ];
 
 @NgModule({

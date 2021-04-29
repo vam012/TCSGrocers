@@ -98,34 +98,34 @@ let getMonthlyData = (req,res)=>{
 }
 
 let updateOrderStatusByID = (req,res)=>{
-    let orderID = req.params.oid;
-    let newStatus = req.params.orderStatus;
-    if(newStatus=='Cancelled'){
-        OrderModel.updateOne({_id:orderID},{$set:{orderStatus:newStatus, orderAmount:0}},(err,data)=>{
-            if(!err){
-                if(data.nModified==1){
-                    res.send("Order status updated successfully");
-                }else{
-                    res.send("Order ID does not exist");
-                }
+    let orderID = req.body.orderID;
+    let newStatus = req.body.orderStatus;
+    OrderModel.updateOne({_id:orderID},{$set:{orderStatus:newStatus}},(err,data)=>{
+        if(!err){
+            if(data.nModified==1){
+                res.send("Order status updated successfully");
             }else{
-                res.send("Something went wrong...");
+                res.send("Order ID does not exist");
             }
-        })
-    }else{
-        OrderModel.updateOne({_id:orderID},{$set:{orderStatus:newStatus}},(err,data)=>{
-            if(!err){
-                if(data.nModified==1){
-                    res.send("Order status updated successfully");
-                }else{
-                    res.send("Order ID does not exist");
-                }
+        }else{
+            res.send("Something went wrong...");
+        }
+    })
+}
+
+let deleteOrderByID = (req,res)=>{
+    OrderModel.deleteOne({_id:req.params.orderID},(err,data)=>{
+        if(!err){
+            if(data.deletedCount==1){
+                res.send("Order status updated successfully");
             }else{
-                res.send("Something went wrong...");
+                res.send("Order ID does not exist");
             }
-        })
-    }
+        }else{
+            res.send("Something went wrong...");
+        }
+    })
 }
 
 
-module.exports={getAllOrderDetails,getOrderById,storeNewOrder,getOrderReportByCustomerId,getDailyData,getWeeklyData,getMonthlyData,updateOrderStatusByID}
+module.exports={getAllOrderDetails,getOrderById,storeNewOrder,getOrderReportByCustomerId,getDailyData,getWeeklyData,getMonthlyData,updateOrderStatusByID,deleteOrderByID}

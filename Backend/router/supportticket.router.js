@@ -7,7 +7,9 @@ router.post('/createNewSupportTicket',SupportTicketController.createNewSupportTi
 router.get('/getAllSupportTickets',SupportTicketController.getAllTickets);
 router.get('/getOpenTicketsByID/:id',SupportTicketController.getOpenTicketsByID);
 
-router.put('/updateSupportTicketStatus',SupportTicketController.updateSupportTicketStatus)
+router.put('/updateSupportTicketStatus',SupportTicketController.updateSupportTicketStatus);
+
+router.delete('/closeTicketByID/:ticketID',SupportTicketController.closeSupportTicketByID)
 
 
 module.exports=router;

@@ -13,5 +13,6 @@ router.get("/getWeeklyData/:sdate/:edate",OrderController.getWeeklyData)
 router.get("/getMonthlyData/:date",OrderController.getMonthlyData)
 router.put("/updateOrderStatusByID",OrderController.updateOrderStatusByID)
 
+router.delete('/deleteOrderByID/:orderID',OrderController.deleteOrderByID)
 
 module.exports=router;

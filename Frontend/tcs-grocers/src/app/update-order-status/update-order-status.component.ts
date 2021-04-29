@@ -10,23 +10,42 @@ import { OrderService } from '../order.service';
   styleUrls: ['./update-order-status.component.css']
 })
 export class UpdateOrderStatusComponent implements OnInit {
+  allOpenOrders?:Array<Order>
   updateMsg: any;
   customerDetails!:Customer;
 
   constructor(public orderSer:OrderService, public customerServ:CustomerService) { }
   details!:Order;
   ngOnInit(): void {
+    this.getAllOrders()
   }
 
-  updateStatus(orderRef:any){
-    console.log(orderRef)
-    if(orderRef.value.newOrderStatus=='Cancelled'){
-      this.processRefund(orderRef)
-    }
-    this.orderSer.updateOrderStatusByID(orderRef.value.orderID,orderRef.value.newOrderStatus).subscribe((result:any)=>{
-      this.updateMsg=result.Message;
-    })
+  getAllOrders():void{
+    this.orderSer.getAllOrders().subscribe(res=>{this.allOpenOrders=res})
+  }
 
+  moveOrderToNextStep(order:Order){
+    let nextStep="";
+    switch (order.orderStatus) {
+      case "Ordered":
+        nextStep="Shipped"
+        break;
+      case "Shipped":
+        nextStep="Delivered"
+        break;
+      default:
+        nextStep ="Ordered"
+    }
+    this.orderSer.updateOrderStatusByID({orderID:order._id,orderStatus:nextStep}).subscribe((res:string)=>{
+      this.getAllOrders();
+    });
+  }
+  cancelOrder(order:Order){
+    this.customerServ.addFunds(order.customerID,order.orderAmount).subscribe((res:string)=>{
+      this.orderSer.deleteOrderByID(order._id).subscribe((res:string)=>{
+        this.getAllOrders()
+      });
+    })
   }
   processRefund(orderRef:any){
     console.log("Inside processRefund");

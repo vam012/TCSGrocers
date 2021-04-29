@@ -17,7 +17,7 @@ export class UserAddFundsComponent implements OnInit {
   constructor(public userServ:CustomerService) { }
 
   ngOnInit(): void {
-    this.hold= sessionStorage.getItem("")
+    this.hold= sessionStorage.getItem("userInfo")
     if(this.hold==null){
       this.userID = "100"
     }else if (this.hold!=null){

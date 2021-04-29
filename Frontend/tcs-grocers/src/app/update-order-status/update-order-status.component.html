@@ -1,36 +1,33 @@
-<div class="conatiner">
-    <h3>Update Order Status</h3>
-    <hr>
-    <form #orderRef="ngForm" (ngSubmit)="updateStatus(orderRef.value)">
-        <div class="row justify-content-center">
-            <div class="col-lg-3">
-                <b>Order ID:</b>
-            </div>
-            <div class="col-lg-2">
-                <input type="text" name="id" id="id" required ngModel />
-
-            </div>
-        </div>
-        <div class="row justify-content-center">
-            <div class="col-lg-3">
-                <b>Status:</b>
-            </div>
-            <div class="col-lg-2">
-                <input list="browsers" name="status" id="status" required ngModel >
-                    <datalist id="browsers" ng-model>
-                        <option value="shipped">Shipped</option>
-                        <option value="OutForDelivery">Out for Delivery</option>
-                        <option value="delivered">Delivered</option>
-                        <option value="cancelled">Cancelled</option>
-                    </datalist>
-            </div>
-        </div>
-        <div class="row justify-content-center">
-            <input type="submit" class="col-3 btn btn-success" value="Update Order Status"><br />
-        </div>
-        <div class="row justify-content-center">
-            <input type="reset" class="col-3 btn btn-warning" value="Reset"><br />
-        </div>
-        
-    </form>
+<div class=container>
+    <h3>All Open Orders</h3>
+</div>
+<div class=container-fluid>
+    <div class='row justify-content-center'>
+        <table class='table table-hover table-striped'>
+            <thead>
+                <tr class=table-dark>
+                    <th scope=col>Order ID</th>
+                    <th scope=col>Order Date</th>
+                    <th scope=col>Order Status</th>
+                    <th scope=col>Order Amount</th>
+                    <th scope=col>Move Order to Next Step</th>
+                    <th scope=col>Cancel Order</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor='let order of allOpenOrders'>
+                    <th scope=row *ngIf='order.orderStatus!="Delivered"'>{{order._id}}</th>
+                    <td *ngIf='order.orderStatus!="Delivered"'>{{order.orderDate}}</td>
+                    <td *ngIf='order.orderStatus!="Delivered"'>{{order.orderStatus}}</td>
+                    <td *ngIf='order.orderStatus!="Delivered"'>${{order.orderAmount}}</td>
+                    <td *ngIf='order.orderStatus!="Delivered"'>
+                        <button class='btn btn-success' (click)='moveOrderToNextStep(order)'>Move to Next Step</button>
+                    </td>
+                    <td *ngIf='order.orderStatus!="Delivered"'>
+                        <button class='btn btn-danger' (click)='cancelOrder(order)'>Cancel Order</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
 </div>
